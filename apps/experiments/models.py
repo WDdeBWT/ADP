@@ -26,7 +26,7 @@ category_choices = (
 class Experiment(models.Model):
     name = models.CharField(max_length=50, verbose_name=u"实验题目")
     # 题目详情可能会用富文本显示
-    detail = models.CharField(verbose_name=u"实验详情", default="")
+    detail = models.CharField(verbose_name=u"实验详情", default="", max_length=300)
     degree = models.CharField(verbose_name=u"实验难度", max_length=50, choices=(("cj", "初级"), ("zj", "中级"), ("gj", "高级")))
     tag = models.CharField(max_length=10, verbose_name=u"实验标签", null=True)
     category = models.CharField(verbose_name=u"漏洞类型", max_length=20, choices=category_choices)
