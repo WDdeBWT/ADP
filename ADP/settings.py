@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'ctf',
     # 后台管理系统
     'xadmin',
+    # 表单数据界面美化
+    'crispy_forms',
 ]
 
 # 登录规则修改
@@ -61,12 +63,13 @@ INSTALLED_APPS = [
 # 用户模型更改
 AUTH_USER_MODEL = "users.UserProfile"
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -146,7 +149,7 @@ USE_TZ = False
 # 静态文件的配置,js,css等
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "static"),
 )
 
 # 媒体文件的配置,用户头像的上传等

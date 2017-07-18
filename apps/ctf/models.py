@@ -22,7 +22,8 @@ category_choices = (
 class Ctf(models.Model):
     name = models.CharField(max_length=50, verbose_name=u"课程名")
     # 可能会将题目详情改为富文本显示
-    detail = models.CharField(verbose_name=u"题目详情", default="")
+    detail = models.CharField(verbose_name=u"题目详情", default="", max_length=300)
+    url = models.CharField(verbose_name=u"题目链接", default="", max_length=100)
     is_banner = models.BooleanField(default=False, verbose_name=u"是否轮播")
     source = models.CharField(max_length=100, verbose_name=u"题目来源", default="")
     degree = models.CharField(verbose_name=u"难度", max_length=2, choices=(("cj", "初级"), ("zj", "中级"), ("gj", "高级")))

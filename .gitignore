@@ -1,5 +1,5 @@
 # 项目中的数据库移植文件
-migrations/*
+migrations/
 
 # Apple文件系统目录文件
 .DS_Store
@@ -11,7 +11,7 @@ migrations/*
 /venv/
 
 # Python缓存文件
-/__pycache__/
+__pycache__/
 
 # .py编译文件
 *.pyc
