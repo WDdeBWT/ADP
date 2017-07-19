@@ -35,6 +35,9 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -116,7 +119,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "adp",
         'USER': "root",
-        'PASSWORD': "xxx",
+        'PASSWORD': "bwt1997mysql",
         'HOST': "127.0.0.1",
     }
 }
