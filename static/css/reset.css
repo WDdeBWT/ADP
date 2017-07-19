@@ -67,12 +67,14 @@ hr {
 html { overflow-y: scroll; }
 
 /*浮动*/
+
 .fl{float:left!important;}
 .fr{float:right!important;}
 .relative{position:relative!important;}
 .clear{ clear:both;}
 .center{text-align:center;}
 .wp{width:1200px; margin:0 auto; position:relative;clear: both;}
+
 .clearfix::after {
     clear: both;
     content: " ";

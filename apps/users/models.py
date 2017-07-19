@@ -9,13 +9,13 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class UserProfile(AbstractUser):
-    nick_name = models.CharField(max_length=50, verbose_name=u"昵称", default="")
+    nick_name = models.CharField(max_length=50, verbose_name=u"昵称", default="V")
     birthday = models.DateField(verbose_name=u"生日", null=True, blank=True)
     gender = models.CharField(max_length=6, choices=(("male", u"男"), ("female", "女")), default="male", verbose_name=u"性别")
-    mobile = models.CharField(max_length=11, default="", verbose_name=u"手机号码")
-    image = models.ImageField(upload_to="image/%Y/%m", default="image/default.png", max_length=100, verbose_name=u"用户头像")
-    address = models.CharField(max_length=100, verbose_name=u"用户地区", default="")
-    introduce = models.CharField(max_length=200, verbose_name=u"自我介绍", default="")
+    mobile = models.CharField(max_length=11, default="", verbose_name=u"手机号码", blank=True)
+    image = models.ImageField(upload_to="image/%Y/%m", default=u"image/default.jpg", max_length=100, verbose_name=u"用户头像")
+    address = models.CharField(max_length=100, verbose_name=u"用户地区", default="未知")
+    introduce = models.CharField(max_length=200, verbose_name=u"自我介绍", default="这个人很懒,什么都没有留下~")
     add_time = models.DateField(verbose_name=u"加入时间", default=datetime.now)
 
     class Meta:

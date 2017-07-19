@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """ADP URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -13,12 +15,14 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url,include
+from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView
 import xadmin
-
+from django.views.static import serve
 from users.views import LoginView, RegisterView, ActiveUserView
+from ADP.settings import MEDIA_ROOT
+
 
 urlpatterns = [
     # index
@@ -35,4 +39,6 @@ urlpatterns = [
     url('^register/$', RegisterView.as_view(), name="register"),
     url(r'^active/(?P<active_code>.*)/$', ActiveUserView.as_view(), name="user_active"),
     url(r'^users/', include('users.urls', namespace="users")),
+    # 媒体文件配置
+    url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
 ]
