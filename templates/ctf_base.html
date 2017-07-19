@@ -4,25 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
-    <meta name="viewport"
-          content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
     <title>{% block title %}攻防演练平台{% endblock %}</title>
+
     <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/static/css/animate.css">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
     {% block custom_css %}{% endblock %}
+
     <script src="/static/js/jquery.min.js" type="text/javascript"></script>
     <script src="/static/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-
 </head>
+
 <body>
 <section class="headerwrap ">
     <header>
         <div class=" header">
             <div class="top">
                 <div class="wp">
-                    <div class="fl"><p>服务电话：<b>33333333</b></p></div>
+                    <div class="fl"><p>攻防演练平台</p></div>
 
 
                     {#                    {% if request.user.is_authenticated %}#}
@@ -112,7 +115,6 @@
 {% endblock %}
 
 {% block content %}
-
 {% endblock %}
 
 
@@ -139,12 +141,10 @@
 
 <section>
     <ul class="sidebar">
-        <li class="qq">
-            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2023525077&site=qq&menu=yes"></a>
-        </li>
         <li class="totop"></li>
     </ul>
 </section>
+
 <script src="/static/js/selectUi.js" type='text/javascript'></script>
 <script src="/static/js/deco-common.js" type='text/javascript'></script>
 <script type="text/javascript" src="/static/js/plugins/laydate/laydate.js"></script>

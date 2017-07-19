@@ -146,9 +146,9 @@ html {
     position: relative !important;
 }
 
-.clear {
-    clear: both;
-}
+/*.clear {*/
+    /*clear: both;*/
+/*}*/
 
 .center {
     text-align: center;
