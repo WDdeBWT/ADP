@@ -52,7 +52,7 @@
 .selectfocus em{
     height:30px;
     display:block;
-    background:url(../images/select-arr-default.gif) no-repeat right 0;
+    background:url(/static/images/select-arr-default.gif) no-repeat right 0;
     font-style:normal;
     color:#4b555b;
     padding-right:8px;
@@ -90,7 +90,7 @@
     position: absolute;
     left: 25px;
     top: -7px;
-    background: url("../images/pop-tips-info-arr.gif") no-repeat 0 0;
+    background: url("/static/images/pop-tips-info-arr.gif") no-repeat 0 0;
 }
 .select-datetime{
     width: 100%;

@@ -15,7 +15,7 @@ a:hover{
     background:#fff;
 }
 .bg-box{
-    background:url(../images/login-bg.png) no-repeat center center;
+    background:url(/static/images/login-bg.png) no-repeat center center;
 }
 .header-box{
     width:1190px;
@@ -57,7 +57,7 @@ a:hover{
     margin-bottom:15px;
     padding-top:32px;
     padding-left:190px;
-    background:url(../images/logo.png) no-repeat 0 center;
+    background:url(/static/images/logo1.png) no-repeat 0 center;
 }
 .index-logo{
     position:absolute;
@@ -81,7 +81,7 @@ a:hover{
     margin-top:48px;
     padding-left:20px;
     color:#fff;
-    background:url(../images/homepage.png) no-repeat 0 top;
+    background:url(/static/images/homepage.png) no-repeat 0 top;
 }
 .slide{
     position: relative;
@@ -107,17 +107,17 @@ a:hover{
 }
 .unslider-arrow.prev {
     left: 0;
-    background:url(../images/slide_l.png) no-repeat center center;
+    background:url(/static/images/slide_l.png) no-repeat center center;
 }
 .unslider-arrow.prev:hover {
-    background:url(../images/slide_l_1.png) no-repeat center center;
+    background:url(/static/images/slide_l_1.png) no-repeat center center;
 }
 .unslider-arrow.next{
     right:0;
-    background:url(../images/slide_r.png) no-repeat center center;
+    background:url(/static/images/slide_r.png) no-repeat center center;
 }
 .unslider-arrow.next:hover{
-    background:url(../images/slide_r_1.png) no-repeat center center;
+    background:url(/static/images/slide_r_1.png) no-repeat center center;
 }
 .imgslide .dots{
     position:absolute;
@@ -430,8 +430,8 @@ a:hover{
     position: relative;
 }
 .successbox .cont .fl{margin:10px;}
-.successbox .cont{background:url(../images/check2.png) no-repeat 0 center;display: table;width:auto;height: 199px;padding:0;}
-.failbox .cont{background:url(../images/check4.png) no-repeat 0 center!important;}
+.successbox .cont{background:url(/static/images/check2.png) no-repeat 0 center;display: table;width:auto;height: 199px;padding:0;}
+.failbox .cont{background:url(/static/images/check4.png) no-repeat 0 center!important;}
 .failbox h2{color:#f00;}
 .successbox .cont h2{display: table-cell;font-size: 18px;margin-top:25px;padding-left: 110px;vertical-align: middle;line-height:25px;}
 .noactivebox .center{text-align: center;line-height: 20px;}

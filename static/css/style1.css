@@ -561,7 +561,7 @@ textarea:focus {
 
 .dialogbox .selectOption {
     color: #7C7C7C;
-    background: transparent url("../images/select_arrow2.png") no-repeat scroll 93% 60%;
+    background: transparent url("/static/images/select_arrow2.png") no-repeat scroll 93% 60%;
     display: block;
     font-size: 12px;
     text-align: left;
@@ -617,11 +617,11 @@ textarea:focus {
 }
 
 .paydialog .result .pic1 {
-    background: url(../images/paypic1.png) no-repeat left center;
+    background: url(/static/images/paypic1.png) no-repeat left center;
 }
 
 .paydialog .result .pic2 {
-    background: url(../images/paypic2.png) no-repeat left center;
+    background: url(/static/images/paypic2.png) no-repeat left center;
 }
 
 .paydialog h2 {
@@ -692,7 +692,7 @@ textarea:focus {
 }
 
 .successbox .cont {
-    background: url(../images/check2.png) no-repeat 0 center;
+    background: url(/static/images/check2.png) no-repeat 0 center;
     display: table;
     width: auto;
     height: 199px;
@@ -700,7 +700,7 @@ textarea:focus {
 }
 
 .failbox .cont {
-    background: url(../images/check4.png) no-repeat 0 center !important;
+    background: url(/static/images/check4.png) no-repeat 0 center !important;
 }
 
 .failbox h2 {
@@ -725,7 +725,7 @@ er .middle {
 
 er .middle .wp {
     height: 100%;
-    background: url(../images/header_middle.png) no-repeat right 10px;
+    background: url(/static/images/header_middle.png) no-repeat right 10px;
 }
 
 /*select*/
@@ -739,7 +739,7 @@ er .middle .wp {
 
 .selectOption {
     color: #67ae56;
-    background: url('../images/select_arrow.png') no-repeat 85% 60%;
+    background: url('/static/images/select_arrow.png') no-repeat 85% 60%;
     display: block;
     cursor: pointer;
 }
@@ -835,7 +835,7 @@ er .nav .hot {
 }
 
 .nav li.arrow {
-    background: url(../images/nav_arrow.jpg) no-repeat 90% 15px;
+    background: url(/static/images/nav_arrow.jpg) no-repeat 90% 15px;
 }
 
 .nav .drop {
@@ -889,7 +889,7 @@ er .exit .btn {
 
 er .goback {
     color: #fff;
-    background: url(../images/goback.png) no-repeat left center;
+    background: url(/static/images/goback.png) no-repeat left center;
     padding-left: 30px;
 }
 
@@ -969,7 +969,7 @@ er2 h1 {
 .unslider-arrow4.prev,
 .unslider-arrow5.prev {
     left: 0;
-    background: url(../images/slide_l.png) no-repeat center center;
+    background: url(/static/images/slide_l.png) no-repeat center center;
 }
 
 .unslider-arrow.prev:hover,
@@ -977,7 +977,7 @@ er2 h1 {
 .unslider-arrow3.prev:hover,
 .unslider-arrow4.prev:hover,
 .unslider-arrow5.prev:hover {
-    background: url(../images/slide_l_1.png) no-repeat center center;
+    background: url(/static/images/slide_l_1.png) no-repeat center center;
 }
 
 .unslider-arrow.next,
@@ -986,7 +986,7 @@ er2 h1 {
 .unslider-arrow4.next,
 .unslider-arrow5.next {
     right: 0;
-    background: url(../images/slide_r.png) no-repeat center center;
+    background: url(/static/images/slide_r.png) no-repeat center center;
 }
 
 .unslider-arrow.next:hover,
@@ -994,7 +994,7 @@ er2 h1 {
 .unslider-arrow3.next:hover,
 .unslider-arrow4.next:hover,
 .unslider-arrow5.next:hover {
-    background: url(../images/slide_r_1.png) no-repeat center center;
+    background: url(/static/images/slide_r_1.png) no-repeat center center;
 }
 
 .imgslide .dots,
@@ -1087,15 +1087,15 @@ er2 h1 {
 }
 
 .banner .fr .icon1 {
-    background: url(../images/banner_icon1.png) no-repeat 8px center;
+    background: url(/static/images/banner_icon1.png) no-repeat 8px center;
 }
 
 .banner .fr .icon2 {
-    background: url(../images/banner_icon2.png) no-repeat 8px center;
+    background: url(/static/images/banner_icon2.png) no-repeat 8px center;
 }
 
 .banner .fr .icon3{
-    background: url(../images/banner_icon3.png) no-repeat 8px center;
+    background: url(/static/images/banner_icon3.png) no-repeat 8px center;
 }
 
 .banner .fr .demand_form_tips {
@@ -1118,12 +1118,12 @@ er2 h1 {
     text-indent: 0;
     font-size: 14px;
     top: 230px;
-    background: #ff9d33 url(../images/banner_icon4.png) no-repeat 70% center;
+    background: #ff9d33 url(/static/images/banner_icon4.png) no-repeat 70% center;
     cursor: pointer;
 }
 
 .banner .fr .submit:hover {
-    background: #ff8400 url(../images/banner_icon4.png) no-repeat 70% center;
+    background: #ff8400 url(/static/images/banner_icon4.png) no-repeat 70% center;
 }
 
 .banner .bottom {
@@ -1201,12 +1201,12 @@ er2 h1 {
 }
 
 /*
-.feature .feature1{background: url(../images/feature1.png) no-repeat center 20px;}
-.feature .feature2{background: url(../images/feature2.png) no-repeat center 20px;}
-.feature .feature3{background: url(../images/feature3.png) no-repeat center 20px;}
-.feature .feature4{background: url(../images/feature4.png) no-repeat center 20px;}
-.feature .feature5{background: url(../images/feature5.png) no-repeat center 20px;}
-.feature .feature6{background: url(../images/feature6.png) no-repeat center 20px;}
+.feature .feature1{background: url(/static/images/feature1.png) no-repeat center 20px;}
+.feature .feature2{background: url(/static/images/feature2.png) no-repeat center 20px;}
+.feature .feature3{background: url(/static/images/feature3.png) no-repeat center 20px;}
+.feature .feature4{background: url(/static/images/feature4.png) no-repeat center 20px;}
+.feature .feature5{background: url(/static/images/feature5.png) no-repeat center 20px;}
+.feature .feature6{background: url(/static/images/feature6.png) no-repeat center 20px;}
 */
 /*module*/
 
@@ -1388,20 +1388,20 @@ er2 h1 {
 
 .group_list .bottom .star {
     cursor: pointer;
-    background: #f0f0f0 url(../images/star.png) no-repeat 10px center;
+    background: #f0f0f0 url(/static/images/star.png) no-repeat 10px center;
 }
 
 .group_list .bottom .collected {
     cursor: pointer;
-    background: #f0f0f0 url(../images/star-hover.png) no-repeat 10px center;
+    background: #f0f0f0 url(/static/images/star-hover.png) no-repeat 10px center;
 }
 
 .group_list .bottom .delete-group {
-    background: #f0f0f0 url("../images/pic12.png") no-repeat center center;
+    background: #f0f0f0 url("/static/images/pic12.png") no-repeat center center;
 }
 
 .group_list .bottom .delete-group:hover {
-    background: #f0f0f0 url("../images/pic13.png") no-repeat center center;
+    background: #f0f0f0 url("/static/images/pic13.png") no-repeat center center;
 }
 
 .module1_2 {
@@ -1451,7 +1451,7 @@ er2 h1 {
     width: 100%;
     height: 130px;
     margin-top: 15px;
-    background: url(../images/pathbg.png) no-repeat center center;
+    background: url(/static/images/pathbg.png) no-repeat center center;
 }
 
 .module2 li {
@@ -1516,27 +1516,27 @@ er2 h1 {
 }
 
 .module2 .path1 {
-    background: #fff url(../images/path2.png) no-repeat center 30px;
+    background: #fff url(/static/images/path2.png) no-repeat center 30px;
 }
 
 .module2 .path2 {
-    background: #fff url(../images/path2.png) no-repeat center 30px;
+    background: #fff url(/static/images/path2.png) no-repeat center 30px;
 }
 
 .module2 .path3 {
-    background: #fff url(../images/path3.png) no-repeat center 30px;
+    background: #fff url(/static/images/path3.png) no-repeat center 30px;
 }
 
 .module2 .path4 {
-    background: #fff url(../images/path4.png) no-repeat center 30px;
+    background: #fff url(/static/images/path4.png) no-repeat center 30px;
 }
 
 .module2 .path5 {
-    background: #fff url(../images/path5.png) no-repeat center 30px;
+    background: #fff url(/static/images/path5.png) no-repeat center 30px;
 }
 
 .module2 .path6 {
-    background: #fff url(../images/path6.png) no-repeat center 30px;
+    background: #fff url(/static/images/path6.png) no-repeat center 30px;
     margin: 0;
 }
 
@@ -1778,7 +1778,7 @@ er2 h1 {
 }
 
 .module6bg {
-    background: url(../images/module6bg.png) no-repeat right bottom;
+    background: url(/static/images/module6bg.png) no-repeat right bottom;
 }
 
 .module6 {
@@ -2379,7 +2379,7 @@ footer .footer .line {
 
 .zoomMask {
     position: absolute;
-    background: url("../images/mask.png") repeat scroll 0 0 transparent;
+    background: url("/static/images/mask.png") repeat scroll 0 0 transparent;
     cursor: move;
     z-index: 1;
     width: 100px;
@@ -2505,7 +2505,7 @@ footer .footer .line {
 }
 
 .groupPurchase_detail .toppro .left .collected {
-    background: #717171 url(../images/star-btn.png) no-repeat 20px center;
+    background: #717171 url(/static/images/star-btn.png) no-repeat 20px center;
 }
 
 .groupPurchase_detail .toppro .buy {
@@ -2825,7 +2825,7 @@ footer .footer .line {
     vertical-align: top;
     font-size: 14px;
     color: #ff7800;
-    background: url(../images/authentication.png) no-repeat left center;
+    background: url(/static/images/authentication.png) no-repeat left center;
     padding-left: 30px;
     margin-left: 20px;
 }
@@ -2859,29 +2859,29 @@ footer .footer .line {
 }
 
 .butler_list .cont .time {
-    background: url(../images/list_time.png) no-repeat left center;
+    background: url(/static/images/list_time.png) no-repeat left center;
     padding-left: 0;
 }
 
 .butler_list .cont .share_c7 {
     margin-left: -2px;
-    background: url(../images/share_c7.png) no-repeat left center;
+    background: url(/static/images/share_c7.png) no-repeat left center;
 }
 
 .butler_list .cont .c7, .companyranklist .cont .c8 {
-    background: url(../images/pic7.png) no-repeat left center;
+    background: url(/static/images/pic7.png) no-repeat left center;
 }
 
 .butler_list .cont .c8, .companyranklist .cont .c7 {
-    background: url(../images/share_c8.png) no-repeat left center;
+    background: url(/static/images/share_c8.png) no-repeat left center;
 }
 
 .butler_list .cont .pic9, .companyranklist .cont .pic9 {
-    background: url(../images/pic9.png) no-repeat left center;
+    background: url(/static/images/pic9.png) no-repeat left center;
 }
 
 .butler_list .cont .pic10, .companyranklist .cont .pic10 {
-    background: url(../images/pic10.png) no-repeat left center;
+    background: url(/static/images/pic10.png) no-repeat left center;
 }
 
 .butler_list .clear span {
@@ -2920,7 +2920,7 @@ footer .footer .line {
 }
 
 .butler_list_box .right .num {
-    background: url(../images/pic8.png) no-repeat center center;
+    background: url(/static/images/pic8.png) no-repeat center center;
     width: 23px;
     height: 29px;
     line-height: 20px;
@@ -2998,7 +2998,7 @@ footer .footer .line {
 }
 
 .butler_detail_list .des .key {
-    background: url(../images/authentication.png) no-repeat left center;
+    background: url(/static/images/authentication.png) no-repeat left center;
     padding-left: 30px;
     margin-left: 20px;
 }
@@ -3054,11 +3054,11 @@ footer .footer .line {
 }
 
 .butler_detail_list .btn .btn1 {
-    background: #717171 url(../images/btn3.png) no-repeat 15px center;
+    background: #717171 url(/static/images/btn3.png) no-repeat 15px center;
 }
 
 .butler_detail_list .btn .btn2 {
-    background: #3a3a3a url(../images/btn4.png) no-repeat 20px center;
+    background: #3a3a3a url(/static/images/btn4.png) no-repeat 20px center;
     position: relative;
 }
 
@@ -3106,23 +3106,23 @@ footer .footer .line {
 }
 
 .butler_detail_list .time {
-    background: url(../images/list_time.png) no-repeat left center;
+    background: url(/static/images/list_time.png) no-repeat left center;
 }
 
 .butler_detail_list .share_c7 {
-    background: url(../images/share_c7.png) no-repeat left center;
+    background: url(/static/images/share_c7.png) no-repeat left center;
 }
 
 .butler_detail_list .c7 {
-    background: url(../images/pic7.png) no-repeat left center;
+    background: url(/static/images/pic7.png) no-repeat left center;
 }
 
 .butler_detail_list .c8 {
-    background: url(../images/share_c8.png) no-repeat left center;
+    background: url(/static/images/share_c8.png) no-repeat left center;
 }
 
 .butler_detail_list .c9 {
-    background: url(../images/share_c9.png) no-repeat left center;
+    background: url(/static/images/share_c9.png) no-repeat left center;
 }
 
 .butler_detail_list .star_score {
@@ -3254,29 +3254,29 @@ footer .footer .line {
 }
 
 .module5.share .count .c1 {
-    background: url(../images/share_c1.png) no-repeat left center;
+    background: url(/static/images/share_c1.png) no-repeat left center;
     cursor: pointer;
 }
 
 .module5.share .count .c1.collected {
-    background: url(../images/share_c1_g.png) no-repeat left center;
+    background: url(/static/images/share_c1_g.png) no-repeat left center;
 }
 
 .module5.share .count .c2 {
-    background: url(../images/g_star.png) no-repeat 0 center;
+    background: url(/static/images/g_star.png) no-repeat 0 center;
     cursor: pointer;
 }
 
 .module5.share .count .c2.collected {
-    background: url("../images/r_star.png") no-repeat 0 center;
+    background: url("/static/images/r_star.png") no-repeat 0 center;
 }
 
 .module5.share .count .c3 {
-    background: url(../images/share_c3.png) no-repeat left center;
+    background: url(/static/images/share_c3.png) no-repeat left center;
 }
 
 /*
-.module5.share .count .c4{background: url(../images/share_c4.png) no-repeat 10px center;color: #717171;margin-right:20px;text-indent:30px;cursor: pointer;padding:0 20px;height:30px;line-height:30px;border-radius: 5px;}
+.module5.share .count .c4{background: url(/static/images/share_c4.png) no-repeat 10px center;color: #717171;margin-right:20px;text-indent:30px;cursor: pointer;padding:0 20px;height:30px;line-height:30px;border-radius: 5px;}
 .module5.share .count .c4:hover{border:1px solid #717171;}
 */
 .bdsharebuttonbox {
@@ -3391,7 +3391,7 @@ footer .footer .line {
 
 .list.strategy .grouplist .time {
     color: #a0a0a0;
-    background: url(../images/list_time.png) no-repeat left center;
+    background: url(/static/images/list_time.png) no-repeat left center;
 }
 
 .list.strategy .grouplist span {
@@ -3453,15 +3453,15 @@ footer .footer .line {
 }
 
 .detail_cont .shead .time {
-    background: url(../images/list_time.png) no-repeat left center;
+    background: url(/static/images/list_time.png) no-repeat left center;
 }
 
 .detail_cont .shead .seen, .list.strategy .grouplist .seen {
-    background: url(../images/share_c6.png) no-repeat left center;
+    background: url(/static/images/share_c6.png) no-repeat left center;
 }
 
 .detail_cont .shead .share {
-    background: url(../images/share_c5.png) no-repeat left center;
+    background: url(/static/images/share_c5.png) no-repeat left center;
 }
 
 .detail_cont .bottom_share {
@@ -3500,7 +3500,7 @@ footer .footer .line {
     font-size: 16px;
     color: #3a3a3a;
     border-bottom: 1px solid #eaeaea;
-    background: url(../images/arrow.png) no-repeat 95% center;
+    background: url(/static/images/arrow.png) no-repeat 95% center;
 }
 
 .personal_list .left li:last-child {
@@ -3508,7 +3508,7 @@ footer .footer .line {
 }
 
 .personal_list .left li:hover, .personal_list .left .active2 {
-    background: #fff url(../images/arrow_g.png) no-repeat 95% center;
+    background: #fff url(/static/images/arrow_g.png) no-repeat 95% center;
     border-left: 2px solid #717171;
 }
 
@@ -3523,17 +3523,17 @@ footer .footer .line {
 .personal_list .left .dropwrap {
     height: auto;
     overflow: hidden;
-    background: url(../images/drop_plus.png) no-repeat 95% 20px;
+    background: url(/static/images/drop_plus.png) no-repeat 95% 20px;
     width: 100%;
 }
 
 .personal_list .left .dropwrap:hover {
     border: 0;
-    background: url(../images/drop_plus.png) no-repeat 95% 20px;
+    background: url(/static/images/drop_plus.png) no-repeat 95% 20px;
 }
 
 .personal_list .left .dropwrap:hover .drophead {
-    background: #fff url(../images/drop_plus_g.png) no-repeat 95% 20px;
+    background: #fff url(/static/images/drop_plus_g.png) no-repeat 95% 20px;
     border-left: 2px solid #717171;
 }
 
@@ -3599,13 +3599,13 @@ footer .footer .line {
 
 .personal_list  .set .drop_btn {
     width: 80px;
-    background: url(../images/down.png) no-repeat right center;
+    background: url(/static/images/down.png) no-repeat right center;
     padding-right: 20px;
     float: right;
 }
 
 .personal_list  .set:hover .drop_btn {
-    background: url(../images/up.png) no-repeat right center;
+    background: url(/static/images/up.png) no-repeat right center;
 }
 
 .personal_list  .set ul {  
@@ -3626,7 +3626,7 @@ footer .footer .line {
 }
 
 .personal_list  .set .down .checked {
-    background: url(../images/right.png) no-repeat 10px center;
+    background: url(/static/images/right.png) no-repeat 10px center;
 }
 
 .personal_list .brief {
@@ -3673,7 +3673,7 @@ footer .footer .line {
 }
 
 .personal_list .brief .des .key {
-    background: url(../images/authentication.png) no-repeat left center;
+    background: url(/static/images/authentication.png) no-repeat left center;
     padding: 30px;
     margin-left: 10px;
     color: #ff7800;
@@ -3690,15 +3690,15 @@ footer .footer .line {
 }
 
 .personal_list .brief .des .time {
-    background: url(../images/list_time.png) no-repeat left center;
+    background: url(/static/images/list_time.png) no-repeat left center;
 }
 
 .personal_list .brief .des .c7 {
-    background: url(../images/share_c7.png) no-repeat left center;
+    background: url(/static/images/share_c7.png) no-repeat left center;
 }
 
 .personal_list .brief .des .c8 {
-    background: url(../images/share_c8.png) no-repeat left center;
+    background: url(/static/images/share_c8.png) no-repeat left center;
 }
 
 .personal_list .person_top .key {
@@ -3802,20 +3802,20 @@ footer .footer .line {
 }
 
 .personal_des .btn1 {
-    background: url(../images/btn1.png) no-repeat left center;
+    background: url(/static/images/btn1.png) no-repeat left center;
     padding: 0 30px;
     color: #ff7200;
 }
 
 .personal_des .btn2 {
-    background: url(../images/btn2.png) no-repeat left center;
+    background: url(/static/images/btn2.png) no-repeat left center;
     padding: 0 30px;
     color: #ff7200;
     cursor: pointer;
 }
 
 .personal_des .pic11 {
-    background: url(../images/pic11.png) no-repeat left center;
+    background: url(/static/images/pic11.png) no-repeat left center;
     padding: 0 10px;
 }
 
@@ -3851,19 +3851,19 @@ footer .footer .line {
 }
 
 .star_score .r_star {
-    background: url(../images/r_star.png) no-repeat center center;
+    background: url(/static/images/r_star.png) no-repeat center center;
 }
 
 .star_score .h_star {
-    background: url(../images/h_star.png) no-repeat center center;
+    background: url(/static/images/h_star.png) no-repeat center center;
 }
 
 .star_score .g_star {
-    background: url(../images/g_star.png) no-repeat center center;
+    background: url(/static/images/g_star.png) no-repeat center center;
 }
 
 .star_score .scores {
-    background: url(../images/scores.png) no-repeat center center;
+    background: url(/static/images/scores.png) no-repeat center center;
     width: 28px;
     height: 18px;
     line-height: 18px;
@@ -3986,36 +3986,36 @@ footer .footer .line {
 }
 
 .funcs .pic1 {
-    background: url(../images/pic1.png) no-repeat top center;
+    background: url(/static/images/pic1.png) no-repeat top center;
     padding-left: 0;
     cursor: pointer;
 }
 
 .funcs .pic1.collected {
-    background: url(../images/pic1_1.png) no-repeat top center;
+    background: url(/static/images/pic1_1.png) no-repeat top center;
 }
 
 .funcs .pic2 {
-    background: url(../images/pic2.png) no-repeat top center;
+    background: url(/static/images/pic2.png) no-repeat top center;
     cursor: pointer;
 }
 
 .funcs .pic2.collected {
-    background: url(../images/star-btn-hover.png) no-repeat top center;
+    background: url(/static/images/star-btn-hover.png) no-repeat top center;
 }
 
 .funcs .pic3 {
-    background: url(../images/pic3.png) no-repeat top center;
+    background: url(/static/images/pic3.png) no-repeat top center;
 }
 
 .funcs .unevlpic {
-    background: url(../images/btn1.png) no-repeat top center;
+    background: url(/static/images/btn1.png) no-repeat top center;
     cursor: pointer;
     color: #9f9f9f;
 }
 
 .funcs .evlpic {
-    background: url(../images/diary-edit.png) no-repeat top center;
+    background: url(/static/images/diary-edit.png) no-repeat top center;
     cursor: pointer;
 }
 
@@ -4024,7 +4024,7 @@ footer .footer .line {
 }
 
 .changemessage {
-    background: url(../images/pen.png) no-repeat left center;
+    background: url(/static/images/pen.png) no-repeat left center;
     padding: 10px 30px;
     padding-right: 20px;
     position: absolute;
@@ -4088,14 +4088,14 @@ footer .footer .line {
 .butler_detail .right .time {
     font-size: 18px;
     color: #717171;
-    background: url(../images/time.png) no-repeat left center;
+    background: url(/static/images/time.png) no-repeat left center;
     padding-left: 25px;
     line-height: 40px;
 }
 
 .butler_detail .right .share {
     color: #717171;
-    background: url(../images/share_c4.png) no-repeat left center;
+    background: url(/static/images/share_c4.png) no-repeat left center;
     padding-left: 25px;
 }
 
@@ -4142,15 +4142,15 @@ footer .footer .line {
 }
 
 .butler_detail .right .picbot .pic1 {
-    background: url(../images/pic4.png) no-repeat left center;
+    background: url(/static/images/pic4.png) no-repeat left center;
 }
 
 .butler_detail .right .picbot .pic2 {
-    background: url(../images/pic5.png) no-repeat left center;
+    background: url(/static/images/pic5.png) no-repeat left center;
 }
 
 .butler_detail .right .picbot .pic2:hover, .butler_detail .right .picbot .pic2.praised {
-    background: url(../images/pic6.png) no-repeat left center;
+    background: url(/static/images/pic6.png) no-repeat left center;
     cursor: pointer;
 }
 
@@ -4311,7 +4311,7 @@ footer .footer .line {
 }
 
 .uppiclists .delete {
-    background: url(../images/delete.png) no-repeat center center;
+    background: url(/static/images/delete.png) no-repeat center center;
     width: 30px;
     height: 30px;
     position: absolute;
@@ -4519,7 +4519,7 @@ footer .footer .line {
     text-indent: 15px;
     margin-left: -3px;
     margin-top: 5px;
-    background: url(../images/share_c8.png) no-repeat left 3px;
+    background: url(/static/images/share_c8.png) no-repeat left 3px;
 }
 
 .companyheader , .companyheader .shead {
@@ -4562,7 +4562,7 @@ footer .footer .line {
     line-height: 40px;
     color: #fff;
     text-align: center;
-    background: #ff8833 url(../images/star-btn.png) no-repeat 15px center;
+    background: #ff8833 url(/static/images/star-btn.png) no-repeat 15px center;
     text-indent: 15px;
     border-radius: 3px;
     margin-top: 40px;
@@ -4615,7 +4615,7 @@ footer .footer .line {
 }
 
 .companycenter .options li {
-    background: url(../images/check.png) no-repeat 50px center;
+    background: url(/static/images/check.png) no-repeat 50px center;
 }
 
 .companycenter .imgslide {
@@ -4652,7 +4652,7 @@ footer .footer .line {
     border-top: 1px solid #eaeaea;
     text-indent: 60px;
     position: relative;
-    background: url(../images/tel.png) no-repeat 20px center;
+    background: url(/static/images/tel.png) no-repeat 20px center;
 }
 
 .companycenter .tel h2 {
@@ -4846,7 +4846,7 @@ footer .footer .line {
 }
 
 .companyranklist .num {
-    background: url(../images/rankgold.png) no-repeat center center;
+    background: url(/static/images/rankgold.png) no-repeat center center;
     line-height: 110px;
     color: #fffc00;
     text-align: center;
@@ -4854,7 +4854,7 @@ footer .footer .line {
 }
 
 .companyranklist .num2 {
-    background: url(../images/rankgreen.png) no-repeat center center;
+    background: url(/static/images/rankgreen.png) no-repeat center center;
 }
 
 .companyranklist dd {
@@ -4920,31 +4920,31 @@ footer .footer .line {
 }
 
 .Releasecont .brief .release1 {
-    background: url(../images/release1.png) no-repeat 10px center;
+    background: url(/static/images/release1.png) no-repeat 10px center;
 }
 
 .Releasecont .brief .release2 {
-    background: url(../images/release2.png) no-repeat 10px center;
+    background: url(/static/images/release2.png) no-repeat 10px center;
 }
 
 .Releasecont .brief .release3 {
-    background: url(../images/release3.png) no-repeat 10px center;
+    background: url(/static/images/release3.png) no-repeat 10px center;
 }
 
 .Releasecont .brief .release4 {
-    background: url(../images/release4.png) no-repeat 10px center;
+    background: url(/static/images/release4.png) no-repeat 10px center;
 }
 
 .Releasecont .brief .release5 {
-    background: url(../images/release5.png) no-repeat 10px center;
+    background: url(/static/images/release5.png) no-repeat 10px center;
 }
 
 .Releasecont .brief .release6 {
-    background: url(../images/release6.png) no-repeat 10px center;
+    background: url(/static/images/release6.png) no-repeat 10px center;
 }
 
 .Releasecont .brief .release7 {
-    background: url(../images/release7.png) no-repeat 10px center;
+    background: url(/static/images/release7.png) no-repeat 10px center;
 }
 
 .Releasecont .tabwrap {
@@ -4961,7 +4961,7 @@ footer .footer .line {
 .tabwrapper .btn {
     width: 20px;
     height: 30px;
-    background: #D8D4D4 url(../images/tab.png) no-repeat center center;
+    background: #D8D4D4 url(/static/images/tab.png) no-repeat center center;
     position: absolute;
     display: block;
     top: 0;
@@ -5048,7 +5048,7 @@ footer .footer .line {
 
 .Releaselist .time {
     font-size: 12px;
-    background: url(../images/list_time.png) no-repeat left center;
+    background: url(/static/images/list_time.png) no-repeat left center;
     padding-left: 20px;
     float: right;
 }
@@ -5243,11 +5243,11 @@ footer .footer .line {
 }
 
 .personal_des .mybill_record .release7 {
-    background: url(../images/release8.png) no-repeat 15px center;
+    background: url(/static/images/release8.png) no-repeat 15px center;
 }
 
 .personal_des .mybill_record .release8 {
-    background: url(../images/release7.png) no-repeat 10px center;
+    background: url(/static/images/release7.png) no-repeat 10px center;
 }
 
 .personal_des .billtop {
@@ -5279,7 +5279,7 @@ footer .footer .line {
 
 .personal_des .billtop p {
     color: #848484;
-    background: url(../images/share_c8.png) no-repeat left center;
+    background: url(/static/images/share_c8.png) no-repeat left center;
     text-indent: 20px;
     line-height: 30px;
 }
@@ -5302,7 +5302,7 @@ footer .footer .line {
     width: 100%;
     overflow: hidden;
     padding-bottom: 40px;
-    background: url(../images/billbg.png) no-repeat center 190px;
+    background: url(/static/images/billbg.png) no-repeat center 190px;
 }
 
 .billlist .schedule li {
@@ -5315,7 +5315,7 @@ footer .footer .line {
 .billlist .schedule .picbox {
     color: #686868;
     line-height: 150%;
-    background: url(../images/billbox.png) no-repeat center center;
+    background: url(/static/images/billbox.png) no-repeat center center;
     width: 170px;
     height: 90px;
     margin: 20px auto;
@@ -5324,7 +5324,7 @@ footer .footer .line {
 
 .billlist .schedule .picbox.active {
     color: #fff;
-    background: url(../images/billboxactive.png) no-repeat center center;
+    background: url(/static/images/billboxactive.png) no-repeat center center;
     width: 170px;
     height: 90px;
     margin: 20px auto;
@@ -5382,7 +5382,7 @@ footer .footer .line {
     width: 100%;
     overflow: hidden;
     padding-bottom: 40px;
-    background: url(../images/pathbg2.png) no-repeat center 190px;
+    background: url(/static/images/pathbg2.png) no-repeat center 190px;
 }
 
 .billlist .schedule2 li {
@@ -5451,7 +5451,7 @@ footer .footer .line {
 }
 
 .personal_des .option .searchbtn {
-    background: #717171 url(../images/search_btn.png) no-repeat center center;
+    background: #717171 url(/static/images/search_btn.png) no-repeat center center;
     display: block;
     width: 30px;
     height: 30px;
@@ -5581,7 +5581,7 @@ footer .footer .line {
 }
 
 .messagelist .time {
-    background: url(../images/list_time.png) no-repeat left center;
+    background: url(/static/images/list_time.png) no-repeat left center;
     text-indent: 20px;
 }
 
@@ -5596,11 +5596,11 @@ footer .footer .line {
 }
 
 .messagelist .top .foldbtn {
-    background: url(../images/fold.png) no-repeat right center;
+    background: url(/static/images/fold.png) no-repeat right center;
 }
 
 .messagelist .top .unfoldbtn {
-    background: url(../images/unfold.png) no-repeat right center;
+    background: url(/static/images/unfold.png) no-repeat right center;
 }
 
 .messagelist .checkbox {
@@ -5680,7 +5680,7 @@ footer .footer .line {
 
 .messages.butler_list.company dd .c8 {
     display: block;
-    background: url(../images/share_c8.png) no-repeat left center;
+    background: url(/static/images/share_c8.png) no-repeat left center;
     text-indent: 20px;
 }
 
@@ -5699,7 +5699,7 @@ footer .footer .line {
     top: 50px;
     width: 31px;
     height: 50px;
-    background: url(../images/pic12.png) no-repeat center center;
+    background: url(/static/images/pic12.png) no-repeat center center;
     cursor: pointer;
 }
 
@@ -5712,7 +5712,7 @@ footer .footer .line {
 .permessage .option .delete, .col_diary .delete {
     width: 31px;
     height: 50px;
-    background: url(../images/pic12.png) no-repeat center center !important;
+    background: url(/static/images/pic12.png) no-repeat center center !important;
     cursor: pointer;
     position: relative;
     right: 0;
@@ -5720,7 +5720,7 @@ footer .footer .line {
 }
 
 .messagelist .delete:hover, .permessage .option .delete:hover, .col_diary .box .delete:hover {
-    background: url(../images/pic13.png) no-repeat center center;
+    background: url(/static/images/pic13.png) no-repeat center center;
 }
 
 .messagelist .butler_list {
@@ -6527,7 +6527,7 @@ er .collectbtn {
     float: left;
     width: 82px;
     height: 82px;
-    background: url(../images/plus.jpg) no-repeat center center;
+    background: url(/static/images/plus.jpg) no-repeat center center;
     line-height: 150px;
     text-align: center;
     margin-bottom: 10px;
@@ -6931,13 +6931,13 @@ er .collectbtn {
 }
 
 .praise-btn {
-    background: url(../images/share_c1.png) no-repeat left center;
+    background: url(/static/images/share_c1.png) no-repeat left center;
     padding-left: 20px;
     cursor: pointer;
 }
 
 .praise-btn.collected {
-    background: url(../images/share_c1_g.png) no-repeat left center;
+    background: url(/static/images/share_c1_g.png) no-repeat left center;
 }
 
 .chosepraise {
@@ -6989,7 +6989,7 @@ er .collectbtn {
 }
 
 .resetpassword .rightput {
-    background: url(../images/check.png) no-repeat 400px center;
+    background: url(/static/images/check.png) no-repeat 400px center;
 }
 
 .resetpassword .button input {
@@ -7716,37 +7716,37 @@ table .upload-btn {
 .icon-diary-supervisor {
     width: 36px;
     height: 18px;
-    background: url(../images/icon-diary-jl.png) no-repeat 0 center;
+    background: url(/static/images/icon-diary-jl.png) no-repeat 0 center;
 }
 
 .icon-diary-my {
     width: 36px;
     height: 18px;
-    background: url(../images/icon-diary-my.png) no-repeat 0 center;
+    background: url(/static/images/icon-diary-my.png) no-repeat 0 center;
 }
 
 .icon-diary-user {
     width: 36px;
     height: 18px;
-    background: url(../images/icon-diary-user.png) no-repeat 0 center;
+    background: url(/static/images/icon-diary-user.png) no-repeat 0 center;
 }
 
 .icon-release-over {
     width: 46px;
     height: 18px;
-    background: url(../images/icon-release-over.png) no-repeat 0 center;
+    background: url(/static/images/icon-release-over.png) no-repeat 0 center;
 }
 
 .icon-release-active {
     width: 46px;
     height: 18px;
-    background: url(../images/icon-release-active.png) no-repeat 0 center;
+    background: url(/static/images/icon-release-active.png) no-repeat 0 center;
 }
 
 .icon-release-on {
     width: 46px;
     height: 18px;
-    background: url(../images/icon-release-on.png) no-repeat 0 center;
+    background: url(/static/images/icon-release-on.png) no-repeat 0 center;
 }
 
 .icon-absolute {
@@ -8011,7 +8011,7 @@ table .upload-btn {
 }
 
 .scrollLoading {
-    background: url(../images/rolling.gif) no-repeat center center #fff !important;
+    background: url(/static/images/rolling.gif) no-repeat center center #fff !important;
 }
 
 .evl-dialog h1 {
@@ -8073,7 +8073,7 @@ table .upload-btn {
 }
 
 .help_content .leftsubnav .bigclass i {
-    background: url("../images/help_index_pic.gif") no-repeat scroll 0 -39px;
+    background: url("/static/images/help_index_pic.gif") no-repeat scroll 0 -39px;
     display: inline-block;
     float: left;
     height: 16px;
@@ -8196,7 +8196,7 @@ table .upload-btn {
 }
 
 .help_content .rightcontent dd span {
-    background: url("../images/help_index_pic.gif") no-repeat scroll 0 -67px;
+    background: url("/static/images/help_index_pic.gif") no-repeat scroll 0 -67px;
     display: inline-block;
     float: left;
     height: 12px;
@@ -8392,7 +8392,7 @@ table .upload-btn {
     font-weight: bold;
 }
 .index_ico_arrow {
-    background:url(../images/tab-jt.png) no-repeat 0 0;
+    background:url(/static/images/tab-jt.png) no-repeat 0 0;
     display: inline-block;
     height: 6px;
     left: 38px;

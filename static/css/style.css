@@ -7,7 +7,7 @@ ul {
     list-style-type: none;
 }
 .custom-backgroud {
-    background-image: url("../images/poster.jpg");
+    background-image: url("/static/images/poster.jpg");
     background-attachment: fixed;
     background-position: center top;
 }
@@ -99,7 +99,7 @@ ul {
 
 .selectOption {
     color: #67ae56;
-    background: url('../images/select_arrow.png') no-repeat 85% 60%;
+    background: url('/static/images/select_arrow.png') no-repeat 85% 60%;
     display: block;
     cursor: pointer;
 }

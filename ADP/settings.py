@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'xadmin',
     # 表单数据界面美化
     'crispy_forms',
+    # 生成验证码
+    'captcha',
 ]
 
 # 登录规则修改
@@ -157,4 +159,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # 邮件发送配置
+EMAIL_HOST = "smtp.126.com"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "bwt1997@126.com"
+EMAIL_HOST_PASSWORD = ""
+EMAIL_USE_TLS = False
+EMAIL_FROM = "bwt1997@126.com"
 
