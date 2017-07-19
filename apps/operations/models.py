@@ -14,7 +14,7 @@ from experiments.models import Experiment
 class UserComments(models.Model):
     user = models.ForeignKey(UserProfile, verbose_name=u"用户")
     comment_id = models.IntegerField(default=0, verbose_name=u"评论对象id")
-    comment_type = models.IntegerField(choices=((1, "CTF题目"), (2, "漏洞体验")), verbose_name=u"评论类型", default=1)
+    comment_type = models.IntegerField(choices=((1, u"CTF题目"), (2, u"漏洞体验")), verbose_name=u"评论类型", default=1)
     comments = models.CharField(max_length=300, verbose_name=u"评论")
     add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
 
@@ -48,7 +48,7 @@ class UserMessage(models.Model):
 class UserLearn(models.Model):
     user = models.ForeignKey(UserProfile, verbose_name=u"用户")
     learn_id = models.IntegerField(default=0, verbose_name=u"学习对象id")
-    learn_type = models.IntegerField(choices=((1, "CTF题目"), (2, "漏洞体验")), verbose_name=u"学习类型")
+    learn_type = models.IntegerField(choices=((1, u"CTF题目"), (2, u"漏洞体验")), verbose_name=u"学习类型")
     add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
