@@ -89,11 +89,11 @@ blockquote:before, blockquote:after, q:before, q:after {
     float: right;
 }
 
-.clear {
-    height: 0;
-    overflow: hidden;
-    clear: both
-}
+/*.clear {*/
+    /*height: 0;*/
+    /*overflow: hidden;*/
+    /*clear: both*/
+/*}*/
 
 .hide {
     display: none;

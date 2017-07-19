@@ -57,10 +57,19 @@ INSTALLED_APPS = [
     'crispy_forms',
     # 生成验证码
     'captcha',
+    # 分页
+    'pure_pagination',
 ]
 
 # 登录规则修改
 
+
+# 分页规则修改
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 1,
+    'MARGIN_PAGES_DISPLAYED': 1,
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+}
 
 # 用户模型更改
 AUTH_USER_MODEL = "users.UserProfile"
@@ -90,6 +99,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.media',
             ],
         },
     },
