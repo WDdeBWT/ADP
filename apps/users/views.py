@@ -9,6 +9,7 @@ from django.contrib.auth.hashers import make_password
 from .models import UserProfile, EmailVerifyRecord
 from .forms import LoginForm, RegisterForm
 from utils.email_send import send_register_email
+from utils.mixin_utils import LoginRequiredMixin
 
 
 # Create your views here.
@@ -77,3 +78,12 @@ class LoginView(View):
                 return render(request, "login.html", {"msg": "用户名或密码错误！"})
         else:
             return render(request, "login.html", {"login_form": login_form})
+
+
+class UserinfoView(LoginRequiredMixin, View):
+    """
+    用户个人信息
+    """
+    def get(self, request):
+        return render(request, 'usercenter-info.html', {})
+
