@@ -15,11 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
+from django.views.generic import TemplateView
 import xadmin
+
 from users.views import LoginView, RegisterView, ActiveUserView
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    # index
+    url('^$', TemplateView.as_view(template_name="index.html"), name="index"),
+    url('^index/$', TemplateView.as_view(template_name="index.html"), name="index"),
     # xadmin
     url(r'^xadmin/', xadmin.site.urls),
     # ctf

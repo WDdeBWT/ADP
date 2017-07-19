@@ -13,10 +13,10 @@ html{_background-image:url(about:blank); _background-attachment:fixed;}
 .laydate-icon-danlan,
 .laydate-icon-dahong,
 .laydate-icon-molv{height:22px; line-height:22px; padding-right:20px; border:1px solid #C6C6C6; background-repeat:no-repeat; background-position:right center;  background-color:#fff; outline:0;}
-.laydate-icon-default{ background-image:url(../skins/default/icon.png)}
-.laydate-icon-danlan{border:1px solid #B1D2EC; background-image:url(../skins/danlan/icon.png)}
-.laydate-icon-dahong{background-image:url(../skins/dahong/icon.png)}
-.laydate-icon-molv{background-image:url(../skins/molv/icon.png)}
+.laydate-icon-default{ background-image:url(/static/skins/default/icon.png)}
+.laydate-icon-danlan{border:1px solid #B1D2EC; background-image:url(/static/skins/danlan/icon.png)}
+.laydate-icon-dahong{background-image:url(/static/skins/dahong/icon.png)}
+.laydate-icon-molv{background-image:url(/static/skins/molv/icon.png)}
 .laydate_body .laydate_box{width:240px; font:12px '\5B8B\4F53'; z-index:99999999; *margin:-2px 0 0 -2px; *overflow:hidden; _margin:0; _position:absolute!important; background-color:#fff;}
 .laydate_body .laydate_box li{list-style:none;}
 .laydate_body .laydate_box .laydate_void{cursor:text!important;}
