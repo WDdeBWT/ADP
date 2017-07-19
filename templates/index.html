@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- External CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <!-- In-document CSS-->
+    <link rel="stylesheet" type="text/css" href="../css/style1.css">
+    <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/animate.css">
+
+    <title>ADP</title>
+</head>
+<body class="custom-backgroud">
+<header style="min-height: 76px;">
+    <nav id="main-nav" class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://www.dropsec.xyz/"><img alt="Lab5攻防演练平台" src="../images/logo1.png"></a>
+            </div>
+            <div id="navbar-collapse" class="collapse navbar-collapse">
+                    <ul class="selectMenu navbar-brand " id="jsSelectMenu">
+                                <li data-value="course">CTF</li>
+                                <li data-value="org">漏洞</li>
+                     </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">主页</a></li>
+                    <li><a href="ctf.html">CTF</a></li>
+                    <li><a href="experiment.html">漏洞体验</a></li>
+                    <li><a href="login.html">登录</a></li>
+                    <li><a href="register.html">注册</a></li>
+                    <!--<div class="personal">-->
+                            <!--<dl class="user fr">-->
+                                <!--<dd>bobby<img class="down fr" src="{% static 'images/top_down.png' %}"/></dd>-->
+                                <!--<dt><img width="20" height="20" src="{% static 'media/image/2016/12/default_big_14.png' %}"/></dt>-->
+                            <!--</dl>-->
+                            <!--<div class="userdetail">-->
+                            	<!--<dl>-->
+	                                <!--<dt><img width="80" height="80" src="{% static 'media/image/2016/12/default_big_14.png' %}"/></dt>-->
+	                                <!--<dd>-->
+	                                    <!--<h2>django</h2>-->
+	                                    <!--<p>bobby</p>-->
+	                                <!--</dd>-->
+                                <!--</dl>-->
+                                <!--<div class="btn">-->
+	                                <!--<a class="personcenter fl" href="usercenter-info.html">进入个人中心</a>-->
+	                                <!--<a class="fr" href="/logout/">退出</a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+				<!--</div>-->
+                </ul>
+            </div>
+        </div><!-- /.container-->
+    </nav>
+    <div class="home-header-wrap">
+        <div class="header-content-wrap">
+            <div class="container">
+                <h1 class="intro-text">Lab5<br>攻防演练平台</h1>
+                <div class="buttons">
+                    <a class="btn btn-primary custom-button red-btn" href="#lookfor">CTF题库</a>
+                    <a class="btn btn-primary custom-button green-btn" href="http://ctf.dropsec.xyz/">攻防平台</a>
+                    <a class="btn btn-primary custom-button red-btn" href="http://form.mikecrm.com/e3sJIn">意见反馈</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="site-content">
+        <section id="lookfor" class="lookfor">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="white-txt">CTF</h2>
+                <div class="section-legend white-txt">精心设计的题库</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                            <div class="imgslide2">
+                                <ul class="imgs">
+
+                                    <li>
+                                    <h3 class="white-txt">简单sql注入1</h3>
+                                        <a href="course-detail.html">
+                                                 <img  class="img-rectangle" src="../images/1.jpg"></img>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                    <h3 class="white-txt">简单sql注入2</h3>
+                                        <a href="course-detail.html">
+                                                 <img  class="img-rectangle" src="../images/2.jpg"></img>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="unslider-arrow2 prev"></div>
+                            <div class="unslider-arrow2 next"></div>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">简单sql注入3</h3>
+                    <img  class="img-rectangle" src="../images/3.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">简单sql注入4</h3>
+                    <img  class="img-rectangle" src="../images/4.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">简单sql注入4</h3>
+                    <img  class="img-rectangle" src="../images/4.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">简单sql注入4</h3>
+                    <img  class="img-rectangle" src="../images/4.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">简单sql注入4</h3>
+                    <img  class="img-rectangle" src="../images/4.jpg"></img>
+                </div>
+            </div>
+            <h3 class="white-txt">欢迎你来挑战！</h3>
+        </div>
+    </section>
+        <section id="experiment" class="experiment">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="white-txt">漏洞体验</h2>
+                <div class="section-legend white-txt">全新的攻防体验</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h3 class="white-txt">sql注入漏洞</h3>
+                        <img  class="img-rectangle" src="../images/3.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">xss漏洞</h3>
+                    <img  class="img-rectangle" src="../images/4.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">strust2-048</h3>
+                    <img  class="img-rectangle" src="../images/5.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">sql注入漏洞</h3>
+                        <img  class="img-rectangle" src="../images/3.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">xss漏洞</h3>
+                    <img  class="img-rectangle" src="../images/4.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">strust2-048</h3>
+                    <img  class="img-rectangle" src="../images/5.jpg"></img>
+                </div>
+            </div>
+            <h3 class="white-txt">欢迎你来体验！</h3>
+        </div>
+    </section>
+        <section id="aboutus" class="about-us">
+        <div class="container">
+            <div class="section-header">
+                <h2>关于我们</h2>
+                <div class="section-legend">About Us</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 about-us-intro">
+                    <p>
+                        武汉理工大学第五实验室攻防演练平台，是在2017年由网络安全开发组小组成员共同搭建。原为网络安全组的成员，由于希望靠自己的力量为组员以及广大爱好网络安全的小伙伴们提供一个良好的平台，于是从网络安全组中分出一支，组成自己的开发团队。希望平台能够带给使用者满意的体验。如果你也希望参与其中，那就请加入我们，共同打造一个属于我们的攻防演练平台！
+                    </p>
+                    <p>
+                        目前实验室网络安全组分为安全组和开发组。安全组主要致力于安全攻防方面的技术研究，而开发组侧重于结合双方优势，打造一个良好的平台。
+                    </p>
+                    <p>
+                        安全组钻研攻防，开发组将攻防用于实践，共同组成第五实验室的安全主力军！我们是一群爱好技术的极客，希望能够为网络安全事业做出自己的贡献！
+                    </p>
+                </div>
+                <div class="col-md-6 skills">
+                    <ul>
+                        <li class="skill">
+                            <div class="section-legend">
+                                CTF
+                            </div>
+                            <p>通过各场CTF比赛的原生真题以及实验室知名安全专家侯瓒老师的全程指导，帮助大家在答题解题的过程中全面了解安全知识，消除自己的短板！</p>
+                        </li>
+                        <li class="skill">
+                            <div class="section-legend">漏洞体验</div><p>通过docker部署的漏洞环境，在这里你不仅能体验到经典漏洞复现所带来的安全历史的积淀，还能及时体验到时新漏洞的新奇，通过真实的漏洞环境让你在网络安全的路上不再只是靶场！</p>
+                        </li>
+                        <li class="skill">
+                            <div class="section-legend">安全研究</div><p>基于OWASP安全开发指南,在研发过程中正确架构设计避免产生设计缺陷导致的漏洞</p>
+                        </li>
+                        <li class="skill">
+                            <div class="section-legend">代码审计</div><p>团队成员熟悉掌握Python、PHP语言,了解常见漏洞原理，通过代码审计发现未知漏洞</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="member" class="member">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="dark-text">团队成员</h2>
+                <div class="section-legend">
+                    Team Members
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 team-box">
+                    <div class="team-member">
+                        <figure class="profile-pic">
+                            <img alt="member picture" class="img-circle" src="http://tva1.sinaimg.cn/crop.69.0.638.638.180/005wJFDPjw1euh4aldz9hj30lc0hsn18.jpg">
+                        </figure>
+                        <div class="member-details">
+                            <h3 class="dark-text color-border-bottom">csse-null</h3>
+                            <div class="position">安全组、开发组</div>
+                        </div>
+                        <div class="social-icons">
+                            <ul>
+                                <li><a target="_blank" href="http://lyx.dropsec.xyz"><i class="fa fa-wordpress"></i></a></li>
+                                <li><a target="_blank" href="http://weibo.com/u/5064391745?refer_flag=1001030201_&is_hot=1"><i class="fa fa-weibo"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="details">
+                            来自于计算机学院大二的一枚码农，刚涉足安全圈不是太久，仍在不断学习中！
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 team-box">
+                    <div class="team-member">
+                        <figure class="profile-pic">
+                            <img alt="member picture" class="img-circle" src="http://tva3.sinaimg.cn/crop.0.0.996.996.180/79e29bebjw8f07awjx83gj20ro0rpjul.jpg">
+                        </figure>
+                        <div class="member-details">
+                            <h3 class="dark-text color-border-bottom">virlaser</h3>
+                            <div class="position">开发组</div>
+                        </div>
+                        <div class="social-icons">
+                            <ul>
+                                <li><a target="_blank" href="http://wkh.dropsec.xyz"><i class="fa fa-wordpress"></i></a></li>
+                                <li><a target="_blank" href="http://weibo.com/u/2044894187?refer_flag=1005050005_&is_all=1"><i class="fa fa-weibo"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="details">
+                            刚加入团队的信息学院大二学生，勤奋能干，吃苦耐劳！
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 team-box">
+                    <div class="team-member">
+                        <figure class="profile-pic">
+                            <img alt="member picture" class="img-circle" src="http://7xspti.com1.z0.glb.clouddn.com/touxiang.png">
+                        </figure>
+                        <div class="member-details">
+                            <h3 class="dark-text color-border-bottom">gisaac</h3>
+                            <div class="position">开发组</div>
+                        </div>
+                        <div class="social-icons">
+                            <ul>
+                                <li><a target="_blank" href="http://byd.dropsec.xyz"><i class="fa fa-wordpress"></i></a></li>
+                                <li><a target="_blank" href="http://weibo.com/u/5635426120?refer_flag=1005050005_"><i class="fa fa-weibo"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="details">
+                            管理学院大神一枚
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 team-box">
+                    <div class="team-member">
+                        <figure class="profile-pic">
+                            <img alt="member picture" class="img-circle" src="http://tva3.sinaimg.cn/crop.0.0.996.996.180/ea2b4c2ajw8f6b7gb89alj20ro0roq58.jpg">
+                        </figure>
+                        <div class="member-details">
+                            <h3 class="dark-text color-border-bottom">WDdeBWT</h3>
+                            <div class="position">开发组</div>
+                        </div>
+                        <div class="social-icons">
+                            <ul>
+                                <li><a target="_blank" href="#"><i class="fa fa-wordpress"></i></a></li>
+                                <li><a target="_blank" href="http://weibo.com/u/3928706090?refer_flag=1005050005_"><i class="fa fa-weibo"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="details">
+                            管理学院的小帅哥一枚
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 team-box">
+                    <div class="team-member">
+                        <figure class="profile-pic">
+                            <img alt="member picture" class="img-circle" src="http://obh16g4rw.bkt.clouddn.com/author.jpg">
+                        </figure>
+                        <div class="member-details">
+                            <h3 class="dark-text color-border-bottom"></h3>
+                            <div class="position">GatsbyV</div>
+                        </div>
+                        <div class="social-icons">
+                            <ul>
+                                <li><a target="_blank" href="http://lzx.dropsec.xyz"><i class="fa fa-wordpress"></i></a></li>
+                                <li><a target="_blank" href="http://weibo.com/5836401433"><i class="fa fa-weibo"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="details">
+                           新加入不久的成员
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 team-box">
+                    <div class="team-member">
+                        <figure class="profile-pic">
+                            <img alt="member picture" class="img-circle" src="http://obh1qcqek.bkt.clouddn.com/3.jpg">
+                        </figure>
+                        <div class="member-details">
+                            <h3 class="dark-text color-border-bottom">Moofeng</h3>
+                            <div class="position">网络安全组组长</div>
+                        </div>
+                        <div class="social-icons">
+                            <ul>
+                                <li><a target="_blank" href="http://zjw.dropsec.xyz"><i class="fa fa-wordpress"></i></a></li>
+                                <li><a target="_blank" href="http://weibo.com/5836401433"><i class="fa fa-weibo"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="details">
+                            网络安全组组长，统领整个网安组，在安全知识方面属于全组最强，而且还是大一，前途不可估量！
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 team-box">
+                    <div class="team-member">
+                        <figure class="profile-pic">
+                            <img alt="member picture" class="img-circle" src="http://www.sliwu6.com/../images/201602/goods_img/3604_P_1455875556094.jpg">
+                        </figure>
+                        <div class="member-details">
+                            <h3 class="dark-text color-border-bottom">ShenYang</h3>
+                            <div class="position">安全组</div>
+                        </div>
+                        <div class="social-icons">
+                            <ul>
+                                <li><a target="_blank" href="http://jdrops.dropsec.xyz"><i class="fa fa-wordpress"></i></a></li>
+                                <li><a target="_blank" href="http://weibo.com/u/5744625041/home?wvr=5"><i class="fa fa-weibo"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="details">
+                            安全组成员，计算机学院大一学生
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 team-box">
+                    <div class="team-member">
+                        <figure class="profile-pic">
+                            <img alt="member picture" class="img-circle" src="https://raw.githubusercontent.com/myGoodLuck/myGoodLuck.github.io/master/uploads/avatar.png">
+                        </figure>
+                        <div class="member-details">
+                            <h3 class="dark-text color-border-bottom">DingWei</h3>
+                            <div class="position">安全组</div>
+                        </div>
+                        <div class="social-icons">
+                            <ul>
+                                <li><a target="_blank" href="http://spd.dropsec.xyz"><i class="fa fa-wordpress"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="details">
+                            热爱硬件的安全组大佬！
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 team-box">
+                    <div class="team-member">
+                        <figure class="profile-pic">
+                            <img alt="member picture" class="img-circle" src="https://avatars1.githubusercontent.com/u/20830226?v=3&u=1479403d22e83137c2ea5eba46d1ef0ef5a767d0&s=140">
+                        </figure>
+                        <div class="member-details">
+                            <h3 class="dark-text color-border-bottom">YinXianYang</h3>
+                            <div class="position">安全组</div>
+                        </div>
+                        <div class="social-icons">
+                            <ul>
+                                <li><a target="_blank" href="http://yunnigu.dropsec.xyz"><i class="fa fa-wordpress"></i></a></li>
+                                <li><a target="_blank" href="http://weibo.com/5407656855/profile?topnav=1&wvr=6&is_all=1"><i class="fa fa-weibo"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="details">
+                            安全组大二学生，会做网线会数模
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 team-box">
+                    <div class="team-member">
+                        <figure class="profile-pic">
+                            <img alt="member picture" class="img-circle" src="http://pic.iqshw.com/d/file/gexingqqziyuan/touxiang/2015/12/16/0fa79fa1d7f6821107203662653de8dc.jpg">
+                        </figure>
+                        <div class="member-details">
+                            <h3 class="dark-text color-border-bottom">YZ</h3>
+                            <div class="position">开发组</div>
+                        </div>
+                        <div class="social-icons">
+                            <ul>
+                                <li><a target="_blank" href="http://www.cnblogs.com/chenxiaoqi/"><i class="fa fa-wordpress"></i></a></li>
+                                <li><a target="_blank" href="http://weibo.com/u/5408436563"><i class="fa fa-weibo"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="details">
+                            原网安组组长
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="honor" class="honor">
+    </section>
+</div>
+<footer role="contentinfo" id="footer">
+    <div class="container">
+        <div class="col-md-3 team-info">
+            <div class="icon-top red-text">
+                <img alt="" src="http://7xp1b3.com1.z0.glb.clouddn.com/map25-redish.png">
+            </div>
+            武汉理工大学第五实验室
+        </div>
+        <div class="col-md-3 team-info">
+            <div class="icon-top red-text">
+                <img alt="" src="http://7xp1b3.com1.z0.glb.clouddn.com/envelope4-green.png">
+            </div>
+            adp@163.com
+        </div>
+        <div class="col-md-3 team-info">
+            <div class="icon-top">
+                <a target="_blank" href="#">
+                    <i class="fa fa-weixin fa-3x"></i>
+                </a>
+                <a target="_blank" href="http://weibo.com/dropsec?refer_flag=1001030101_&is_all=1">
+                    <i class="fa fa-weibo fa-3x"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3 copyright">
+            <span>Lab5攻防演练平台@2017</span>
+        </div>
+    </div>
+</footer>
+<script src="../js/scrollreveal.min.js"></script>
+<script>
+    window.sr = ScrollReveal().reveal('.intro-text, .about-us-intro, .skill, .team-box, .col-md-4');
+</script>
+<script src="../js/selectUi.js" type='text/javascript'></script>
+<script src="../js/deco-common.js" type='text/javascript'></script>
+<script type="text/javascript" src="../js/plugins/laydate/laydate.js"></script>
+<script src="../js/plugins/layer/layer.js"></script>
+<script src="../js/plugins/queryCity/js/public.js" type="text/javascript"></script>
+<script src="../js/unslider.js" type="text/javascript"></script>
+<script src="../js/plugins/jquery.scrollLoading.js"  type="text/javascript"></script>
+<script src="../js/deco-common.js"  type="text/javascript"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+</body>
+</html>
