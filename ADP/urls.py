@@ -34,4 +34,5 @@ urlpatterns = [
     url('^login/$', LoginView.as_view(), name="login"),
     url('^register/$', RegisterView.as_view(), name="register"),
     url(r'^active/(?P<active_code>.*)/$', ActiveUserView.as_view(), name="user_active"),
+    url(r'^users/', include('users.urls', namespace="users")),
 ]
