@@ -16,7 +16,6 @@
 {% block custom_css %}
     <link href="/static/css/common_2016.css" media="screen" rel="stylesheet" type="text/css">
     <link href="/static/css/ctf/CTF_Details.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="/static/img/favicon.ico" rel="shortcut icon">
 {% endblock %}
 
 {% block content %}
@@ -27,271 +26,105 @@
 
             <!--内容左部分-->
             <div class="train_m_left">
-                <!--左边内容1——导航-->
-                <div class="train_m_left_ban">
-                    <div class="page-banner">
-                        <ul class="page-banner-nav">
-                            <li><a href="/ctf/practice"><span class="sprite_banner sprite_cup"></span> CTF题库</a></li>
-                            <li><a href="/ctf/penetration"><span class="sprite_banner sprite_clock"></span>综合渗透</a></li>
-                            <li><a href="/ctf/contest"><span class="sprite_banner sprite_hand"></span>大赛真题</a></li>
+                <!--左侧内容3——英雄榜-->
+                <div class="train_mle_hero train_mle_hero1">
+                    <h3>英雄榜</h3>
+                    <div class="hero_rank_show1" id="rank_ul">
+                        <ul class="hero_rank">
+                            <li>昵称</li>
+                            <li>总解题数</li>
+                            <li>最佳类别</li>
+                            <li>综合得分</li>
+                        </ul>
+                        <ul class="train_mle_hero_data">
+                            {% for hero in heros %}
+                            <li><span>{{ hero.nick_name }}</span>
+                                <span>{{ hero.total_num }}</span>
+                                <span>{{ hero.category }}</span>
+                                <span>{{ hero.earn_num }}</span>
+                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
-                <!--左侧内容2——最新动态-->
-                <div class="train_mle_newest">
-                    <h3><img src="/images/ctf/newest.png" alt="">最新动态</h3>
-                    <ul>
-                        <li>
-                            <a href="/user/studentcourse/A595B34F7B9E4E" target="_blank">加强版葫芦娃</a>
-                            在27秒前 解出了题目“<a href="/ctf/1838" target="_blank">雌黄出其唇吻</a>”
-                        </li>
-                        <li>
-                            <a href="/user/studentcourse/A58EC90E813413" target="_blank">冼工</a>
-                            在1分钟前 解出了题目“<a href="/ctf/1847" target="_blank">绕</a>”
-                        </li>
-                    </ul>
-
-                    <ul>
-                        <li>
-                            <a href="/user/studentcourse/A5922EE6A2ED11" target="_blank">kuice</a>
-                            提交的WriteUp“<a href="javascript:;" onclick="write_up_look(3320)">a好古典密码</a>”在<span>4天前</span>审核通过了
-                        </li>
-                        <li>
-                            <a href="/user/studentcourse/A56603103C85B4" target="_blank">faith丶</a>
-                            提交的WriteUp“<a href="javascript:;"
-                                          onclick="write_up_look(3302)">详解过程与脚本</a>”在<span>4天前</span>审核通过了
-                        </li>
-                    </ul>
-
-                </div>
-                <!--左侧内容3——英雄榜-->
-
-                <!--左侧内容4——题目贡献榜-->
-                <div class="train_mle_hero">
-                    <h3><a id="ctf_rank02" class="see_myrank my00" href="javascript:;">我的排名>></a>题目贡献榜</h3>
-                    <ul class="hero_rank">
-                        <li>昵称</li>
-                        <li>最佳类别</li>
-                        <li>综合贡献</li>
-                        <li>贡献值</li>
-                    </ul>
-                    <ul class="train_mle_hero_data">
-
-                        <li>
-                            <span><a href="/user/studentcourse/A55B8671D524B7" target="_blank" title='Ph0enix'>
-                                Ph0enix</a></span>
-                            <span>密码学</span>
-                            <span>13道</span>
-                            <span>520</span>
-                        </li>
-
-                        <li>
-                            <span><a href="/user/studentcourse/A55B866BFB68AB" target="_blank" title='iFurySt'>
-                                iFurySt</a></span>
-                            <span>WEB</span>
-                            <span>10道</span>
-                            <span>400</span>
-                        </li>
-
-                        <li>
-                        <span><a href="/user/studentcourse/A57085F3893BD2" target="_blank" title='hanyuhang'>
-                            hanyuhang</a></span>
-                            <span>隐写术</span>
-                            <span>9道</span>
-                            <span>390</span>
-                        </li>
-
-                        <li>
-                        <span><a href="/user/studentcourse/A55B867056F5BE" target="_blank" title='cwk32'>
-                            cwk32</a></span>
-                            <span>安全杂项</span>
-                            <span>7道</span>
-                            <span>280</span>
-                        </li>
-
-                    </ul>
-
-                    <div class="hero_topic">
-                        <a href="javascript:;" id="creatctf_btn">我要出题</a>
-                    </div>
-                </div>
-                <!--左侧内容5——write up贡献榜-->
-                <div class="train_mle_hero">
-                    <h3><a id="ctf_rank03" class="see_myrank my00" href="javascript:;">我的排名>></a>WriteUp贡献榜</h3>
-                    <!---->
-                    <ul class="hero_rank">
-                        <li>昵称</li>
-                        <li>最佳类别</li>
-                        <li>综合贡献</li>
-                        <li>贡献值</li>
-                    </ul>
-                    <!---->
-                    <ul class="train_mle_hero_data">
-
-                        <li>
-                            <span><a href="/user/studentcourse/A5680928D53535" target="_blank" title="pcat">
-                                pcat</a></span>
-                            <span>安全杂项</span>
-                            <span>45道</span>
-                            <span>435</span>
-                        </li>
-
-                        <li>
-                        <span><a href="/user/studentcourse/A55EC192E0AB0D" target="_blank" title="wnagzihxa1n">
-                            wnagzihxa1n</a></span>
-                            <span>密码学</span>
-                            <span>42道</span>
-                            <span>245</span>
-                        </li>
-
-                        <li>
-                        <span><a href="/user/studentcourse/A56A218929ED80" target="_blank" title="Assassin">
-                            Assassin</a></span>
-                            <span>编程</span>
-                            <span>21道</span>
-                            <span>210</span>
-                        </li>
-
-                        <li>
-                        <span><a href="/user/studentcourse/A57085F3893BD2" target="_blank" title="hanyuhang">
-                            hanyuhang</a></span>
-                            <span>安全杂项</span>
-                            <span>12道</span>
-                            <span>170</span>
-                        </li>
-
-                    </ul>
-                </div>
-
             </div>
 
 
             <!--内容右部分-->
             <div class="train_m_right">
-
-
                 <!--右侧内容1——tabs切换-->
                 <div class="train_mri_tabs" id="key_tabNav">
+
                     <!--显示-->
                     <ul class="train_mri_tabs_nav">
-                        <li species_id="7" class='hover'>WEB</li>
-                        <li species_id="3">密码学</li>
-                        <li species_id="1">安全杂项</li>
-                        <li species_id="5">逆向工程</li>
-                        <li species_id="6">隐写术</li>
-                        <li species_id="2">编程</li>
-                        <li species_id="4">溢出</li>
+                        <li {% if category == 'WEB' %}class='hover'{% endif %}><a href="?category=WEB">WEB</a></li>
+                        <li {% if category == 'CRYPTO' %}class='hover'{% endif %}><a href="?category=CRYPTO">密码学</a>
+                        </li>
+                        <li {% if category == 'MISC' %}class='hover'{% endif %}><a href="?category=MISC">安全杂项</a></li>
+                        <li {% if category == 'REVERSE' %}class='hover'{% endif %}><a href="?category=REVERSE">逆向工程</a>
+                        </li>
+                        <li {% if category == 'STEGA' %}class='hover'{% endif %}><a href="?category=STEGA">隐写术</a></li>
+                        <li {% if category == 'PPC' %}class='hover'{% endif %}><a href="?category=PPC">编程</a></li>
+                        <li {% if category == 'PWN' %}class='hover'{% endif %}><a href="?category=PWN">溢出</a></li>
                     </ul>
 
                     <!--切换的内容-->
-                    <div class="tabs_show" style="display: block">
-                        <div class="show_text">
-                            <p>WEB应用在今天越来越广泛，也是CTF夺旗竞赛中的主要题型，题目涉及到常见的Web漏洞，诸如注入、XSS、文件包含、代码执行、上传等漏洞。</p>
-                            <div class="show_num"><span></span>参与人数：<b>438844</b></div>
-                        </div>
+                    <div class="tabs_show" style="display:block">
+                        {% if category == "WEB" %}
+                            <div class="show_text">
+                                <p>WEB应用在今天越来越广泛，也是CTF夺旗竞赛中的主要题型，题目涉及到常见的Web漏洞，诸如注入、XSS、文件包含、代码执行、上传等漏洞。</p>
+                                <div class="show_num"><span></span>参与人数：<b>438844</b></div>
+                            </div>
+                        {% elif category == "CRYPTO" %}
+                            <div class="show_text">
+                                <p>Crypto即密码学，题目考察各种加解密技术，包括古典加密技术、现代加密技术甚至出题者自创加密技术，主要考查参赛选手密码学相关知识点。</p>
+                                <div class="show_num"><span></span>参与人数：<b>211749</b></div>
+                            </div>
+                        {% elif category == "REVERSE" %}
+                            <div class="show_text">
+                                <p>Reverse即逆向工程，题目涉及到软件逆向、破解技术等，要求有较强的反汇编、反编译扎实功底。主要考查参赛选手的逆向分析能力。</p>
+                                <div class="show_num"><span></span>参与人数：<b>84862</b></div>
+                            </div>
+                        {% elif category == "MISC" %}
+                            <div class="show_text">
+                                <p>MISC即安全杂项，题目涉及流量分析、电子取证、人肉搜索、数据分析、大数据统计等等，覆盖面比较广，主要考查参赛选手的各种基础综合知识。</p>
+                                <div class="show_num"><span></span>参与人数：<b>123921</b></div>
+                            </div>
+                        {% elif category == "STEGA" %}
+                            <div class="show_text">
+                                <p>STEGA即隐写术，题目的Flag会隐藏到图片、音频、视频等各类数据载体中供参赛选手获取。主要考查参赛选手的对各种隐写工具、隐写算法的熟悉程度。</p>
+                                <div class="show_num"><span></span>参与人数：<b>146554</b></div>
+                            </div>
+                        {% elif category == "PPC" %}
+                            <div class="show_text">
+                                <p>PPC即编程类题目，题目涉及到程序编写、编程算法实现，当然PPC相比ACM来说，还是较为容易的。至于编程语言嘛，推荐使用Python或Ruby来尝试。</p>
+                                <div class="show_num"><span></span>参与人数：<b>62060</b></div>
+                            </div>
+                        {% else %}
+                            <div class="show_text">
+                                <p>PWN在黑客俚语中代表着攻破，取得权限，在CTF比赛中它代表着溢出类的题目，其中常见类型溢出漏洞有栈溢出、堆溢出。主要考察参数选手对漏洞的利用能力。</p>
+                                <div class="show_num"><span></span>参与人数：<b>10840</b></div>
+                            </div>
+                        {% endif %}
                         <div class="show_parameter">
                             <span class="not"><b class="bb red"></b>无人能解</span>
                             <span class="yes"><b class="bb blue"></b>我已解开</span>
-                            <span class="notes">注：第1-3名解开题目额外加分20、10、5</span>
+                            <span class="notes">(๑•̀ㅂ•́)و✧加油</span>
                         </div>
                         <div class="show_subject" id="tabinfo_child7">
                             <div class="subject1">
                                 <ul>
-                                    <li><a href="/ctf/20" title="猫抓老鼠" target="_blank" class="">猫抓老鼠</a></li>
+                                    {% for ctf in all_ctf %}
+                                        <li><a href="/ctf/20" title="{{ ctf.name }}" target="_blank"
+                                               class="">{{ ctf.name }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                             <div style="clear: both"></div>
-                            <div class="show_flip">
-                                <a href="javascript:;" class="show_next" onclick="javasript:speciesInfo(7,2)">
-                                    下一页
-                                </a>
-                            </div>
                         </div>
-                    </div>
-                    <div class="tabs_show" style="display:none;">
-                        <div class="show_text">
-                            <p>Crypto即密码学，题目考察各种加解密技术，包括古典加密技术、现代加密技术甚至出题者自创加密技术，主要考查参赛选手密码学相关知识点。</p>
-                            <div class="show_num"><span></span>参与人数：<b>211749</b></div>
-                        </div>
-                        <div class="show_parameter">
-                            <span class="not"><b class="bb red"></b>无人能解</span>
-                            <span class="yes"><b class="bb blue"></b>我已解开</span>
-                            <span class="notes">注：第1-3名解开题目额外加分20、10、5</span>
-                        </div>
-                        <div class="show_subject" id="tabinfo_child3">
 
-                        </div>
                     </div>
-                    <div class="tabs_show" style="display:none;">
-                        <div class="show_text">
-                            <p>MISC即安全杂项，题目涉及流量分析、电子取证、人肉搜索、数据分析、大数据统计等等，覆盖面比较广，主要考查参赛选手的各种基础综合知识。</p>
-                            <div class="show_num"><span></span>参与人数：<b>123921</b></div>
-                        </div>
-                        <div class="show_parameter">
-                            <span class="not"><b class="bb red"></b>无人能解</span>
-                            <span class="yes"><b class="bb blue"></b>我已解开</span>
-                            <span class="notes">注：第1-3名解开题目额外加分20、10、5</span>
-                        </div>
-                        <div class="show_subject" id="tabinfo_child1">
 
-                        </div>
-                    </div>
-                    <div class="tabs_show" style="display:none;">
-                        <div class="show_text">
-                            <p>Reverse即逆向工程，题目涉及到软件逆向、破解技术等，要求有较强的反汇编、反编译扎实功底。主要考查参赛选手的逆向分析能力。</p>
-                            <div class="show_num"><span></span>参与人数：<b>84862</b></div>
-                        </div>
-                        <div class="show_parameter">
-                            <span class="not"><b class="bb red"></b>无人能解</span>
-                            <span class="yes"><b class="bb blue"></b>我已解开</span>
-                            <span class="notes">注：第1-3名解开题目额外加分20、10、5</span>
-                        </div>
-                        <div class="show_subject" id="tabinfo_child5">
-
-                        </div>
-                    </div>
-                    <div class="tabs_show" style="display:none;">
-                        <div class="show_text">
-                            <p>STEGA即隐写术，题目的Flag会隐藏到图片、音频、视频等各类数据载体中供参赛选手获取。主要考查参赛选手的对各种隐写工具、隐写算法的熟悉程度。</p>
-                            <div class="show_num"><span></span>参与人数：<b>146554</b></div>
-                        </div>
-                        <div class="show_parameter">
-                            <span class="not"><b class="bb red"></b>无人能解</span>
-                            <span class="yes"><b class="bb blue"></b>我已解开</span>
-                            <span class="notes">注：第1-3名解开题目额外加分20、10、5</span>
-                        </div>
-                        <div class="show_subject" id="tabinfo_child6">
-
-                        </div>
-                    </div>
-                    <div class="tabs_show" style="display:none;">
-                        <div class="show_text">
-                            <p>PPC即编程类题目，题目涉及到程序编写、编程算法实现，当然PPC相比ACM来说，还是较为容易的。至于编程语言嘛，推荐使用Python或Ruby来尝试。</p>
-                            <div class="show_num"><span></span>参与人数：<b>62060</b></div>
-                        </div>
-                        <div class="show_parameter">
-                            <span class="not"><b class="bb red"></b>无人能解</span>
-                            <span class="yes"><b class="bb blue"></b>我已解开</span>
-                            <span class="notes">注：第1-3名解开题目额外加分20、10、5</span>
-                        </div>
-                        <div class="show_subject" id="tabinfo_child2">
-
-                        </div>
-                    </div>
-                    <div class="tabs_show" style="display:none;">
-                        <div class="show_text">
-                            <p>PWN在黑客俚语中代表着攻破，取得权限，在CTF比赛中它代表着溢出类的题目，其中常见类型溢出漏洞有栈溢出、堆溢出。主要考察参数选手对漏洞的利用能力。</p>
-                            <div class="show_num"><span></span>参与人数：<b>10831</b></div>
-                        </div>
-                        <div class="show_parameter">
-                            <span class="not"><b class="bb red"></b>无人能解</span>
-                            <span class="yes"><b class="bb blue"></b>我已解开</span>
-                            <span class="notes">注：第1-3名解开题目额外加分20、10、5</span>
-                        </div>
-                        <div class="show_subject" id="tabinfo_child4">
-
-                        </div>
-                    </div>
                 </div>
 
 
@@ -299,34 +132,56 @@
                 <div class="train_mri_news_comment">
                     <h3>最新评论<span>NEW</span></h3>
                     <div class="news_comment">
-
+                        {% for comment in all_comment.object_list %}
                         <ul id="comment_list_ul">
                             <li>
                                 <div class="de_mle_topic">
                                     <a target="_blank" href="/user/studentcourse/A5950CC350475E" title="">
                                         <div class="de_mle_topic_head">
-                                            <img src="http://www.shiyanbar.com/images/user_head/user_head5.png"
-                                                 alt="shulan">
-                                            <div class="topic_title">shulan</div>
+                                            <img src="{{ MEDIA_URL }}{{ comment.user.image }}"
+                                                 alt="{{ comment.user.nick_name }}">
+                                            <div class="topic_title">{{ comment.user.nick_name }}</div>
                                         </div>
                                     </a>
                                     <div class="topic_text">
                                         <a href="/ctf/1876" target="_blank">
-                                            <p>RM</p>
+                                            <p>{{ comment.comments }}</p>
                                         </a>
                                     </div>
                                     <div class="topic_text_time">
-                                        <span>29分钟前</span>
+                                        <span>{{ comment.add_time }}</span>
                                         <span class="text_reply">来自：
-                                            <a href="/ctf/1876" target="_blank">疑惑的汉字</a>
+                                            <a href="/ctf/1876" target="_blank">{{ comment.ctf.name }}</a>
                                         </span>
                                     </div>
                                 </div>
                             </li>
                         </ul>
+                        {% endfor %}
                     </div>
                     <!-- 分页 -->
+                    <div class="show_flip">
+                        {% if all_comment.has_previous %}
+                            <a class="show_prev"
+                               href="?{{ all_comment.previous_page_number.querystring }}">上一页</a>
+                        {% endif %}
 
+                        {% for page in all_comment.pages %}
+                            {% if page %}
+                                {% ifequal page all_comment.number %}
+                                    <a class="show_prev" href="?{{ page.querystring }}">{{ page }}</a>
+                                {% else %}
+                                    <a href="?{{ page.querystring }}" class="page">{{ page }}</a>
+                                {% endifequal %}
+                            {% else %}
+                                <a href="">...</a>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if all_comment.has_next %}
+                            <a class="show_next" href="?{{ all_comment.next_page_number.querystring }}">下一页</a>
+                        {% endif %}
+                    </div>
                     <!-- 分页end -->
                 </div>
 

@@ -10,7 +10,7 @@
             <div class="crumbs">
                 <ul>
                     <li><a href="/">首页</a>></li>
-                    <li><a href="{% url 'course:course_list' %}">CTF题库</a>></li>
+                    <li><a href="/">CTF题库</a>></li>
                     <li>CTF详情</li>
                 </ul>
             </div>
@@ -22,7 +22,6 @@
 {% block custom_css %}
 <link href="/static/css/common_2016.css" media="screen" rel="stylesheet" type="text/css">
 <link href="/static/css/ctf/CTF_Details.css" media="screen" rel="stylesheet" type="text/css">
-<link href="/static/img/favicon.ico" rel="shortcut icon">
 {% endblock %}
 
 
@@ -103,7 +102,7 @@
                             <div class="topic_text_time"><span>3天前</span> <span class="text_reply" parent_id="17980"
                                                                                 student_id="98568"
                                                                                 student_name="Diyah Velly-Magpie"><img
-                                    src="/images/ctf/huifu.png">回复</span></div>
+                                    src="/static/images/ctf/huifu.png">回复</span></div>
                         </div>
                         <div style="clear: both"></div>             <!--回复标题-->
                         <div class="de_mle_reply">
@@ -142,7 +141,7 @@
                             <div class="topic_text_time"><span>2星期前</span> <span class="text_reply" parent_id="17097"
                                                                                  student_id="99964"
                                                                                  student_name="雨过天晴0370"><img
-                                    src="/images/ctf/huifu.png">回复</span></div>
+                                    src="/static/images/ctf/huifu.png">回复</span></div>
                         </div>
                         <div style="clear: both"></div>             <!--回复标题-->
                         <div class="de_mle_reply">
@@ -160,7 +159,7 @@
                                                                                           parent_id="17098"
                                                                                           student_id="99964"
                                                                                           student_name="雨过天晴0370"><img
-                                            src="/images/ctf/huifu.png">回复</span></div>
+                                            src="/static/images/ctf/huifu.png">回复</span></div>
                                 </li>
                             </ul>
                             <div class="de_mle_release" style="display:none;"><a
@@ -196,43 +195,8 @@
 
         <!--内容右-->
         <div class="details_main_right">
-            <!--右边内容1-->
-            <div class="details_main_right_list">
-                <h3>WriteUp列表</h3>
-                <div id='writeup_ul'>
 
-                </div>
-                <div class="details_main_right_list_share">
-                    <a href="javascript:;" id="submit_writeUp_btn">分享我的WriteUp</a>
-                </div>
-            </div>
-            <!--右边内容2-->
-
-            <div class="details_main_right_rank">
-                <ul class="rank_title">
-                    <li>RANK</li>
-                    <li>昵称</li>
-                    <li>解题时间</li>
-                </ul>
-                <!---->
-                <ul class="rank_title_list">
-                    <li>
-                        <span>1</span>
-                        <span><a href="/user/studentcourse/A5680928D53535" target="_blank">pcat </a></span>
-                        <span>2016/08/29</span>
-                    </li>
-                    <li>
-                        <span>2</span>
-                        <span><a href="/user/studentcourse/A5701FC2233286" target="_blank">山南水北 </a></span>
-                        <span>2016/08/29</span>
-                    </li>
-                    <li><span>3</span>
-                        <span><a href="/user/studentcourse/A55B8672024826" target="_blank">传说哥</a> </span>
-                        <span>2016/08/29</span>
-                    </li>
-                </ul>
-            </div>
-            <!--右边内容3-->
+            <!--右边最新题目的内容-->
             <div class="details_main_right_newest">
                 <h3>最新题目<a>NEW</a></h3>
                 <ul>
