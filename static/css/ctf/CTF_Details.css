@@ -1815,7 +1815,7 @@ body {
 .writeup_wrap .LogCloseBtn {
     position: absolute;
     width: 36px;
-    background: url(/static/images/login/ico2.png) 2px 0 no-repeat;
+    background: url(/static/images/ctf/ico2.png) 2px 0 no-repeat;
     text-indent: -10em;
     right: 10px;
     top: 8px;
@@ -1987,7 +1987,7 @@ body {
     position: absolute;
     width: 34px;
     background-position: 2px 0;
-    background: url(/static/images/login/ico2.png) no-repeat;
+    background: url(/static/images/ctf/ico2.png) no-repeat;
     text-indent: -10em;
     right: 10px;
     top: 10px;
