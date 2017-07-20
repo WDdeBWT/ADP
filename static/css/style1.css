@@ -88,6 +88,85 @@ ul {
     background: #4FB137;
 }
 
+/*imgslide*/
+.imgslide2 li{
+    float: left;
+}
+
+.unslider-arrow2
+{
+    position: absolute;
+    top: 45%;
+    cursor: pointer;
+    z-index: 100;
+    width: 33px;
+    height: 50px;
+}
+
+.unslider-arrow2.prev
+ {
+    left: 0;
+    background: url(../images/slide_l.png) no-repeat center center;
+}
+
+.unslider-arrow2.prev:hover
+{
+    background: url(../images/slide_l_1.png) no-repeat center center;
+}
+
+.unslider-arrow2.next
+ {
+    right: 0;
+    background: url(../images/slide_r.png) no-repeat center center;
+}
+
+.unslider-arrow2.next:hover
+ {
+    background: url(../images/slide_r_1.png) no-repeat center center;
+}
+
+.imgslide2 .dots
+{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    width: 80px;
+    margin-left: -40px;
+}
+
+.imgslide2 .dots li
+{
+    float: left;
+    margin: 5px;
+    background: #fff;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+
+.imgslide2 .dots .active
+ {
+    background: #717171 !important;
+    color: #717171 !important;
+}
+
+ .imgslide2 {
+    width: 470px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.imgslide2 img {
+    opacity: 1;
+    filter: Alpha(opacity=100);
+}
+
+
 /*select*/
 .selectContainer {
     margin: 5px;
@@ -161,7 +240,7 @@ ul {
 .header-content-wrap {
     position: relative;
     background: rgba(0, 0, 0, 0.2) none repeat scroll 0 0;
-    padding: 285px 0 210px 0;
+    padding: 285px 0 255px 0;
 }
 
 .intro-text {
@@ -171,10 +250,6 @@ ul {
     text-align: center;
     text-transform: uppercase;
     margin: 0 0 10px;
-}
-h1, h2, h3 {
-    font-family: "Montserrat","sans-serif";
-    font-weight: 700;
 }
 
 .buttons {
@@ -308,7 +383,7 @@ li.skill {
     vertical-align: top;
 }
 
-.about-us, .member, .lookfor ,.experiment{
+.about-us, .member, .ctf ,.experiment{
     padding-bottom: 66px;
     padding-top: 100px;
 }
@@ -437,13 +512,13 @@ li.skill {
     color: #939393;
 }
 
-/*lookfor*/
+/*ctf*/
 
-#lookfor {
+#ctf {
     background-color: #0F224A;
 }
 
-#lookfor ul li {
+#ctf ul li {
     color: #fff;
     font-size: 17px;
 }
@@ -453,3 +528,51 @@ li.skill {
 #experiment {
 	background-color: #404040;
 }
+
+
+/* 设置默认字体 */
+body,button, input, select, textarea {
+    font: 12px/1 "微软雅黑",Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif; /* 用 ascii 字符表示，使得在任何编码下都无问题 */
+}
+ul, ol { list-style: none; }
+/* 重置文本格式元素 */
+a { text-decoration: none; }
+
+abbr[title], acronym[title] { /* 注：1.ie6 不支持 abbr; 2.这里用了属性选择符，ie6 下无效果 */
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+q:before, q:after { content: ''; }
+
+/* 重置表单元素 */
+legend { color: #000; } /* for ie6 */
+fieldset,abbr, img,a img, :link img, :visited img {
+       border:0px; /* img 搭车：让链接里的 img 无边框 */
+}
+/* 注：optgroup 无法扶正 */
+button, input, select, textarea {
+    font-size: 100%; /* 使得表单元素在 ie 下能继承字体大小 */
+}
+
+:focus { outline: none; } /*去除边框*/
+::-ms-clear { display: none; }/*去除ie删除*/
+
+/*浮动*/
+
+.fl{float:left!important;}
+.fr{float:right!important;}
+.relative{position:relative!important;}
+.clear{ clear:both;}
+.center{text-align:center;}
+.wp{width:1200px; margin:0 auto; position:relative;clear: both;}
+
+.clearfix::after {
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+.hide{display: none!important;}
