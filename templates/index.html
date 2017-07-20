@@ -38,28 +38,35 @@
                     <li><a href="#">主页</a></li>
                     <li><a href="ctf-list.html">CTF</a></li>
                     <li><a href="experiment.html">漏洞体验</a></li>
-                    <li><a href="{% url 'login' %}">登录</a></li>
-                    <li><a href="{% url 'register' %}">注册</a></li>
-                    <!--<div class="personal">-->
-                            <!--<dl class="user fr">-->
-                                <!--<dd>bobby<img class="down fr" src="{% static 'images/top_down.png' %}"/></dd>-->
-                                <!--<dt><img width="20" height="20" src="{% static 'media/image/2016/12/default_big_14.png' %}"/></dt>-->
-                            <!--</dl>-->
-                            <!--<div class="userdetail">-->
-                            	<!--<dl>-->
-	                                <!--<dt><img width="80" height="80" src="{% static 'media/image/2016/12/default_big_14.png' %}"/></dt>-->
-	                                <!--<dd>-->
-	                                    <!--<h2>django</h2>-->
-	                                    <!--<p>bobby</p>-->
-	                                <!--</dd>-->
-                                <!--</dl>-->
-                                <!--<div class="btn">-->
-	                                <!--<a class="personcenter fl" href="usercenter-info.html">进入个人中心</a>-->
-	                                <!--<a class="fr" href="/logout/">退出</a>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-				<!--</div>-->
+                    <li><a>|</a></li>
+                    {% if request.user.is_authenticated %}
+                        <li><a>{{ request.user.nick_name }}</a></li>
+                        <li><a href="/users/info/">个人中心</a></li>
+                        <li><a href="/logout/">退出</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">登录</a></li>
+                        <li><a href="{% url 'register' %}">注册</a></li>
+                    {% endif %}
+{#                    <div class="personal">#}
+{#                            <dl class="user fr">#}
+{#                                <dd>bobby<img class="down fr" src="{% static 'images/top_down.png' %}"/></dd>#}
+{#                                <dt><img width="20" height="20" src="{% static 'media/image/2016/12/default_big_14.png' %}"/></dt>#}
+{#                            </dl>#}
+{#                            <div class="userdetail">#}
+{#                            	<dl>#}
+{#	                                <dt><img width="80" height="80" src="{% static 'media/image/2016/12/default_big_14.png' %}"/></dt>#}
+{#	                                <dd>#}
+{#	                                    <h2>django</h2>#}
+{#	                                    <p>bobby</p>#}
+{#	                                </dd>#}
+{#                                </dl>#}
+{#                                <div class="btn">#}
+{#	                                <a class="personcenter fl" href="usercenter-info.html">进入个人中心</a>#}
+{#	                                <a class="fr" href="/logout/">退出</a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+				</div>
                 </ul>
             </div>
         </div><!-- /.container-->

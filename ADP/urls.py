@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 import xadmin
 from django.views.static import serve
-from users.views import LoginView, RegisterView, ActiveUserView
+from users.views import LoginView, RegisterView, ActiveUserView, ForgetPswView, ResetView, ModifyPswView
 from ADP.settings import MEDIA_ROOT
 
 
@@ -34,10 +34,14 @@ urlpatterns = [
     url(r'^ctf/', include('ctf.urls', namespace="ctf")),
     # captcha
     url(r'^captcha/', include('captcha.urls')),
-    # user
+    # 用户管理
     url('^login/$', LoginView.as_view(), name="login"),
     url('^register/$', RegisterView.as_view(), name="register"),
     url(r'^active/(?P<active_code>.*)/$', ActiveUserView.as_view(), name="user_active"),
+    url(r'^reset/(?P<active_code>.*)/$', ResetView.as_view(), name="reset_psw"),
+    url('^forgetpsw/$', ForgetPswView.as_view(), name="forget_psw"),
+    url('^modifypsw/$', ModifyPswView.as_view(), name="modify_psw"),
+    # 用户个人中心
     url(r'^users/', include('users.urls', namespace="users")),
     # 媒体文件配置
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
