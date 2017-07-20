@@ -172,7 +172,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # 邮件发送配置
-EMAIL_HOST = "smtp.163.com"
+EMAIL_HOST = "smtp.126.com"
 EMAIL_PORT = 25
 EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
