@@ -119,7 +119,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "adp",
         'USER': "root",
-        'PASSWORD': "123456",
+        'PASSWORD': "",
         'HOST': "127.0.0.1",
     }
 }
@@ -174,8 +174,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # 邮件发送配置
 EMAIL_HOST = "smtp.163.com"
 EMAIL_PORT = 25
-EMAIL_HOST_USER = "15871381764@163.com"
-EMAIL_HOST_PASSWORD = "huqian1114787570"
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
 EMAIL_USE_TLS = False
-EMAIL_FROM = "15871381764@163.com"
+EMAIL_FROM = ""
 
