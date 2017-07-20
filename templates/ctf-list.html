@@ -38,11 +38,11 @@
                         </ul>
                         <ul class="train_mle_hero_data">
                             {% for hero in heros %}
-                            <li><span>{{ hero.nick_name }}</span>
-                                <span>{{ hero.total_num }}</span>
-                                <span>{{ hero.category }}</span>
-                                <span>{{ hero.earn_num }}</span>
-                            </li>
+                                <li><span>{{ hero.nick_name }}</span>
+                                    <span>{{ hero.total_num }}</span>
+                                    <span>{{ hero.category }}</span>
+                                    <span>{{ hero.earn_num }}</span>
+                                </li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -70,42 +70,24 @@
 
                     <!--切换的内容-->
                     <div class="tabs_show" style="display:block">
-                        {% if category == "WEB" %}
-                            <div class="show_text">
+                        <div class="show_text">
+                            {% if category == "WEB" %}
                                 <p>WEB应用在今天越来越广泛，也是CTF夺旗竞赛中的主要题型，题目涉及到常见的Web漏洞，诸如注入、XSS、文件包含、代码执行、上传等漏洞。</p>
-                                <div class="show_num"><span></span>参与人数：<b>438844</b></div>
-                            </div>
-                        {% elif category == "CRYPTO" %}
-                            <div class="show_text">
+                            {% elif category == "CRYPTO" %}
                                 <p>Crypto即密码学，题目考察各种加解密技术，包括古典加密技术、现代加密技术甚至出题者自创加密技术，主要考查参赛选手密码学相关知识点。</p>
-                                <div class="show_num"><span></span>参与人数：<b>211749</b></div>
-                            </div>
-                        {% elif category == "REVERSE" %}
-                            <div class="show_text">
-                                <p>Reverse即逆向工程，题目涉及到软件逆向、破解技术等，要求有较强的反汇编、反编译扎实功底。主要考查参赛选手的逆向分析能力。</p>
-                                <div class="show_num"><span></span>参与人数：<b>84862</b></div>
-                            </div>
-                        {% elif category == "MISC" %}
-                            <div class="show_text">
+                            {% elif category == "REVERSE" %}
+                                    <p>Reverse即逆向工程，题目涉及到软件逆向、破解技术等，要求有较强的反汇编、反编译扎实功底。主要考查参赛选手的逆向分析能力。</p>
+                            {% elif category == "MISC" %}
                                 <p>MISC即安全杂项，题目涉及流量分析、电子取证、人肉搜索、数据分析、大数据统计等等，覆盖面比较广，主要考查参赛选手的各种基础综合知识。</p>
-                                <div class="show_num"><span></span>参与人数：<b>123921</b></div>
-                            </div>
-                        {% elif category == "STEGA" %}
-                            <div class="show_text">
+                            {% elif category == "STEGA" %}
                                 <p>STEGA即隐写术，题目的Flag会隐藏到图片、音频、视频等各类数据载体中供参赛选手获取。主要考查参赛选手的对各种隐写工具、隐写算法的熟悉程度。</p>
-                                <div class="show_num"><span></span>参与人数：<b>146554</b></div>
-                            </div>
-                        {% elif category == "PPC" %}
-                            <div class="show_text">
+                            {% elif category == "PPC" %}
                                 <p>PPC即编程类题目，题目涉及到程序编写、编程算法实现，当然PPC相比ACM来说，还是较为容易的。至于编程语言嘛，推荐使用Python或Ruby来尝试。</p>
-                                <div class="show_num"><span></span>参与人数：<b>62060</b></div>
-                            </div>
-                        {% else %}
-                            <div class="show_text">
+                            {% else %}
                                 <p>PWN在黑客俚语中代表着攻破，取得权限，在CTF比赛中它代表着溢出类的题目，其中常见类型溢出漏洞有栈溢出、堆溢出。主要考察参数选手对漏洞的利用能力。</p>
-                                <div class="show_num"><span></span>参与人数：<b>10840</b></div>
-                            </div>
-                        {% endif %}
+                            {% endif %}
+                            <div class="show_num"><span></span>参与人数：<b>{{ participation }}</b></div>
+                        </div>
                         <div class="show_parameter">
                             <span class="not"><b class="bb red"></b>无人能解</span>
                             <span class="yes"><b class="bb blue"></b>我已解开</span>
@@ -115,8 +97,11 @@
                             <div class="subject1">
                                 <ul>
                                     {% for ctf in all_ctf %}
-                                        <li><a href="/ctf/20" title="{{ ctf.name }}" target="_blank"
-                                               class="">{{ ctf.name }}</a></li>
+                                        <li><a href="{% url 'ctf:ctf_detail' ctf.id %}" title="{{ ctf.name }}"
+                                               target="_blank"
+                                               {% if ctf.user_learned %}class="yes_blue"{% endif %}
+                                               {% if ctf.not_learned %}class="not_red"{% endif %}
+                                        >{{ ctf.name }}</a></li>
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -133,30 +118,31 @@
                     <h3>最新评论<span>NEW</span></h3>
                     <div class="news_comment">
                         {% for comment in all_comment.object_list %}
-                        <ul id="comment_list_ul">
-                            <li>
-                                <div class="de_mle_topic">
-                                    <a target="_blank" href="/user/studentcourse/A5950CC350475E" title="">
-                                        <div class="de_mle_topic_head">
-                                            <img src="{{ MEDIA_URL }}{{ comment.user.image }}"
-                                                 alt="{{ comment.user.nick_name }}">
-                                            <div class="topic_title">{{ comment.user.nick_name }}</div>
-                                        </div>
-                                    </a>
-                                    <div class="topic_text">
-                                        <a href="/ctf/1876" target="_blank">
-                                            <p>{{ comment.comments }}</p>
+                            <ul id="comment_list_ul">
+                                <li>
+                                    <div class="de_mle_topic">
+                                        <a title="">
+                                            <div class="de_mle_topic_head">
+                                                <img src="{{ MEDIA_URL }}{{ comment.user.image }}"
+                                                     alt="{{ comment.user.nick_name }}">
+                                                <div class="topic_title">{{ comment.user.nick_name }}</div>
+                                            </div>
                                         </a>
-                                    </div>
-                                    <div class="topic_text_time">
-                                        <span>{{ comment.add_time }}</span>
+                                        <div class="topic_text">
+                                            <a href="{% url 'ctf:ctf_detail' comment.ctf.id %}" target="_blank">
+                                                <p>{{ comment.comments }}</p>
+                                            </a>
+                                        </div>
+                                        <div class="topic_text_time">
+                                            <span>{{ comment.add_time }}</span>
                                         <span class="text_reply">来自：
-                                            <a href="/ctf/1876" target="_blank">{{ comment.ctf.name }}</a>
+                                            <a href="{% url 'ctf:ctf_detail' comment.ctf.id %}"
+                                               target="_blank">{{ comment.ctf.name }}</a>
                                         </span>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
                         {% endfor %}
                     </div>
                     <!-- 分页 -->

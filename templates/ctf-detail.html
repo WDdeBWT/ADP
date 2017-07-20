@@ -20,208 +20,262 @@
 
 
 {% block custom_css %}
-<link href="/static/css/common_2016.css" media="screen" rel="stylesheet" type="text/css">
-<link href="/static/css/ctf/CTF_Details.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/static/css/common_2016.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/static/css/ctf/CTF_Details.css" media="screen" rel="stylesheet" type="text/css">
 {% endblock %}
 
 
 {% block content %}
-<div class="container">
-    <div class="details_main">
+    <div class="container">
+        <div class="details_main">
 
-        <!--内容左-->
-        <div class="details_main_left">
-            <div class="de_mle_title">
-                <h3>1000<span>分值：20</span></h3>
-            </div>
-            <!--参数-->
-            <div class="de_mle_par">
-                <ul>
-                    <li>来源：<span>
-                        <a href='/user/studentcourse/A57085F3893BD2' target='_blank'> hanyuhang </a></span></li>
-                    <li>难度：<span>中</span></li>
-                    <li>参与人数：<span>1739人</span></li>
-                    <li>Get Flag：<span>181人</span></li>
-                    <li>答题人数：<span>295人</span></li>
-                    <li>解题通过率：<span>61%</span></li>
-                </ul>
-            </div>
-            <!--清除浮动-->
-            <div style="clear: both"></div>
-            <!--内容居中-->
-            <div class="de_mle_con">
-                <!--解题链接-->
-                <div class="de_mle_link">
-                    <div class="de_mle_p1">答案格式：CTF{}</div>
-                    <p class="de_mle_p2">解题链接：
-                        <a href="javascript:;" id="exam_ctf_href">
-                            http://ctf5.shiyanbar.com/misc/1000.exe </a>
-                        <span class="adopt" id="ok_icon" style="display:none;">通过</span>
-
-                    </p>
+            <!--内容左-->
+            <div class="details_main_left">
+                <div class="de_mle_title">
+                    <h3>{{ ctf.name }}<span>分值：{{ ctf.score }}</span></h3>
                 </div>
-                <!--文本框-->
-                <div class="de_mle_text">
-                    <input class="de_mle_t" type="text" name="" id="key_txt" value=""/>
-                    <div class="verification">
-                        <strong id='submit_key_captcha' style="display: none;">
-
-                            <input type="text" id='input_captcha'>
-                            <span><img id="img_submit_keycaptcha" src="" title="看不清？"
-                                       onclick='javascript:refreshCaptcha("#img_submit_keycaptcha");'></span>
-                        </strong>
-                        <button id="keysubmit_btn" class="de_mle_btn key_btn" type="submit">提 交</button>
+                <!--参数-->
+                <div class="de_mle_par">
+                    <ul>
+                        <li>题目来源：<span>
+                        <a> {{ ctf.source }} </a></span></li>
+                        <li>题目难度：<span>{{ ctf.get_degree_display }}</span></li>
+                        <li>参与人数：<span>{{ ctf.click_num }}人</span></li>
+                        <li>夺旗人数：<span>{{ ctf.success_num }}人</span></li>
+                        {#                        <li>收藏人数：<span>{{ ctf.fav_num }}人</span></li>#}
+                        <li>解题通过率：<span>{{ pass_rate }}%</span></li>
+                    </ul>
+                </div>
+                <!--清除浮动-->
+                <div style="clear: both"></div>
+                <!--内容居中-->
+                <div class="de_mle_con">
+                    <!--解题链接-->
+                    <div class="de_mle_link">
+                        <div class="de_mle_p1">{{ ctf.detail }}</div>
+                        <p class="de_mle_p2">解题链接：
+                            <a href="{{ ctf.url }}" id="exam_ctf_href" target="_blank">{{ ctf.url }}</a>
+                        </p>
                     </div>
 
-                </div>
+                    <div class="de_mle_text">
+                        <input class="de_mle_t" type="text" name="" id="key_txt" value="">
+                        <div class="verification">
+                            <button id="keysubmit_btn" class="de_mle_btn key_btn" type="submit">提 交</button>
+                        </div>
+
+                    </div>
 
 
-                <div class="de_mle_comment">
-                    <label>评论</label>
-                    <textarea name="" rows="" cols="" placeholder="请遵守实验吧相关发言规则，切勿在评论、文章中发表不适当的言论以及各类题目的答案"
+                    <div class="de_mle_comment">
+                        <label>评论</label>
+                    <textarea name="" rows="" cols="" placeholder="切勿在评论、文章中发表不适当的言论以及各类题目的答案"
                               id="comment_content"></textarea>
-                </div>
-                <div style="clear: both"></div>
-                <div class="de_mle_com">
-                    <button class="de_mle_com_btn" type="submit" id="comment_btn">提交评论</button>
-                </div>
-
-
-                <!--评论列表-->
-                <!--评论-->
-                <div class="de_mle_topic_main" id="comment_list_ul">
-                    <div class="de_mle_topic_title" comment_id="17980">
-                        <div class="de_mle_topic">                 <!--头像--> <a
-                                href="/user/studentcourse/A593B64F0DDBFE" target="_blank">
-                            <div class="de_mle_topic_head"><img
-                                    src="http://www.shiyanbar.com/images/user_head/user_head5.png">
-                                <div class="topic_title" student_id="98568">Diyah Velly-Magpie</div>
-                            </div>
-                        </a>                 <!--文本内容-->
-                            <div class="topic_text"><p>拿到G00dTh1sIske后，自己猜了加小写y，又把数字都换了字母，还试过001。。。最后竟然是大写的</p></div>
-                            <div class="topic_text_time"><span>3天前</span> <span class="text_reply" parent_id="17980"
-                                                                                student_id="98568"
-                                                                                student_name="Diyah Velly-Magpie"><img
-                                    src="/static/images/ctf/huifu.png">回复</span></div>
-                        </div>
-                        <div style="clear: both"></div>             <!--回复标题-->
-                        <div class="de_mle_reply">
-                            <div class="de_mle_release" style="display:none;"><a
-                                    href="/user/studentcourse/A5969AEC02AE0B" target="_blank">
-                                <div class="de_mle_topic_head"><img
-                                        src="http://www.shiyanbar.com/images/user_head/user_head6.png">
-                                    <div class="topic_title">virlaser</div>
-                                </div>
-                            </a>                         <!--发布-->
-                                <div class="de_mle_release_tex"><textarea name="" rows="" cols=""></textarea></div>
-                                <!--清除浮动-->
-                                <div style="clear: both"></div>
-                                <div class="de_mle_release_btn"><input type="hidden" class="comment_main_parent_id"
-                                                                       value=""> <input type="hidden"
-                                                                                        class="comment_parent_id"
-                                                                                        value=""> <input type="hidden"
-                                                                                                         class="comment_to_student_id"
-                                                                                                         value="">
-                                    <button class="release_btn release_btn1 cancel-btn" type="submit">取消</button>
-                                    <button class="release_btn release_btn2 replay-btn" type="submit">确定</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div style="clear: both"></div>
-                    <div class="de_mle_topic_title" comment_id="17097">
-                        <div class="de_mle_topic">                 <!--头像--> <a
-                                href="/user/studentcourse/A595712D6E456E" target="_blank">
-                            <div class="de_mle_topic_head"><img
-                                    src="http://www.shiyanbar.com/images/user_head/user_head7.png">
-                                <div class="topic_title" student_id="99964">雨过天晴0370</div>
+                    <div class="de_mle_com">
+                        <button class="de_mle_com_btn" type="submit" id="comment_btn">提交评论</button>
+                    </div>
+
+                    <!--提示弹出层-->
+                    <div class="pop_markW" style="display: none;">
+                        <div class="pop_mark"></div>
+                    </div>
+
+                    <!--回答正确时 提示-->
+                    <div class="popideawrap rightwrap clearfix" id="pop_key_ok" style="display: none;">
+                        <div class="CloseBtn">关闭弹出</div>
+                        <div class="ideawrap">
+                            <div class="icon rightimg"></div>
+                            <div class="txt">
+                                <p class="bigred">回答正确</p>
+                                <p>厉害了,我的哥！！！</p>
                             </div>
-                        </a>                 <!--文本内容-->
-                            <div class="topic_text"><p>我晕，在网上搜索到答案，竟然是CTF{G00dTh1sIskeY}</p></div>
-                            <div class="topic_text_time"><span>2星期前</span> <span class="text_reply" parent_id="17097"
-                                                                                 student_id="99964"
-                                                                                 student_name="雨过天晴0370"><img
-                                    src="/static/images/ctf/huifu.png">回复</span></div>
-                        </div>
-                        <div style="clear: both"></div>             <!--回复标题-->
-                        <div class="de_mle_reply">
-                            <ul>
-                                <li class="sub_item_reply">                         <!--回复标题头像--> <a
-                                        href="/user/studentcourse/A595712D6E456E" title="雨过天晴0370" target="_blank">
-                                    <div class="de_mle_topic_head"><img
-                                            src="http://www.shiyanbar.com/images/user_head/user_head7.png">
-                                        <div class="topic_title" student_id="99964">雨过天晴0370</div>
-                                    </div>
-                                </a>                         <!--回复标题内容-->
-                                    <div class="topic_text"><span class="reply">回复:雨过天晴0370</span>
-                                        <p>看清答案格式</p></div>
-                                    <div class="topic_text_time"><span>2星期前 </span> <span class="text_reply"
-                                                                                          parent_id="17098"
-                                                                                          student_id="99964"
-                                                                                          student_name="雨过天晴0370"><img
-                                            src="/static/images/ctf/huifu.png">回复</span></div>
-                                </li>
-                            </ul>
-                            <div class="de_mle_release" style="display:none;"><a
-                                    href="/user/studentcourse/A5969AEC02AE0B" target="_blank">
-                                <div class="de_mle_topic_head"><img
-                                        src="http://www.shiyanbar.com/images/user_head/user_head6.png">
-                                    <div class="topic_title">virlaser</div>
-                                </div>
-                            </a>                         <!--发布-->
-                                <div class="de_mle_release_tex"><textarea name="" rows="" cols=""></textarea></div>
-                                <!--清除浮动-->
-                                <div style="clear: both"></div>
-                                <div class="de_mle_release_btn"><input type="hidden" class="comment_main_parent_id"
-                                                                       value=""> <input type="hidden"
-                                                                                        class="comment_parent_id"
-                                                                                        value=""> <input type="hidden"
-                                                                                                         class="comment_to_student_id"
-                                                                                                         value="">
-                                    <button class="release_btn release_btn1 cancel-btn" type="submit">取消</button>
-                                    <button class="release_btn release_btn2 replay-btn" type="submit">确定</button>
-                                </div>
-                            </div>
+                            <a class="cancel r" href="javascript:;">继续加油</a>
                         </div>
                     </div>
+
+                    <!-- 回答错误时-->
+                    <div class="popideawrap wrongwrap clearfix" id="pop_key_no" style="display: none;">
+                        <div class="CloseBtn">关闭弹出</div>
+                        <div class="ideawrap">
+                            <div class="icon wrongimg"></div>
+                            <div class="txt">
+                                <p class="bigred">回答错误!</p>
+                                <div><p>加油(๑•̀ㅂ•́)و✧加油</p></div>
+                            </div>
+                            <a class="cancel r" href="javascript:;">再来一次</a>
+                        </div>
+                    </div>
+
+                    <!--评论列表-->
+                    <!--评论-->
+                    <div class="de_mle_topic_main" id="comment_list_ul">
+                        {% for comment in comments.object_list %}
+                            <div class="de_mle_topic_title">
+                                <div class="de_mle_topic">
+                                    <!--头像-->
+                                    <a>
+                                        <div class="de_mle_topic_head">
+                                            <img src="{{ MEDIA_URL }}{{ comment.user.image }}">
+                                            <div class="topic_title">{{ comment.user.nick_name }}</div>
+                                        </div>
+                                    </a>
+                                    <!--文本内容-->
+                                    <div class="topic_text">
+                                        <p>{{ comment.comments }}</p>
+                                    </div>
+                                    <div class="topic_text_time">
+                                        <span>{{ comment.add_time }}</span>
+                                    </div>
+                                </div>
+                                <div style="clear: both"></div>
+                                <!--回复标题-->
+                                <div class="de_mle_reply">
+
+                                </div>
+                            </div>
+                            <div style="clear: both"></div>
+                        {% endfor %}
+                    </div>
+                    <!-- 分页 -->
+                    <div class="CTF_paging">
+                        <div class="pagerbar">
+                            {% if comments.has_previous %}
+                                <a class="first"
+                                   href="?{{ comments.previous_page_number.querystring }}">上一页</a>
+                            {% endif %}
+
+                            {% for page in comments.pages %}
+                                {% if page %}
+                                    {% ifequal page comments.number %}
+                                        <a class="current" href="?{{ page.querystring }}">{{ page }}</a>
+                                    {% else %}
+                                        <a href="?{{ page.querystring }}" class="">{{ page }}</a>
+                                    {% endifequal %}
+                                {% else %}
+                                    <a href="">...</a>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if comments.has_next %}
+                                <a class="last" href="?{{ comments.next_page_number.querystring }}">下一页</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- 分页end -->
                 </div>
-                <!-- 分页 -->
-                <div class="clear" style="clear: both;"></div>
-                <div class="CTF_paging">
+            </div>
+
+            <!--内容右-->
+            <div class="details_main_right">
+
+                <!--右边最新题目的内容-->
+                <div class="details_main_right_newest">
+                    <h3>最新题目<a>NEW</a></h3>
+                    <ul>
+                        {% for new_ctf in new_ctfs %}
+                            <li><span></span><a href="{% url 'ctf:ctf_detail' new_ctf.id %}"
+                                                target="_blank">{{ new_ctf.name }}</a></li>
+                        {% endfor %}
+                    </ul>
                 </div>
-                <!-- 分页end -->
+
             </div>
         </div>
 
-        <!--内容右-->
-        <div class="details_main_right">
-
-            <!--右边最新题目的内容-->
-            <div class="details_main_right_newest">
-                <h3>最新题目<a>NEW</a></h3>
-                <ul>
-                    <li><span></span><a href="/ctf/1971" target="_blank">百米</a></li>
-                    <li><span></span><a href="/ctf/1970" target="_blank">这就是一个坑</a></li>
-                    <li><span></span><a href="/ctf/1968" target="_blank">来挑战吧</a></li>
-                    <li><span></span><a href="/ctf/1967" target="_blank">不安全的应用</a></li>
-                    <li><span></span><a href="/ctf/1966" target="_blank">有毒的OA系统</a></li>
-
-                </ul>
-            </div>
-
-        </div>
     </div>
-
-</div>
 
 {% endblock %}
 
 {% block custom_js %}
-<script type="text/javascript" src="/static/js/lib/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="/static/js/common.js"></script>
-<script type="text/javascript" src="/static/js/plug/jquery.validate.js"></script>
-<script type="text/javascript" src="/static/js/plug/messages_zh.js"></script>
-<script type="text/javascript" src="/static/js/plug/jquery.form.js"></script>
-<script type="text/javascript" src="/static/js/layer/layer.js"></script>
-<script type="text/javascript" src="/static/js/layer/laytpl.js"></script>
+    <script type="text/javascript" src="/static/js/lib/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/static/js/common.js"></script>
+    <script type="text/javascript" src="/static/js/plug/jquery.validate.js"></script>
+    <script type="text/javascript" src="/static/js/plug/messages_zh.js"></script>
+    <script type="text/javascript" src="/static/js/plug/jquery.form.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/static/js/layer/laytpl.js"></script>
+    <script type="text/javascript">
+        //提交答案
+        $("#keysubmit_btn").click(function () {
+            var flag = '{{ flag }}';
+            if (flag == 1) {
+                var key = $.trim($("#key_txt").val());
+                if (key == "") {
+                    layer.alert("提交答案不能为空");
+                    return false;
+                }
+                var ExamCTFID = '{{ ctf.id }}';
+                $.ajax({
+                    dataType: 'JSON',
+                    cache: false,
+                    async: true,
+                    type: 'POST',
+                    url: "{% url 'ctf:ctf_answer' %}",
+                    data: {key: key, ExamCTFID: ExamCTFID},
+                    beforeSend: function (xhr, settings) {
+                        xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                    },
+                    success: function (res) {
+                        if (res.code == '001') {
+                            layer.alert("该题已答过");
+                        } else if (res.code == '002') {
+                            layer.alert("提交答案失败");
+                        } else if (res.code == '003') {
+                            if (res.Score > 0) {
+                                $("#ok_icon").show();
+                                $("#keysubmit_btn").attr('disabled', "true");
+                                $("#key_txt").attr("readonly", "readonly");
+                                $(".pop_markW,#pop_key_ok").fadeIn(200);
+                            } else {
+                                $(".pop_markW,#pop_key_no").fadeIn(200);
+                                $("#pop_key_no .txt").children('div').html('兄弟你,回答错啦!');
+                            }
+                        }
+                    }
+                });
+
+            } else {
+                window.location.href = "http://www.baidu.com"; //弹出登录
+            }
+        });
+        $(".ideawrap .sure,.ideawrap .cancel,.popideawrap .CloseBtn").click(function () {
+            $(".pop_markW,.popideawrap").fadeOut(200);
+        });
+
+
+        //提交评论
+        $('#comment_btn').bind('click', function () {
+            var flag = '{{ flag }}';
+            if (flag == 1) {
+                SubmitComment();
+            } else {
+                window.location.href = "http://www.baidu.com"; //弹出登录
+            }
+        });
+
+        function SubmitComment() {
+            var ctfid = '{{ ctf.id }}';
+            var content = $("#comment_content").val();
+            if ($.trim(content) == '') {
+                layer.alert('请输入内容');
+            } else {
+                $.ajax({
+                    dataType: 'JSON',
+                    type: 'POST',
+                    url: '{% url 'ctf:ctf_comment' %}',
+                    data: {ExamCTFID: ctfid, Content: content},
+                    beforeSend: function (xhr, settings) {
+                        xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                    },
+                    success: function (data) {
+                        layer.alert(data.msg);
+                        //显示服务器端传过来的数据,然后一秒后刷新页面
+                        setTimeout("window.location.reload();", 800)
+                    }
+                });
+            }
+        }
+    </script>
 {% endblock %}
