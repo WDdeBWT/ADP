@@ -30,23 +30,22 @@
 
                     <div class="personal">
                         <dl class="user fr">
-                            <dd>{{ request.user.nick_name }}<img class="down fr" src="/static/images/top_down.png"/>
-                            </dd>
+                            <dd>{{ request.user.nick_name }}<a href="{% url 'logout' %}">退出</a></dd>
                             <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
                         </dl>
-                        <div class="userdetail">
-                            <dl>
-                                <dt><img width="80" height="80" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
-                                <dd>
-                                    <h2>django</h2>
-                                    <p>{{ request.user.nick_name }}</p>
-                                </dd>
-                            </dl>
-                            <div class="btn">
-                                <a class="personcenter fl" href="/users/info/">进入个人中心</a>
-                                <a class="fr" href="{% url 'logout' %}">退出</a>
-                            </div>
-                        </div>
+                        {#                        <div class="userdetail">#}
+                        {#                            <dl>#}
+                        {#                                <dt><img width="80" height="80" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>#}
+                        {#                                <dd>#}
+                        {#                                    <h2>django</h2>#}
+                        {#                                    <p>{{ request.user.nick_name }}</p>#}
+                        {#                                </dd>#}
+                        {#                            </dl>#}
+                        {#                            <div class="btn">#}
+                        {#                                <a class="personcenter fl" href="/users/info/">进入个人中心</a>#}
+                        {#                                <a class="fr" href="{% url 'logout' %}">退出</a>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
                     </div>
                     <a href="{% url 'users:mymessage' %}">
                         <div class="msg-num"><span id="MsgNum">{{ request.user.unread_nums }}</span></div>
@@ -119,26 +118,26 @@
                 </div>
                 <div class="pageturn pageright" style="position: fixed;left: 50%">
                     <ul class="pagelist">
-                    {% if messages.has_previous %}
-                        <li class="long"><a class="first"
-                                            href="?{{ messages.previous_page_number.querystring }}">上一页</a></li>
-                    {% endif %}
-
-                    {% for page in messages.pages %}
-                        {% if page %}
-                            {% ifequal page messages.number %}
-                                <li><a class="active" href="?{{ page.querystring }}">{{ page }}</a></li>
-                            {% else %}
-                                <li><a href="?{{ page.querystring }}" class="">{{ page }}</a></li>
-                            {% endifequal %}
-                        {% else %}
-                            <li class="none"><a href="">...</a></li>
+                        {% if messages.has_previous %}
+                            <li class="long"><a class="first"
+                                                href="?{{ messages.previous_page_number.querystring }}">上一页</a></li>
                         {% endif %}
-                    {% endfor %}
 
-                    {% if messages.has_next %}
-                        <a class="last" href="?{{ messages.next_page_number.querystring }}">下一页</a>
-                    {% endif %}
+                        {% for page in messages.pages %}
+                            {% if page %}
+                                {% ifequal page messages.number %}
+                                    <li><a class="active" href="?{{ page.querystring }}">{{ page }}</a></li>
+                                {% else %}
+                                    <li><a href="?{{ page.querystring }}" class="">{{ page }}</a></li>
+                                {% endifequal %}
+                            {% else %}
+                                <li class="none"><a href="">...</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if messages.has_next %}
+                            <a class="last" href="?{{ messages.next_page_number.querystring }}">下一页</a>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
