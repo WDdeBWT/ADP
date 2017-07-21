@@ -1,0 +1,1616 @@
+@charset "UTF-8";
+/* CSS reset */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+:focus {
+    outline: 0;
+}
+
+address, caption, cite, code, dfn, em, strong, th, var, optgroup {
+    font-style: normal;
+    font-weight: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+    font-family: "Microsoft YaHei";
+}
+
+abbr, acronym {
+    border: 0;
+    font-variant: normal;
+}
+
+code, kbd, samp, tt {
+    font-size: 100%;
+}
+
+input, button, textarea, select {
+    *font-size: 100%;
+    border: none;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+caption, th {
+    text-align: left;
+}
+
+sup, sub {
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+:link, :visited, ins {
+    text-decoration: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+
+.clearfix:after {
+    content: '\0020';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.l {
+    float: left;
+}
+
+.r {
+    float: right;
+}
+
+/*.clear {*/
+    /*height: 0;*/
+    /*overflow: hidden;*/
+    /*clear: both*/
+/*}*/
+
+
+
+.ui.segment {
+  position: relative;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
+  margin: 1rem 0em;
+  padding: 1em 1em;
+  border-radius: 0.28571429rem;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+}
+
+.ui.segment:first-child {
+  margin-top: 0em;
+}
+
+.ui.segment:last-child {
+  margin-bottom: 0em;
+}
+
+.ui.labels .label,
+.ui.label {
+  font-size: 0.85714286rem;
+}
+
+.ui.labels > .label {
+  margin: 0em 0.5em 0.5em 0em;
+}
+
+.ui.label {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: baseline;
+  margin: 0em 0.14285714em;
+  background-color: #F2F2F2;
+  background-image: none;
+  padding: 0.5833em 0.833em;
+  color: rgba(0, 0, 0, 0.6);
+  text-transform: none;
+  font-weight: bold;
+  border: 0px solid transparent;
+  border-radius: 0.28571429rem;
+  -webkit-transition: background 0.1s ease;
+  transition: background 0.1s ease;
+}
+
+.ui.label:first-child {
+  margin-left: 0em;
+}
+
+.ui.label:last-child {
+  margin-right: 0em;
+}
+
+.ui.menu .red.active.item,
+.ui.red.menu .active.item {
+  border-color: #DB2828 !important;
+  color: #DB2828 !important;
+}
+
+.ui.pointing.menu .active.item:hover:after {
+  background-color: #F2F2F2;
+}
+
+.ui.pointing.menu .active.item:after {
+  background-color: #F2F2F2;
+}
+
+.ui.pointing.menu .active.item:hover:after {
+  background-color: #F2F2F2;
+}
+
+.ui.vertical.pointing.menu .active.item:hover:after {
+  background-color: #F2F2F2;
+}
+
+.ui.vertical.pointing.menu .active.item:after {
+  background-color: #F2F2F2;
+}
+
+.ui.vertical.pointing.menu .menu .active.item:after {
+  background-color: #FFFFFF;
+}
+
+a.ui.label {
+  cursor: pointer;
+}
+
+.ui.label > a {
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.5;
+  -webkit-transition: 0.1s opacity ease;
+  transition: 0.1s opacity ease;
+}
+
+.ui.label > a:hover {
+  opacity: 1;
+}
+
+a.ui.labels .label:hover,
+a.ui.label:hover {
+  background-color: #e07c7e;
+  border-color: #E0E0E0;
+  background-image: none;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.ui.labels a.label:hover:before,
+a.ui.label:hover:before {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.ui.secondary.pointing.menu .item {
+  border-bottom-color: transparent;
+  border-bottom-style: solid;
+  border-radius: 0em;
+  -webkit-align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+  margin: 0em 0em -2px;
+  padding: 0.85714286em 1.14285714em;
+  border-bottom-width: 2px;
+  -webkit-transition: color 0.1s ease;
+  transition: color 0.1s ease;
+}
+
+.ui.secondary.menu {
+    background: none;
+    margin-left: -0.35714286em;
+    margin-right: -0.35714286em;
+    border-radius: 0em;
+    border: none;
+    box-shadow: none;
+}
+
+
+
+
+
+.hide {
+    display: none;
+}
+
+.hide-text {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.btn.hide {
+    display: none;
+}
+
+a.hidefocus {
+    outline: none;
+}
+
+button.hidefocus::-moz-focus-inner {
+    border: none;
+}
+
+a:focus {
+    outline: none;
+    -moz-outline: none;
+}
+
+input, textarea {
+    outline: none;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+h3 {
+    font-size: 16px;
+    line-height: 32px;
+}
+
+h5 {
+    font-size: 14px;
+    line-height: 28px;
+}
+
+/*border && padding*/
+.img_border {
+    border: 4px solid #fff;
+    border-radius: 1px;
+}
+
+.bb {
+    border-bottom: 1px solid #d2d2d2
+}
+
+.bt {
+    border-top: 1px solid #d2d2d2
+}
+
+.pt15 {
+    padding-top: 15px;
+}
+
+.pb15 {
+    padding-bottom: 15px;
+}
+
+.p15 {
+    padding: 0 15px
+}
+
+/*颜色定义*/
+.color-gray, a.color-gray:link, a.color-gray:visited {
+    color: #b7bcc0;
+}
+
+html, body {
+    font: 14px/1.5 "Microsoft Yahei", "Hiragino Sans GB", Helvetica, "Helvetica Neue", "微软雅黑", Tahoma, Arial, sans-serif;
+    color: #14191e;
+}
+
+body {
+    min-width: 1200px;
+    background-color: #fff;
+    overflow-y: scroll;
+}
+
+a:link, a:visited {
+    color: #14191e;
+    -webkit-transition: all 0.35s ease-in-out;
+    -ms-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
+}
+
+a:hover, a:active {
+    color: #3f8dbf;
+}
+
+.browserlow {
+    position: absolute;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    background: #fdf2d3;
+    color: #666;
+    text-align: center;
+}
+
+.newcontainer, .page-container {
+    position: relative;
+    min-height: 500px;
+    margin: 20px auto 60px;
+    width: 1200px;
+    overflow: hidden;
+}
+
+.bread_nav {
+
+    margin: 10px auto 0px;
+    width: 1200px;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.waper {
+    position: relative;
+    width: 1198px;
+    border: 1px solid #dedede;
+    min-height: 560px;
+    margin: 20px auto 100px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.shadow {
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*ajax加载*/
+#ajaxloading img {
+    display: block;
+    margin: 200px auto;
+    width: 60px
+}
+
+/*nav begin*/
+.nav-fixed {
+    position: relative;
+    top: 0;
+    width: 100%;
+    opacity: 1;
+    z-index: 10;
+    height: 60px;
+    -webkit-transition: all ease-in-out 0.2s;
+    -o-transition: all ease-in-out 0.2s;
+    transition: all ease-in-out 0.2s;
+    background: #fff; /*2015.12.15new*/
+    box-shadow: 0 1px 4px #ccc;
+}
+
+.navContent {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.navLogo, .footlogo {
+    width: 235px;
+    height: 60px;
+    background: url(/images/logo-header.png) no-repeat;
+    position: absolute;
+    left: 0;
+    top: 6px;
+    display: block;
+}
+
+.navLogo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.navContent .nav {
+    width: 500px;
+    overflow: hidden;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -220px;
+    z-index: 30;
+}
+
+.navContent .nav li {
+    /*width: 70px;*/
+    margin-left: 40px;
+    height: auto;
+    overflow: hidden;
+    float: left;
+    text-align: center;
+    position: relative;
+}
+
+.navContent .nav li a {
+    position: relative;
+    margin-top: 15px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 3px;
+    display: block;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+    font-weight: 400;
+    -webkit-transition: all 0s ease-in-out;
+    -ms-transition: all 0s ease-in-out;
+    -o-transition: all 0s ease-in-out;
+    transition: all 0s ease-in-out;
+}
+
+.navContent .nav li a:hover, .navContent .nav li.cur a {
+    border-bottom: 2px solid #1179ca;
+    color: #1179ca;
+}
+
+/*.navContent .nav li .second {
+        width: 110px;
+        height: 230px;
+        padding: 10px;
+        float: left;
+        background: #ccc;
+        display: none;
+}
+.navContent .dot {
+        width: 540px;
+        height: 8px;
+        line-height: 8px;
+        position: absolute;
+        left: 50%;
+        top: 50px;
+        margin-left: -270px;
+        z-index: 20;
+        display: none;
+}
+.navContent .dot ul {
+        position: absolute;
+        width: 540px;
+        overflow: hidden;
+        left: 50%;
+        top: 0;
+        margin-left: -300px;
+        z-index: 30;
+        height: 8px;
+        line-height: 8px;
+}
+.navContent .dot ul span {
+        width: 130px;
+        width: 100px;2015.8.24new
+        height: 8px;
+        background: url(/images/navBot_line.png) no-repeat center bottom;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+}*/
+/*未登录*/
+.navContent .loginCol {
+    float: right;
+    line-height: 28px;
+    margin-left: 0;
+    margin-top: 18px;
+    padding-left: 10px;
+}
+
+.navContent .loginCol a.log, .navContent .loginCol a.reg {
+    color: #2e7cbd;
+    line-height: 33px;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 14px;
+    padding: 0 5px;
+}
+
+.navContent .loginCol a.log {
+    padding-left: 25px;
+    background: url(/images/index/Profile.png) 0 5px no-repeat;
+}
+
+.navContent .loginCol a.reg {
+    margin-left: 5px;
+}
+
+/*已登录状态*/
+.loginedCol {
+    position: relative;
+    float: right;
+    display: block;
+}
+
+.logined li {
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    color: #016ab5;
+    margin-left: 15px;
+    display: block;
+}
+
+.logined li:hover {
+    opacity: .9;
+}
+
+.logined li.my_message a {
+    position: relative;
+    display: block;
+    height: 60px;
+    line-height: 60px;
+    width: 50px;
+    color: #787d82;
+    text-align: center;
+}
+
+.my_message i.msg_icon {
+    position: absolute;
+    left: 12px;
+    top: 23px;
+    width: 30px;
+    height: 24px;
+    overflow: hidden;
+    background: url(/images/login/ico2.png) no-repeat 0 -216px;
+}
+
+.my_message span.msg_txt {
+    position: absolute;
+    left: 33px;
+    top: 20px;
+    width: 8px;
+    height: 8px;
+    background: #f69219;
+    border-radius: 50%;
+    overflow: hidden;
+    text-indent: -99px;
+}
+
+.logined .my_card {
+    position: relative;
+    float: left;
+    background: url(/images/login/ico2.png) no-repeat 0 -2216px; /*处理ie下没有背景hover*/
+    height: 60px;
+    line-height: 60px;
+    color: #016ab5;
+    margin-left: 15px;
+    min-width: 50px;
+    max-width: 140px;
+    display: inline-block;
+}
+
+.logined .my_card a {
+    position: relative;
+    display: block;
+    height: 70px;
+    line-height: 60px;
+    width: 100%;
+    min-width: 50px;
+    max-width: 140px;
+    color: #016ab5;
+    text-align: left;
+    text-indent: 30px;
+    padding-right: 10px;
+    overflow: hidden;
+}
+
+.logined .my_card i.icon {
+    position: absolute;
+    right: 0;
+    top: 32px;
+    width: 0;
+    height: 0;
+    border: 4px solid transparent;
+    border-top: 5px solid #016ab5;
+    -webkit-transition: all ease-in-out .25s;
+    -o-transition: all ease-in-out .25s;
+    transition: all ease-in-out .25s;
+}
+
+.logined li.hover i.icon {
+    top: 28px;
+    border-bottom: 5px solid #016ab5;
+    border-top: 4px solid transparent;
+}
+
+.logined .my_card a img {
+    border-radius: 50%;
+    border: 1px solid #0167b0;
+    position: absolute;
+    left: 0;
+    top: 19px;
+}
+
+/**/
+.my_card .my_list {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    width: 120px;
+    background-color: #fff !important;
+    z-index: 999;
+    display: none;
+}
+
+.my_card .my_list li {
+    float: left;
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    color: #393939;
+    margin-left: 0;
+    background-color: #fff;
+}
+
+.my_card .my_list li a {
+    position: relative;
+    display: block;
+    float: left;
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    color: #393939;
+    text-align: left;
+    text-indent: 0;
+    padding-right: 0;
+    text-indent: 10px;
+}
+
+.my_card .my_list li a:hover {
+    background: #f4f4f4;
+}
+
+/*footermain*/
+
+.footer-container {
+    position: relative;
+    width: 100%;
+    height: 145px;
+    padding-top: 45px;
+    line-height: 30px;
+    text-align: center;
+    color: #808080;
+    border-top: 1px solid #dcdcdc;
+    background-color: #f6f3f3;
+    overflow: hidden;
+}
+
+.footer-container a {
+    color: #808080;
+    padding: 0 10px;
+}
+
+.footer-container a:hover {
+    color: #333;
+}
+.footer-container span{
+    padding-left: 40px;
+}
+.footer-container .copyright{
+    padding-top: 10px;
+}
+/*子页分页*/
+.pagination {
+    position: relative;
+    width: 410px;
+    overflow: hidden;
+    margin: 30px auto;
+}
+
+.pagination li {
+    font-size: 12px;
+    list-style: none;
+    font-family: Arial, "宋体";
+}
+
+.pagination a {
+    border: solid 1px #ededed;
+    margin-right: 10px;
+}
+
+.pagination .previous-btn, .pagination .next-btn {
+    color: #666666;
+    display: block;
+    float: left;
+    font-weight: bold;
+    overflow: hidden;
+    text-indent: -99px;
+}
+
+.pagination .active {
+    color: #fff;
+    font-weight: bold;
+    display: block;
+    float: left;
+    padding: 8px 12px;
+    background: #3399ff;
+    margin-right: 10px;
+}
+
+.pagination a:link, .pagination a:visited {
+    color: #5f5f5f;
+    display: block;
+    float: left;
+    padding: 7px 12px;
+    text-decoration: none;
+}
+
+.pagination a:hover {
+    border: solid 1px #b4b0b0;
+}
+
+.pagination .next a, .pagination .previous a {
+    border: solid 1px #f0f0f0;
+    font: 16px/16px Arial, "宋体";
+    color: #369bff;
+    overflow: hidden;
+    text-indent: -99px;
+    padding: 8px 16px 8px 12px;
+    transition: transform 0.2s;
+    -webkit-transition: transform 0.2s;
+    -moz-transition: transform 0.2s;
+    -o-transition: transform 0.2s;
+}
+
+.pagination .next a, .pagination .previous a, .pagination .previous-btn a, .pagination .next-btn a {
+    background: #f0f0f0 url(/images/pagination.png) no-repeat;
+}
+
+.pagination .previous-btn a {
+    background-position: -2px 1px;
+}
+
+.pagination .next-btn a {
+    background-position: -55px 1px;
+}
+
+.pagination .previous-btn a:hover {
+    background-position: -2px -62px;
+    background-color: #3399ff;
+    border: solid 1px #3399ff;
+}
+
+.pagination .next-btn a:hover {
+    background-position: -55px -62px;
+    background-color: #3399ff;
+    border: solid 1px #3399ff;
+}
+
+.pagination .previous a {
+    background-position: 3px -33px;
+}
+
+.pagination .previous a:hover {
+    background-position: 3px -97px;
+    background-color: #3399ff;
+    border: solid 1px #3399ff;
+}
+
+.pagination .next a {
+    background-position: -53px -34px;
+}
+
+.pagination .next a:hover {
+    background-position: -53px -97px;
+    background-color: #3399ff;
+    border: solid 1px #3399ff;
+}
+
+/*子页分页end*/
+
+/*子也返回顶部*/
+.backToTop {
+    display: none;
+    width: 60px;
+    height: 55px;
+    line-height: 80px;
+    color: #b2b2b2;
+    border: 1px solid #b2b2b2;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+    _position: absolute;
+    right: 10px;
+    bottom: 110px;
+    _bottom: "auto";
+    cursor: pointer;
+    opacity: .8;
+    background: url(/images/lecturer/backtop.png) center 5px no-repeat;
+    filter: Alpha(opacity=80);
+    -webkit-transition: all ease-in-out .2s;
+    -moz-transition: all ease-in-out .2s;
+    -ms-transition: all ease-in-out .2s;
+    -o-transition: all ease-in-out .2s;
+    transition: all ease-in-out .2s;
+    -webkit-transition-delay: .2s;
+    -moz-transition-delay: .2s;
+    -ms-transition-delay: .2s;
+    -o-transition-delay: .2s;
+    transition-delay: .2s;
+}
+
+.backToTop:hover {
+    color: #fff;
+    border: 1px solid #3ba6e3;
+    background-color: #3ca6e4;
+    background-position: center -60px;
+}
+
+/*子也返回顶部end*/
+/*登陆注册弹出begin*/
+/*会员注册*/
+
+#maskLayer {
+    position: fixed;
+    _position: absolute;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.5;
+    -moz-opacity: 0.5;
+    filter: alpha(opacity=50);
+    display: none;
+}
+
+.embedWrap {
+    z-index: 1000;
+    position: fixed;
+    _position: absolute;
+    width: 760px;
+    min-height: 300px;
+    padding: 20px 0;
+    top: 30px;
+    left: 50%;
+    margin-left: -380px;
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    display: none;
+}
+
+.embedWrap .LogCloseBtn, .embedWrap .reg dl dd i {
+    background: url(/images/login/ico2.png) no-repeat;
+}
+
+.embedWrap .LogCloseBtn {
+    position: absolute;
+    width: 36px;
+    background-position: 2px 0;
+    text-indent: -10em;
+    right: 10px;
+    top: 10px;
+    height: 36px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+    -webkit-transition: transform 0.2s;
+    -moz-transition: transform 0.2s;
+    -o-transition: transform 0.2s;
+}
+
+.embedWrap .LogCloseBtn:hover {
+    background-position: 2px -36px;
+    transform: scale(1.03);
+    -webkit-transform: scale(1.03);
+    -moz-transform: scale(1.03);
+}
+
+.login_block {
+    position: relative;
+    float: left;
+    margin-bottom: 10px;
+    width: 415px;
+    overflow: hidden;
+}
+
+.tab_change {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 65px;
+    width: 270px;
+    height: 40px;
+    border-bottom: 1px solid #eee;
+}
+
+.tab_change li {
+    float: left;
+    width: 100px;
+    line-height: 40px;
+    height: 40px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.tab_change li a {
+    display: block;
+    width: 100%;
+    font-family: arial;
+    position: relative;
+}
+
+.tab_change li a span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #0076ca;
+    display: none;
+}
+
+.tab_change li.cur a span {
+    display: block;
+}
+
+/**/
+.formbox {
+    width: 100%;
+    margin: 10px auto;
+    padding: 30px 0;
+}
+
+.formbox dd {
+    position: relative;
+    height: 68px;
+    color: #7a7a7a;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.formbox .auto_signin {
+    height: 36px;
+}
+
+.formbox .auto_signin .forgPass {
+    position: absolute;
+    right: 50px;
+    top: 0;
+    color: #c90000;
+    z-index: 2;
+}
+
+.formbox dd em {
+    float: left;
+    padding-top: 10px;
+    width: 70px;
+    margin-right: 10px;
+    text-align: right;
+    color: #999797;
+}
+
+.formbox label {
+    float: left;
+    display: block;
+    width: 290px;
+    height: 68px;
+    position: relative;
+}
+
+.formbox label span {
+    position: absolute;
+    float: left;
+    line-height: 38px;
+    left: 10px;
+    color: #BCBCBC;
+    cursor: text;
+}
+
+.formbox p.error {
+    color: #c90000;
+    line-height: 30px;
+    display: none;
+}
+
+.input_txt {
+    width: 288px;
+    border: solid 1px #e8e7e7;
+    height: 38px;
+    text-indent: 10px;
+    color: #666;
+    -webkit-transition: border-color ease-in .2s;
+    -moz-transition: border-color ease-in .2s;
+    -ms-transition: border-color ease-in .2s;
+    -o-transition: border-color ease-in .2s;
+    transition: border-color ease-in .2s;
+}
+
+.input_txt:hover {
+    border-color: #c8c8c8;
+}
+
+.input_txt:focus {
+    border: solid 1px #1b88d6;
+}
+
+.input_eye {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    width: 28px;
+    height: 18px;
+    background: url(/images/login/eye.png) center no-repeat;
+    cursor: pointer;
+    z-index: 2;
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
+
+.input_eye:hover {
+    opacity: 1;
+}
+
+.formbox .button {
+    float: left;
+    margin-left: 80px;
+    font: 100 18px/40px "\5FAE\8F6F\96C5\9ED1", "Microsoft Yahei", "Hiragino Sans GB", tahoma, arial;
+    width: 290px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    color: #fff;
+    background: #0e81d2;
+
+    -webkit-transition: all ease-in-out .2s;
+    -moz-transition: all ease-in-out .2s;
+    -ms-transition: all ease-in-out .2s;
+    -o-transition: all ease-in-out .2s;
+    transition: all ease-in-out .2s;
+}
+
+.formbox .button:hover {
+    background: #0076ca;
+    text-decoration: none;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1) inset;
+}
+
+/*第三方登录*/
+.embedWrap .logLogo {
+    position: absolute;
+    width: 265px;
+    top: 90px;
+    right: 50px;
+    color: #999;
+    overflow: hidden;
+}
+
+.embedWrap .logOther .sina, .embedWrap .logOther .qq, .embedWrap .logLogo dl, .embedWrap .logOther .wechat {
+    background: url(/images/login/log.png) center -145px no-repeat;
+}
+
+.embedWrap .logLogo dl {
+    position: relative;
+    width: 265px;
+    height: 110px;
+}
+
+.embedWrap .logLogo dl dt {
+    position: absolute;
+    width: 265px;
+    left: 0;
+    top: 94px;
+    height: 1px;
+    line-height: 1px;
+    background: #cbcbcb;
+}
+
+.embedWrap .logLogo dl dd {
+    position: absolute;
+    left: 50%;
+    top: 80px;
+    background: #fff;
+    padding: 3px;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.embedWrap .logOther {
+    width: 200px;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+.embedWrap .logOther .sina, .embedWrap .logOther .qq, .embedWrap .logOther .wechat {
+    float: left;
+    width: 52px;
+    height: 52px;
+    display: block;
+    overflow: hidden;
+    text-indent: -999px;
+    -webkit-transition: ease-in-out .3s;
+    -moz-transition: ease-in-out .3s;
+    -ms-transition: ease-in-out .3s;
+    -o-transition: ease-in-out .3s;
+    transition: ease-in-out .3s;
+}
+
+.embedWrap .logOther .sina {
+    background-position: -23px -15px;
+    margin-right: 15px;
+}
+
+.embedWrap .logOther .qq {
+    background-position: -88px -15px;
+    margin-right: 15px;
+}
+
+.embedWrap .logOther .wechat {
+    background-position: -153px -15px;
+}
+
+.embedWrap .logOther .sina:hover {
+    background-position: -23px -70px;
+}
+
+.embedWrap .logOther .qq:hover {
+    background-position: -88px -70px;
+}
+
+.embedWrap .logOther .wechat:hover {
+    background-position: -153px -70px;
+}
+
+.login .chk_protocol {
+    height: 50px !important;
+    overflow: hidden;
+}
+
+/* */
+.select_user {
+    position: relative;
+    width: 100%;
+    min-height: 10px;
+    vertical-align: middle;
+    color: #666;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.select_user ul {
+    margin-left: 80px;
+    width: 290px;
+}
+
+.select_user .lichild1 {
+    position: relative;
+    float: left;
+    width: 100px;
+    height: 30px !important;
+    margin-right: 15px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.select_user .lichild2 {
+    position: relative;
+    float: left;
+    width: 100px;
+    margin-left: 10px;
+    height: 30px !important;
+}
+
+.select_user label .child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 24px;
+    z-index: 2;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.select_user input + span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 24px;
+    z-index: 1;
+    background: url(/images/login/iconcheck.png) no-repeat 0 0;
+    text-align: left;
+    text-indent: 28px;
+    line-height: 22px;
+    overflow: hidden;
+    color: #666;
+}
+
+.select_user input:checked + span {
+    background-position: 0 -25px;
+}
+
+.reg_input_pic {
+    width: 180px;
+    margin-right: 5px;
+    /*  position: absolute;
+      left: 0;
+       top: 0;*/
+}
+
+.imgCaptcha {
+    position: absolute;
+    left: 280px;
+    top: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.embedWrap .reg_block {
+    width: 460px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.embedWrap .f_reg_but .SignNow {
+    position: relative;
+    float: left;
+    margin-left: 80px;
+    width: 290px;
+    line-height: 30px;
+    color: #2a9cd5;
+    text-align: right;
+    display: block;
+    overflow: hidden;
+}
+
+.reg_block .title {
+    position: relative;
+    width: 290px;
+    margin-left: 80px;
+    margin-bottom: 30px;
+    height: 30px;
+    overflow: hidden;
+}
+
+.reg_block .title dt {
+    position: absolute;
+    width: 290px;
+    left: 0;
+    top: 20px;
+    height: 1px;
+    line-height: 1px;
+    background: #dcd9d9;
+}
+
+.reg_block .title dd {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    background: #fff;
+    padding: 3px;
+    font-size: 20px;
+    font-weight: 100;
+    color: #999;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+/**/
+.embedWrap .getover {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -20px;
+    width: 440px;
+    line-height: 34px;
+    color: #a9a9a9;
+    text-align: center;
+    overflow: hidden;
+}
+
+.embedWrap .getover p {
+    width: 100%;
+    display: block;
+}
+
+.embedWrap .getover .email_link {
+    margin-bottom: 10px;
+}
+
+.embedWrap .getover .email_link a {
+    font-size: 16px;
+    color: #f85841;
+    line-height: 20px;
+}
+
+.embedWrap .getover .email_link a:hover {
+    text-decoration: underline;
+}
+
+.embedWrap .getover a.return {
+    color: #a9a9a9;
+    text-decoration: underline;
+}
+
+.embedWrap .getover a.return:hover {
+    text-decoration: none;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+/*隐藏文本框叉子*/
+input::-ms-reveal {
+    display: none;
+}
+
+/*隐藏密码框小眼睛*/
+/*登陆注册弹出end*/
+
+/* 设置滚动条的样式 */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+/* 滚动槽 */
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(227, 228, 232, 1);
+}
+
+/* 滚动条滑块 */
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255, 0, 0, 0.3);
+}
+
+/*nav end right-tips begin*/
+.fixedTips {
+    position: fixed;
+    right: -115px;
+    bottom: 150px;
+    width: 100%;
+    opacity: 100;
+    z-index: 10;
+    width: 46px;
+    opacity: 0;
+
+    -webkit-transition: all ease-in-out 0.3s;
+    -o-transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+}
+
+.fixedTips li {
+    float: left;
+    width: 100%;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    background: #eaeaea url(/images/fixed_r.png) 0 -8px no-repeat;
+    border: 1px solid rgba(234, 234, 234, .8);
+}
+
+.fixedTips li:nth-child(1) {
+    background-position: center -8px;
+}
+
+.fixedTips li:nth-child(2) {
+    border-top: 1px solid #e1e1dd;
+    border-bottom: 1px solid #e1e1dd;
+    background-position: center -51px;
+}
+
+.fixedTips li:nth-child(3) {
+    background-position: center -145px;
+}
+
+.fixedTips li a {
+    display: block;
+    width: 100%;
+    opacity: 0;
+}
+
+.fixedTips li a:hover {
+    background: #71b7e9;
+    opacity: 1;
+    color: #fff;
+}
+
+/* v3 */
+.page-main {
+    position: relative;
+    margin: 0 auto;
+    width: 1200px;
+    font-weight: 400;
+    overflow: hidden;
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+/*429安全星底部浮层*/
+.AD429 {
+    position: fixed;
+    _position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 225px;
+    left: 0;
+    bottom: 0;
+    background: #000924 url(/images/index/f-ad.jpg) center top no-repeat;;
+    filter: alpha(opacity=85);
+    -moz-opacity: 0.85;
+    opacity: 0.85;
+    -webkit-animation: ad429 1.5s ease-in-out infinite forwards;
+    -moz-animation: ad429 1.5s ease-in-out infinite forwards;
+    animation: ad429 1.5s ease-in-out infinite forwards;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}
+
+.AD429 a {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.ADclose {
+    position: absolute;
+    z-index: 4;
+    width: 36px;
+    height: 36px;
+    overflow: hidden;
+    cursor: pointer;
+    background: url(/images/login/ico2.png) 2px 0 no-repeat;
+    left: 50%;
+    top: 20px;
+    margin-left: -600px;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    -webkit-transform: scale(.9);
+    -moz-transform: scale(.9);
+    -ms-transform: scale(.9);
+    -o-transform: scale(.9);
+    transform: scale(.9);
+}
+
+.ADclose:hover {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+
+@-webkit-keyframes ad429 {
+    0% {
+        -webkit-transform: translate(-100%, 0);
+    }
+    100% {
+        -webkit-transform: translate(0, 0);
+    }
+}
+
+@-moz-keyframes ad429 {
+    0% {
+        -moz-transform: translate(-100%, 0);
+    }
+    100% {
+        -moz-transform: translate(0, 0);
+    }
+}
+
+.ADclick {
+    position: absolute;
+    z-index: 2;
+    width: 114px;
+    height: 93px;
+    overflow: hidden;
+    cursor: pointer;
+    background: url(/images/subjectPage/SafetyCup429/click.png) center top no-repeat;;
+    left: 50%;
+    bottom: 5px;
+    margin-left: 550px;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+    opacity: 0;
+    -webkit-animation: ADclick 2s 2s infinite forwards;
+    -moz-animation: ADclick 2s 2s infinite forwards;
+    animation: ADclick 2s 2s infinite forwards;
+    -webkit-animation-iteration-count:8;
+    animation-iteration-count:8;
+}
+
+@-webkit-keyframes ADclick {
+    0% {
+        opacity:1;
+        -webkit-transform: translate(-10px, -5px) scale(.77);
+    }
+    75% {
+        opacity: .9;
+        -webkit-transform: translate(0, 0) scale(.8);
+    }
+    100% {
+        opacity:1;
+        -webkit-transform: translate(-10px, -5px) scale(.77);
+    }
+
+}
+
+@-moz-keyframes ADclick {
+    0% {
+        opacity:1;
+        -moz-transform: translate(-10px, -5px) scale(.77);
+    }
+    75% {
+        opacity: .9;
+        -moz-transform: translate(0, 0) scale(.8);
+    }
+    100% {
+        opacity:1;
+        -moz-transform: translate(-10px, -5px) scale(.77);
+    }
+}
+
+/*end 429*/
+pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}

@@ -1,0 +1,20 @@
+﻿# 项目中的数据库移植文件
+migrations/
+
+# Apple文件系统目录文件
+.DS_Store
+
+# Pycharm编译器文件
+/.idea/
+
+# 虚拟环境文件
+/venv/
+
+# Python缓存文件
+__pycache__/
+
+# .py编译文件
+*.pyc
+
+# 媒体文件
+/media/

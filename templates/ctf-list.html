@@ -1,0 +1,204 @@
+{% extends 'ctf_base.html' %}
+
+{% block title %}CTF题目列表 - 攻防演练平台{% endblock %}
+
+{% block custom_bread %}
+    <section>
+        <div class="wp">
+            <ul class="crumbs">
+                <li><a href="{% url 'index' %}">首页</a>></li>
+                <li>CTF题库</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+
+{% block custom_css %}
+    <link href="/static/css/common_2016.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/static/css/ctf/CTF_Details.css" media="screen" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="train_question_main">
+
+
+            <!--内容左部分-->
+            <div class="train_m_left">
+                <!--左侧内容3——英雄榜-->
+                <div class="train_mle_hero train_mle_hero1">
+                    <h3>英雄榜</h3>
+                    <div class="hero_rank_show1" id="rank_ul">
+                        <ul class="hero_rank">
+                            <li>昵称</li>
+                            <li>总解题数</li>
+                            <li>最佳类别</li>
+                            <li>综合得分</li>
+                        </ul>
+                        <ul class="train_mle_hero_data">
+                            {% for hero in heros %}
+                                <li><span>{{ hero.nick_name }}</span>
+                                    <span>{{ hero.total_num }}</span>
+                                    <span>{{ hero.category }}</span>
+                                    <span>{{ hero.earn_num }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="ui segment" style="padding-top: 1px;">
+                    <div class="ui pointing secondary menu red section-title">
+                        <div class="item active" style="margin-bottom: 14px;">
+                            热门标签
+                        </div>
+                    </div>
+
+                    <div class="ui labels">
+                        {% for tag in tags %}
+                            <a href="?category={{ category }}__{{ tag }}"
+                               class="ui label {% if tag == user_tag %}red{% endif %}">{{ tag }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+
+            <!--内容右部分-->
+            <div class="train_m_right">
+                <!--右侧内容1——tabs切换-->
+                <div class="train_mri_tabs" id="key_tabNav">
+
+                    <!--显示-->
+                    <ul class="train_mri_tabs_nav">
+                        <li {% if category == 'WEB' %}class='hover'{% endif %}><a href="?category=WEB">WEB</a></li>
+                        <li {% if category == 'CRYPTO' %}class='hover'{% endif %}><a href="?category=CRYPTO">密码学</a>
+                        </li>
+                        <li {% if category == 'MISC' %}class='hover'{% endif %}><a href="?category=MISC">安全杂项</a></li>
+                        <li {% if category == 'REVERSE' %}class='hover'{% endif %}><a href="?category=REVERSE">逆向工程</a>
+                        </li>
+                        <li {% if category == 'STEGA' %}class='hover'{% endif %}><a href="?category=STEGA">隐写术</a></li>
+                        <li {% if category == 'PPC' %}class='hover'{% endif %}><a href="?category=PPC">编程</a></li>
+                        <li {% if category == 'PWN' %}class='hover'{% endif %}><a href="?category=PWN">溢出</a></li>
+                    </ul>
+
+                    <!--切换的内容-->
+                    <div class="tabs_show" style="display:block">
+                        <div class="show_text">
+                            {% if category == "WEB" %}
+                                <p>WEB应用在今天越来越广泛，也是CTF夺旗竞赛中的主要题型，题目涉及到常见的Web漏洞，诸如注入、XSS、文件包含、代码执行、上传等漏洞。</p>
+                            {% elif category == "CRYPTO" %}
+                                <p>Crypto即密码学，题目考察各种加解密技术，包括古典加密技术、现代加密技术甚至出题者自创加密技术，主要考查参赛选手密码学相关知识点。</p>
+                            {% elif category == "REVERSE" %}
+                                <p>Reverse即逆向工程，题目涉及到软件逆向、破解技术等，要求有较强的反汇编、反编译扎实功底。主要考查参赛选手的逆向分析能力。</p>
+                            {% elif category == "MISC" %}
+                                <p>MISC即安全杂项，题目涉及流量分析、电子取证、人肉搜索、数据分析、大数据统计等等，覆盖面比较广，主要考查参赛选手的各种基础综合知识。</p>
+                            {% elif category == "STEGA" %}
+                                <p>STEGA即隐写术，题目的Flag会隐藏到图片、音频、视频等各类数据载体中供参赛选手获取。主要考查参赛选手的对各种隐写工具、隐写算法的熟悉程度。</p>
+                            {% elif category == "PPC" %}
+                                <p>PPC即编程类题目，题目涉及到程序编写、编程算法实现，当然PPC相比ACM来说，还是较为容易的。至于编程语言嘛，推荐使用Python或Ruby来尝试。</p>
+                            {% else %}
+                                <p>PWN在黑客俚语中代表着攻破，取得权限，在CTF比赛中它代表着溢出类的题目，其中常见类型溢出漏洞有栈溢出、堆溢出。主要考察参数选手对漏洞的利用能力。</p>
+                            {% endif %}
+                            <div class="show_num"><span></span>参与人数：<b>{{ participation }}</b></div>
+                        </div>
+                        <div class="show_parameter">
+                            <span class="not"><b class="bb red"></b>无人能解</span>
+                            <span class="yes"><b class="bb blue"></b>我已解开</span>
+                            <span class="notes">(๑•̀ㅂ•́)و✧加油</span>
+                        </div>
+                        <div class="show_subject" id="tabinfo_child7">
+                            <div class="subject1">
+                                <ul>
+                                    {% for ctf in all_ctf %}
+                                        <li><a href="{% url 'ctf:ctf_detail' ctf.id %}" title="{{ ctf.name }}"
+                                               target="_blank"
+                                               {% if ctf.user_learned %}class="yes_blue"{% endif %}
+                                               {% if ctf.not_learned %}class="not_red"{% endif %}
+                                        >{{ ctf.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div style="clear: both"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!--右侧内容2——最新评论-->
+                <div class="train_mri_news_comment">
+                    <h3>最新评论<span>NEW</span></h3>
+                    <div class="news_comment">
+                        {% for comment in all_comment.object_list %}
+                            <ul id="comment_list_ul">
+                                <li>
+                                    <div class="de_mle_topic">
+                                        <a title="">
+                                            <div class="de_mle_topic_head">
+                                                <img src="{{ MEDIA_URL }}{{ comment.user.image }}"
+                                                     alt="{{ comment.user.nick_name }}">
+                                                <div class="topic_title">{{ comment.user.nick_name }}</div>
+                                            </div>
+                                        </a>
+                                        <div class="topic_text">
+                                            <a href="{% url 'ctf:ctf_detail' comment.ctf.id %}" target="_blank">
+                                                <p>{{ comment.comments }}</p>
+                                            </a>
+                                        </div>
+                                        <div class="topic_text_time">
+                                            <span>{{ comment.add_time }}</span>
+                                        <span class="text_reply">来自：
+                                            <a href="{% url 'ctf:ctf_detail' comment.ctf.id %}"
+                                               target="_blank">{{ comment.ctf.name }}</a>
+                                        </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        {% endfor %}
+                    </div>
+                    <!-- 分页 -->
+                    <div class="show_flip">
+                        {% if all_comment.has_previous %}
+                            <a class="show_prev"
+                               href="?{{ all_comment.previous_page_number.querystring }}">上一页</a>
+                        {% endif %}
+
+                        {% for page in all_comment.pages %}
+                            {% if page %}
+                                {% ifequal page all_comment.number %}
+                                    <a class="show_prev" href="?{{ page.querystring }}">{{ page }}</a>
+                                {% else %}
+                                    <a href="?{{ page.querystring }}" class="page">{{ page }}</a>
+                                {% endifequal %}
+                            {% else %}
+                                <a href="">...</a>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if all_comment.has_next %}
+                            <a class="show_next" href="?{{ all_comment.next_page_number.querystring }}">下一页</a>
+                        {% endif %}
+                    </div>
+                    <!-- 分页end -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block custom_js %}
+    <script type="text/javascript" src="/static/js/lib/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/static/js/common.js"></script>
+    <script type="text/javascript" src="/static/js/plug/jquery.validate.js"></script>
+    <script type="text/javascript" src="/static/js/plug/messages_zh.js"></script>
+    <script type="text/javascript" src="/static/js/plug/jquery.form.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/static/js/layer/laytpl.js"></script>
+{% endblock %}
