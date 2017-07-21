@@ -33,3 +33,15 @@ class ForgetPswForm(forms.Form):
 class ModifyPswForm(forms.Form):
     password1 = forms.CharField(required=True, min_length=5)
     password2 = forms.CharField(required=True, min_length=5)
+
+
+class UserInfoForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['nick_name', 'birthday', 'gender', 'address', 'mobile', ]
+
+
+class MessageSendForm(forms.Form):
+    email = forms.EmailField(required=True)
+    message = forms.CharField
+

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <title>个人信息- ADP</title>
+    <title>我的消息- ADP</title>
     <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/static/css/animate.css">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
@@ -51,6 +51,8 @@
                     <a href="{% url 'users:mymessage' %}">
                         <div class="msg-num"><span id="MsgNum">{{ request.user.unread_nums }}</span></div>
                     </a>
+
+
                 </div>
             </div>
 
@@ -80,86 +82,67 @@
     <div class="wp list personal_list">
         <div class="left">
             <ul>
-                <li class="active2"><a href="{% url 'users:user_info' %}">个人资料</a></li>
-                <li>
-                    <a href="{% url 'users:mymessage' %}" style="position: relative;">
-                        我的消息
-                    </a>
-                </li>
+                <li><a href="{% url 'users:user_info' %}">个人资料</a></li>
+                <li class="active2"><a href="{% url 'users:mymessage' %}">我的消息</a></li>
             </ul>
         </div>
 
 
         <div class="right">
-            <div class="personal_des ">
-                <div class="head" style="border:1px solid #eaeaea;">
-                    <h1>个人信息</h1>
+            {#            <div class="personal_des Releasecont">#}
+            {#                <div class="head">#}
+            {#                    <h1>我的消息</h1>#}
+            {#                </div>#}
+            {##}
+            {#            </div>#}
+            <div class="personal_des permessage">
+                <div class="head">
+                    <ul class="tab_header messagehead">
+                        <li class="active"><a href="{% url 'users:mymessage' %}">收到的消息</a></li>
+                    </ul>
+                    <ul class="tab_header messagehead">
+                        <li><a href="{% url 'users:sendmessage' %}">发送新消息</a></li>
+                    </ul>
                 </div>
-                <div class="inforcon">
-                    <div class="left" style="width:242px;">
-                        <iframe id='frameFile' name='frameFile' style='display: none;'></iframe>
-                        <form class="clearfix" id="jsAvatarForm" enctype="multipart/form-data" autocomplete="off"
-                              method="post" action="{% url 'users:image_upload' %}" target='frameFile'>
-                            <label class="changearea" for="avatarUp">
-                            <span id="avatardiv" class="pic">
-                                <img width="100" height="100" class="js-img-show" id="avatarShow"
-                                     src="{{ MEDIA_URL }}{{ request.user.image }}"/>
-                            </span>
-                                <span class="fl upload-inp-box" style="margin-left:70px;">
-                                <span class="button btn-green btn-w100" id="jsAvatarBtn">修改头像</span>
-                                <input type="file" name="image" id="avatarUp" class="js-img-up"/>
-                            </span>
-                            </label>
-                            <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY'/>
-                            {% csrf_token %}
-                        </form>
-                        <div style="border-top:1px solid #eaeaea;margin-top:30px;">
-                            <a class="button btn-green btn-w100" id="jsUserResetPwd"
-                               style="margin:80px auto;width:100px;">修改密码</a>
+                <div class="messagelist">
+                    {% for message in messages.object_list %}
+                        <div class="messages">
+                            <div class="fr">
+                                <div class="top"><span class="fl time">{{ message.add_time }}</span><span
+                                        class="fr btn foldbtn"></span></div>
+                                <p>
+                                    {{ message.message }}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <form class="perinform" id="jsEditUserForm" autocomplete="off">
-                        <ul class="right">
-                            <li>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
-                                <input type="text" name="nick_name" id="nick_name" value="{{ request.user.nick_name }}"
-                                       maxlength="10">
-                                <i class="error-tips"></i>
-                            </li>
-                            <li>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：
-                                <input type="text" id="birth_day" name="birthday" value="{{ request.user.birthday }}"
-                                       readonly="readonly"/>
-                                <i class="error-tips"></i>
-                            </li>
-                            <li>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：
-                                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="male"
-                                        {% if request.user.gender == 'male' %} checked="checked" {% endif %}>男</label>
-                                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender"
-                                                                                  value="female"
-                                        {% if request.user.gender == 'female' %} checked="checked" {% endif %}>女</label>
-                            </li>
-                            <li class="p_infor_city">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
-                                <input type="text" name="address" id="address" placeholder="请输入你的地址"
-                                       value="{{ request.user.address }}" maxlength="10">
-                                <i class="error-tips"></i>
-                            </li>
-                            <li>手&nbsp;&nbsp;机&nbsp;&nbsp;号：
-                                <input type="text" name="mobile" id="mobile" placeholder="请输入你的手机号码"
-                                       value="{{ request.user.mobile|default_if_none:'' }}" maxlength="11">
-                            </li>
-                            <li>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：
-                                <input class="borderno" type="text" name="email" readonly="readonly"
-                                       value="{{ request.user.email }}"/>
-                                <span class="green changeemai_btn">[修改]</span>
-                            </li>
-                            <li class="button heibtn">
-                                <input type="button" id="jsEditUserBtn" value="保存">
-                            </li>
-                        </ul>
-                        <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY'/>
-                        {% csrf_token %}
-                    </form>
+                    {% endfor %}
+                </div>
+                <div class="pageturn pageright" style="position: fixed;left: 50%">
+                    <ul class="pagelist">
+                    {% if messages.has_previous %}
+                        <li class="long"><a class="first"
+                                            href="?{{ messages.previous_page_number.querystring }}">上一页</a></li>
+                    {% endif %}
+
+                    {% for page in messages.pages %}
+                        {% if page %}
+                            {% ifequal page messages.number %}
+                                <li><a class="active" href="?{{ page.querystring }}">{{ page }}</a></li>
+                            {% else %}
+                                <li><a href="?{{ page.querystring }}" class="">{{ page }}</a></li>
+                            {% endifequal %}
+                        {% else %}
+                            <li class="none"><a href="">...</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if messages.has_next %}
+                        <a class="last" href="?{{ messages.next_page_number.querystring }}">下一页</a>
+                    {% endif %}
+                    </ul>
                 </div>
             </div>
+
         </div>
 
 
@@ -219,7 +202,8 @@
                 <div class="button">
                     <input id="jsResetPwdBtn" type="button" value="提交"/>
                 </div>
-                {% csrf_token %}
+                <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP'/>
+                <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY'/>
             </form>
         </div>
     </div>
@@ -241,7 +225,6 @@
             </div>
             <input type='hidden' name='csrfmiddlewaretoken' value='DaP7IUKm9FA9nELA9YUlYYWpyIDdCiIP'/>
             <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY'/>
-            {% csrf_token %}
         </form>
     </div>
 

@@ -106,23 +106,23 @@ ul {
 .unslider-arrow2.prev
  {
     left: 0;
-    background: url(../images/slide_l.png) no-repeat center center;
+    background: url(/static/images/slide_l.png) no-repeat center center;
 }
 
 .unslider-arrow2.prev:hover
 {
-    background: url(../images/slide_l_1.png) no-repeat center center;
+    background: url(/static/images/slide_l_1.png) no-repeat center center;
 }
 
 .unslider-arrow2.next
  {
     right: 0;
-    background: url(../images/slide_r.png) no-repeat center center;
+    background: url(/static/images/slide_r.png) no-repeat center center;
 }
 
 .unslider-arrow2.next:hover
  {
-    background: url(../images/slide_r_1.png) no-repeat center center;
+    background: url(/static/images/slide_r_1.png) no-repeat center center;
 }
 
 .imgslide2 .dots
