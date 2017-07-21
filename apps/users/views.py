@@ -12,7 +12,7 @@ from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import UserProfile, EmailVerifyRecord
 from operations.models import UserMessage
-from .forms import LoginForm, RegisterForm, UploadImageForm, ForgetPswForm, ModifyPswForm, UserInfoForm, MessageSendForm
+from .forms import LoginForm, RegisterForm, UploadImageForm, ForgetPswForm, ModifyPswForm, UserInfoForm, MessageSendForm, UserBirthdayInfoForm
 from utils.email_send import send_register_email
 from utils.mixin_utils import LoginRequiredMixin
 
@@ -113,8 +113,13 @@ class UserinfoView(LoginRequiredMixin, View):
 
     def post(self, request):
         user_info_form = UserInfoForm(request.POST, instance=request.user)
+        user_bir_info_form = UserBirthdayInfoForm(request.POST)
         if user_info_form.is_valid():
             user_info_form.save()
+            if user_bir_info_form.is_valid():
+                user = request.user
+                user.birthday = request.POST.get("birthday", "")
+                user.save()
             return HttpResponse('{"status":"success"}', content_type='application/json')
         else:
             return HttpResponse(json.dumps(user_info_form.errors), content_type='application/json')

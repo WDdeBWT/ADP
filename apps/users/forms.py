@@ -38,10 +38,14 @@ class ModifyPswForm(forms.Form):
 class UserInfoForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['nick_name', 'birthday', 'gender', 'address', 'mobile', ]
+        fields = ['nick_name', 'gender', 'address', 'mobile', ]
+
+
+class UserBirthdayInfoForm(forms.Form):
+    birthday = forms.DateField()
 
 
 class MessageSendForm(forms.Form):
     email = forms.EmailField(required=True)
-    message = forms.CharField
+    message = forms.CharField()
 
