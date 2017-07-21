@@ -57,7 +57,7 @@
                     <div class="ui labels">
                         {% for tag in tags %}
                             <a href="?category={{ category }}__{{ tag }}"
-                               class="ui label {% if tag == user_tag %}red{% endif %}">{{ tag }}</a>
+                               class="ui label " {% if tag == user_tag %}style="color:red"{% endif %}>{{ tag }}</a>
                         {% endfor %}
                     </div>
                 </div>

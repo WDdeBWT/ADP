@@ -26,22 +26,40 @@ class CtfListView(View):
         # 得到页面上传过来的课程类型
         category = request.GET.get('category', "")
 
+        # 题目分类常量
+        CATEGORY_CHOICES = {
+            "MISC": "安全杂项",
+            "PPC": "编程",
+            "CRYPTO": "密码学",
+            "PWN": "溢出",
+            "REVERSE": "逆向工程",
+            "STEGA": "隐写术",
+            "WEB": "WEB",
+        }
+
         # 如果没有参数传过来就默认是web类型的题目,如果参数里面还含有标签的信息则查询结果为空
-        if not category:
+        tag = None
+        if category == '':
             category = 'WEB'
-        ctf_subjects = all_ctf_objects.filter(category=category)
+            ctf_subjects = all_ctf_objects.filter(category=category)
+        # 只传递了分类信息
+        elif category in CATEGORY_CHOICES.keys():
+            ctf_subjects = all_ctf_objects.filter(category=category)
+        # 传递了分类信息和标签信息
+        elif len(category.split("__")) == 2 and (category.split("__")[0] in CATEGORY_CHOICES.keys()) and (
+                    category.split("__")[1] in Ctf.objects.all().values_list("tag", flat=True)):
+            tag = category.split("__")[1]
+            category = category.split("__")[0]
+            ctf_subjects = all_ctf_objects.filter(category=category, tag=tag)
+        # 用户传递了垃圾信息
+        else:
+            category = 'WEB'
+            ctf_subjects = all_ctf_objects.filter(category=category)
 
         # 得到该分类的所有标签,要是参数里面还有标签信息就把分类信息分离出来,标签不能重复!
         tags = set()
-        for i in Ctf.objects.filter(category=category.split("__")[0]).values_list("tag", flat=True):
-            tags.add(i)
-
-        # 要是ctf_subjects为空,说明传递的参数带了标签信息,要分离分类信息和参数信息再查询
-        tag = None
-        if not ctf_subjects:
-            tag = category.split("__")[1]
-            category = category.split("__")[0]
-            ctf_subjects = Ctf.objects.filter(category=category, tag=tag)
+        for i in all_ctf_objects.filter(category=category):
+            tags.add(i.tag)
 
         # 得到整个类别的参与人数(一个类别里面所有题目点击数之和)
         participation = sum(Ctf.objects.filter(category=category).values_list('click_num', flat=True))
@@ -69,9 +87,15 @@ class CtfListView(View):
         # 筛选出ctf的评论并且按时间倒序排列
         ctf_comment_objects = UserComments.objects.filter(comment_type=1).order_by("-add_time")
         # 得到ctf课程,直接将ctf课程属性添加进ctf评论类,这样评论就可以显示来自什么题目
+        # 在后台如果删除了课程那么其对应的评论也应该被删除,不然会报错
+        ctf_ids = Ctf.objects.all().values_list("id", flat=True)
+        # 要是评论的课程删除了就删除这个评论
         for ctf_comment_object in ctf_comment_objects:
-            ctf_comment_object.ctf = Ctf.objects.get(id=ctf_comment_object.comment_id)
-
+            if ctf_comment_object.comment_id in ctf_ids:
+                temp = Ctf.objects.get(id=ctf_comment_object.comment_id)
+                ctf_comment_object.ctf = temp
+            else:
+                ctf_comment_object.delete()
         # 评论分页
         try:
             comment_page = request.GET.get('page', 1)
@@ -95,16 +119,6 @@ class CtfListView(View):
                 Ctf.objects.filter(id__in=UserLearn.objects.filter(user_id=user_tunple[0], learn_type=1)).values_list(
                         'category').annotate(count=Count('category')).values_list('count', 'category').order_by(
                         '-count')[0][1]
-            # 题目分类常量
-            CATEGORY_CHOICES = {
-                "MISC": "安全杂项",
-                "PPC": "编程",
-                "CRYPTO": "密码学",
-                "PWN": "溢出",
-                "REVERSE": "逆向工程",
-                "STEGA": "隐写术",
-                "WEB": "WEB",
-            }
             user_entity.category = CATEGORY_CHOICES[category2]
             # 得到用户做的题目的总分
             user_entity.earn_num = sum(
@@ -166,7 +180,7 @@ class CtfDetailView(View):
 
         # 网页右侧最新题目的显示,显示最近添加的同种类的五个题目
         new_ctfs = Ctf.objects.filter(category=Ctf.objects.get(id=ctf_id).category).exclude(id=ctf_id).order_by(
-            "-add_time")[:5]
+                "-add_time")[:5]
 
         # 判断用户是否已经登录,为之后的评论和提交答案做准备
         if not request.user.is_authenticated():
@@ -197,7 +211,7 @@ class SubmitAnswerView(View):
             # 查看用户是否已经拿到flag
             if int(request.POST.get('ExamCTFID')) in UserLearn.objects.filter(learn_type=1,
                                                                               user_id=request.user.id).values_list(
-                                                                              'learn_id', flat=True):
+                    'learn_id', flat=True):
                 res["code"] = '001'
                 return JsonResponse(res)
             # 查看用户发送的flag错误
