@@ -1,0 +1,219 @@
+button, input[type=submit], input[type=text] {
+    outline: 0 !important
+}
+
+.left {
+    margin-top: 6px
+}
+
+.right {
+    margin-top: 3px
+}
+
+.fk {
+    border-bottom: none !important
+}
+
+.waterfall dl, .waterfall dl dd {
+    border-style: solid;
+    border-color: #E5E5E5
+}
+
+.r_ul {
+    padding-top: 9px !important;
+    margin-bottom: 17px !important
+}
+
+.left .state p {
+    float: left;
+    padding: 0 5px;
+    font-size: 16px;
+    color: #000;
+    line-height: 31px
+}
+
+.left .state p.b_bottom {
+    max-width: 276px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.waterfall {
+    width: 100%
+}
+
+.waterfall .divone {
+    min-height: 388px
+}
+
+.waterfall .divtwo {
+    display: none;
+    clear: both;
+    margin-top: -22px !important;
+    overflow: initial !important
+}
+
+.waterfall dl {
+    width: 420px;
+    float: left;
+    margin-right: 26px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 26px;
+    border-width: 0 0 1px
+}
+
+.waterfall dl:nth-child(even) {
+    margin-right: 0 !important
+}
+
+.waterfall dl dt {
+    width: 100%;
+    height: 258px;
+    overflow: hidden
+}
+
+.waterfall dl:hover .cnm_mb {
+    display: block
+}
+
+.waterfall dl .cnm_mb {
+    width: 422px;
+    height: 260px;
+    background: url(../../images/black.png);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    display: none
+}
+
+.waterfall dl .cnm_mb img {
+    display: block;
+    width: 90px;
+    height: 99px;
+    margin: 79px auto 0
+}
+
+.waterfall dl dt a img:hover {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+    -moz-transition: all 1s ease 0s;
+    -o-transition: all 1s ease 0s;
+    -webkit-transition: all 1s ease 0s;
+    transition: all 1s ease 0s
+}
+
+.waterfall dl.duan dt {
+    width: 100%;
+    height: 239px
+}
+
+.waterfall dl dt img {
+    width: 100%;
+    height: 100%
+}
+
+.waterfall dl dd {
+    width: 100%;
+    padding: 16px 0;
+    border-width: 0 1px
+}
+
+.waterfall dl dd h3 {
+    width: 374px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 20px;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 12px;
+    margin-left: 0;
+    padding: 0 16px
+}
+
+.waterfall dl dd p .lx, .waterfall dl dd p .nd, .waterfall dl dd p .rs {
+    width: 120px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.waterfall dl dd h3 a {
+    color: #000;
+    text-decoration: none;
+    line-height: 0 !important
+}
+
+.waterfall dl dd p, .waterfall dl dd p.xbb {
+    font-size: 12px;
+    color: #737373;
+    padding: 0 16px
+}
+
+.waterfall dl dd p {
+    line-height: 12px;
+    margin-bottom: 16px
+}
+
+.waterfall dl dd p.xbb {
+    margin-top: 12px;
+    margin-bottom: 0;
+    line-height: 18px;
+    overflow: hidden;
+    display: none
+}
+
+.waterfall dl dd p .lx, .waterfall dl dd p .nd {
+    display: inline-block;
+    line-height: 15px
+}
+
+.waterfall dl dd p .rs {
+    display: inline-block;
+    color: #FF7800
+}
+
+.waterfall dl dd p .rs span {
+    color: #737373
+}
+
+.waterfall dl dt .gz, .waterfall dl.ygz dt .gz {
+    display: inline-block;
+    width: 22px;
+    height: 19px;
+    position: absolute;
+    right: 12px;
+    top: 25px
+}
+
+.waterfall dl dt .gz {
+    background: url(../../images/wgz.png) no-repeat;
+    z-index: 999
+}
+
+.waterfall dl dt .gz:hover {
+    cursor: pointer
+}
+
+.left .load, .left .load.uphh {
+    display: none
+}
+
+.left .load {
+    clear: both;
+    width: 82px;
+    height: 30px;
+    border: none;
+    background: url(../../images/xiala.png) center center no-repeat
+}
+
+.waterfall dl.hov {
+    z-index: 999;
+    margin-bottom: -26px;
+    background: #fff
+}
