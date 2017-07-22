@@ -236,7 +236,7 @@
                 });
 
             } else {
-                window.location.href = "http://www.baidu.com"; //弹出登录
+                window.location.href = "{% url 'register' %}"; //弹出登录
             }
         });
         $(".ideawrap .sure,.ideawrap .cancel,.popideawrap .CloseBtn").click(function () {
@@ -250,7 +250,7 @@
             if (flag == 1) {
                 SubmitComment();
             } else {
-                window.location.href = "http://www.baidu.com"; //弹出登录
+                window.location.href = "{% url 'register' %}"; //弹出登录
             }
         });
 

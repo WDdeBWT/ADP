@@ -15,7 +15,7 @@ class CtfAdmin(object):
     # 排序
     ordering = ['-click_num']
     # 只读字段
-    readonly_fields = ['click_num', 'fav_num', 'success_num']
+    readonly_fields = ['click_num', 'fav_num', 'success_num', 'submit_num']
 
 
 xadmin.site.register(Ctf, CtfAdmin)
