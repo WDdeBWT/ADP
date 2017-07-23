@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 {% load staticfiles %}
 <head>
@@ -37,7 +37,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">主页</a></li>
                     <li><a href="{% url 'ctf:ctf_list' %}">CTF</a></li>
-                    <li><a href="experiment.html">漏洞体验</a></li>
+                    <li><a href="{% url 'exp_list' %}">漏洞体验</a></li>
                     <li><a>|</a></li>
                     {% if request.user.is_authenticated %}
                         <li><a>{{ request.user.nick_name }}</a></li>
