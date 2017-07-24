@@ -13,7 +13,7 @@
     <div class="wp">
         <ul class="crumbs">
             <li><a href="/index/">首页</a>></li>
-            <li>漏洞体验</li>
+            <li>CTF题库</li>
         </ul>
     </div>
 </section>
@@ -57,7 +57,7 @@
                 <div class="ui labels">
 
                     {% for tag in tags %}
-                    <a href=""
+                    <a href="{{ request.path }}?category={{ tag }}"
 class="ui label ">{{ tag }}</a>
                     {% endfor %}
 
@@ -73,18 +73,18 @@ class="ui label ">{{ tag }}</a>
 
                 <div class="waterfall heike">
                     <div class="divone">
-                        {% for exp in hot_exps %}
+                        {% for exp in hot_exps.object_list %}
                         <dl class="">
                             <dt>
 {#                                <a href="{% url 'exp:exp_detail' exp.id %}" title="{{ exp.name }}"><img#}
-                                <a href="#" title="{{ exp.name }}"><img
+                                <a href="{{ exp.url }}" title="{{ exp.name }}"><img
                                         src="{{ MEDIA_URL }}{{ exp.image }}"></a>
                                 <span class="tz"></span>
                                 <span class="gz" item="54395"></span>
                             </dt>
                             <dd>
 {#                                <h3><a href="{% url 'exp:exp_detail' exp.id %}"#}
-                                <h3><a href="#"
+                                <h3><a href="{{ exp.url }}"
                                        title="{{ exp.name }}">{{ exp.name }}</a></h3>
                                 <p>
                                     <span class="lx">类型：<span>{{ exp.category }}</span></span>
@@ -95,13 +95,38 @@ class="ui label ">{{ tag }}</a>
                             </dd>
                             <div class="cnm_mb">
 {#                                <a href="{% url 'exp:exp_detail' exp.id %}" title="{{ exp.name }}"><img#}
-                                <a href="#" title="{{ exp.name }}"><img
+                                <a href="{{ exp.url }}" title="{{ exp.name }}"><img
                                         src="../static/images/start.png"
                                         alt=""/></a>
                             </div>
                         </dl>
                         {% endfor %}
+
                     </div>
+                <!-- 分页 -->
+                <div class="show_flip">
+                        {% if hot_exps.has_previous %}
+                            <a class="show_prev"
+                               href="?exp_page={{ hot_exps.previous_page_number }}">上一页</a>
+                        {% endif %}
+
+                        {% for exp_page in hot_exps.pages %}
+                            {% if exp_page %}
+                                {% ifequal exp_page hot_exps.number %}
+                                    <a class="show_prev" href="?exp_page{{ exp_page }}">{{ exp_page }}</a>
+                                {% else %}
+                                    <a href="?exp_page={{ exp_page }}" class="page">{{ exp_page }}</a>
+                                {% endifequal %}
+                            {% else %}
+                                <a href="">...</a>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if hot_exps.has_next %}
+                            <a class="show_next" href="?exp_page={{ hot_exps.next_page_number }}">下一页</a>
+                        {% endif %}
+                    </div>
+                <!-- 分页end -->
                 </div>
 
             </div>
@@ -146,15 +171,15 @@ class="ui label ">{{ tag }}</a>
                 <div class="show_flip">
                         {% if all_comment.has_previous %}
                             <a class="show_prev"
-                               href="?{{ all_comment.previous_page_number.querystring }}">上一页</a>
+                               href="?comment_page={{ all_comment.previous_page_number }}">上一页</a>
                         {% endif %}
 
                         {% for page in all_comment.pages %}
                             {% if page %}
                                 {% ifequal page all_comment.number %}
-                                    <a class="show_prev" href="?{{ page.querystring }}">{{ page }}</a>
+                                    <a class="show_prev" href="?comment_page={{ page }}">{{ page }}</a>
                                 {% else %}
-                                    <a href="?{{ page.querystring }}" class="page">{{ page }}</a>
+                                    <a href="?comment_page={{ page }}" class="page">{{ page }}</a>
                                 {% endifequal %}
                             {% else %}
                                 <a href="">...</a>
@@ -162,7 +187,7 @@ class="ui label ">{{ tag }}</a>
                         {% endfor %}
 
                         {% if all_comment.has_next %}
-                            <a class="show_next" href="?{{ all_comment.next_page_number.querystring }}">下一页</a>
+                            <a class="show_next" href="?comment_page={{ all_comment.next_page_number }}">下一页</a>
                         {% endif %}
                     </div>
                 <!-- 分页end -->
