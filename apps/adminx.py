@@ -9,6 +9,6 @@ class ExperimentAdmin(object):
     search_fields = ['name', 'detail', 'degree', 'category', 'click_nums', 'fav_nums', 'students']
     list_filter = ['name', 'detail', 'degree', 'category', 'click_nums', 'fav_nums', 'students', 'add_time']
     ordering = ['-click_nums']
-    readonly_fields = ['click_nums', 'fav_nums', 'students', 'add_time']
+    readonly_field = ['click_nums', 'fav_nums', 'students', 'add_time']
 
 xadmin.site.register(Experiment,ExperimentAdmin)

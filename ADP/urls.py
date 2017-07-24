@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 import xadmin
 from django.views.static import serve
+from experiments.views import ExpView
 from users.views import LoginView, LogoutView, RegisterView, ActiveUserView, ForgetPswView, ResetView, ModifyPswView
 from ADP.settings import MEDIA_ROOT
 
@@ -32,6 +33,8 @@ urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
     # ctf
     url(r'^ctf/', include('ctf.urls', namespace="ctf")),
+  	# 漏洞体验
+    url(r'^exp/$', ExpView.as_view(),name="exp_list"),
     # captcha
     url(r'^captcha/', include('captcha.urls')),
     # 用户管理

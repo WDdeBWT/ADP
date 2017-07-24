@@ -24,12 +24,12 @@ category_choices = (
 
 
 class Experiment(models.Model):
-    name = models.CharField(max_length=50, verbose_name=u"漏洞标题")
+    name = models.CharField(max_length=50, verbose_name=u"实验题目")
     # 题目详情可能会用富文本显示
-    detail = models.CharField(verbose_name=u"漏洞详情", default="", max_length=300)
-    degree = models.CharField(verbose_name=u"漏洞难度", max_length=50, choices=(("cj", "初级"), ("zj", "中级"), ("gj", "高级")))
+    detail = models.CharField(verbose_name=u"实验详情", default="", max_length=300)
+    degree = models.CharField(verbose_name=u"实验难度", max_length=50, choices=(("cj", "初级"), ("zj", "中级"), ("gj", "高级")))
+    tag = models.CharField(max_length=10, verbose_name=u"实验标签", null=True)
     category = models.CharField(verbose_name=u"漏洞类型", max_length=20, choices=category_choices)
-    url = models.CharField(verbose_name=u"题目链接", default="http://", max_length=100)
     click_nums = models.IntegerField(default=0, verbose_name=u"点击数")
     fav_nums = models.IntegerField(default=0, verbose_name=u"收藏数")
     image = models.ImageField(upload_to="experiments/%Y/%m", verbose_name=u"logo")
@@ -37,7 +37,7 @@ class Experiment(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
-        verbose_name = u"漏洞环境"
+        verbose_name = u"实验名称"
         verbose_name_plural = verbose_name
 
     def __unicode__(self):

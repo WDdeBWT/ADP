@@ -1,11 +1,8 @@
-# coding:utf-8
-
+# -*- coding:utf-8 -*-
 from django.conf.urls import url
+from .views import ExpView
 
-from .views import ExperimentListView
-
-urlpatterns = [
-    # experiment列表页
-    url(r'^list/$', ExperimentListView.as_view(), name="ctf_list"),
-
+urlpatterns=[
+    #漏洞列表
+    url(r'^list/$',ExpView.as_view(),name="exp_list"),
 ]
