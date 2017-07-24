@@ -37,7 +37,7 @@ class CtfListView(View):
             "WEB": "WEB",
         }
 
-        # 如果没有参数传过来就默认是web类型的题目,如果参数里面还含有标签的信息则查询结果为空
+        # 如果没有参数传过来就默认是web类型的题目
         tag = None
         if category == '':
             category = 'WEB'
@@ -71,7 +71,7 @@ class CtfListView(View):
             user_learned = UserLearn.objects.filter(user_id=request.user.id, learn_type=1).values_list('learn_id',
                                                                                                        flat=True)
             # 还没有被解出来的题目列表
-            # 用户未登录导致模板中访问user_leaerned属性时报出的属性不存在的错误已经由Django模板引擎解决,若不存在默认为''
+            # 用户未登录导致模板中访问user_learned属性时报出的属性不存在的错误已经由Django模板引擎解决,若不存在默认为''
             not_learned = all_ctf_objects.filter(success_num=0).values_list('id', flat=True)
             for ctf_subject in ctf_subjects:
                 # 用户做过的题目,在页面标记为蓝色
@@ -215,7 +215,7 @@ class SubmitAnswerView(View):
                     'learn_id', flat=True):
                 res["code"] = '001'
                 return JsonResponse(res)
-            # 查看用户发送的flag错误
+            # 用户发送的flag错误
             elif str(Ctf.objects.get(id=int(request.POST.get('ExamCTFID'))).flag) != str(request.POST.get('key')):
                 ctf = Ctf.objects.get(id=int(request.POST.get('ExamCTFID')))
                 # 这个ctf题目的答题次数加一
