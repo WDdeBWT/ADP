@@ -49,4 +49,6 @@ urlpatterns = [
     url(r'^users/', include('users.urls', namespace="users")),
     # 媒体文件配置
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
+    # 漏洞实验配置
+    url(r'^experiment/', include('experiments.urls', namespace='experiment')),
 ]

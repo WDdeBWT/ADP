@@ -10,165 +10,165 @@
 
 {% block custom_bread %}
     <section>
-    <div class="wp">
-        <ul class="crumbs">
-            <li><a href="/index/">首页</a>></li>
-            <li>CTF题库</li>
-        </ul>
-    </div>
-</section>
+        <div class="wp">
+            <ul class="crumbs">
+                <li><a href="/index/">首页</a>></li>
+                <li>CTF题库</li>
+            </ul>
+        </div>
+    </section>
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="train_question_main">
+    <div class="container">
+        <div class="train_question_main">
 
 
-        <!--内容左部分-->
-        <div class="train_m_left">
-            <!--左侧内容3——英雄榜-->
-            <div class="train_mle_hero train_mle_hero1">
-                <h3>英雄榜</h3>
-                <div class="hero_rank_show1" id="rank_ul">
-                    <ul class="hero_rank">
-                        <li>昵称</li>
-                        <li>总解题数</li>
-                        <li>最佳类别</li>
-                        <li>综合得分</li>
-                    </ul>
-                    <ul class="train_mle_hero_data">
-                        {% for hero in heroes %}
-                        <li><span>{{ hero.nick_name }}</span>
-                            <span>{{ hero.total_num }}</span>
-                            <span>{{ hero.category }}</span>
-                            <span>{{ hero.earn_num }}</span>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-            <div class="ui segment" style="padding-top: 1px;">
-                <div class="ui pointing secondary menu red section-title">
-                    <div class="item active" style="margin-bottom: 14px;">
-                        热门标签
+            <!--内容左部分-->
+            <div class="train_m_left">
+                <!--左侧内容3——英雄榜-->
+                <div class="train_mle_hero train_mle_hero1">
+                    <h3>英雄榜</h3>
+                    <div class="hero_rank_show1" id="rank_ul">
+                        <ul class="hero_rank">
+                            <li>昵称</li>
+                            <li>总解题数</li>
+                            <li>最佳类别</li>
+                            <li>综合得分</li>
+                        </ul>
+                        <ul class="train_mle_hero_data">
+                            {% for hero in heroes %}
+                                <li><span>{{ hero.nick_name }}</span>
+                                    <span>{{ hero.total_num }}</span>
+                                    <span>{{ hero.category }}</span>
+                                    <span>{{ hero.earn_num }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
+                <div class="ui segment" style="padding-top: 1px;">
+                    <div class="ui pointing secondary menu red section-title">
+                        <div class="item active" style="margin-bottom: 14px;">
+                            热门标签
+                        </div>
+                    </div>
 
-                <div class="ui labels">
+                    <div class="ui labels">
 
-                    {% for tag in tags %}
-                    <a href="{{ request.path }}?category={{ tag }}"
-class="ui label ">{{ tag }}</a>
-                    {% endfor %}
-
-                </div>
-            </div>
-        </div>
-
-
-        <!--内容右部分-->
-        <div class="train_m_right">
-            <!--右侧内容1——tabs切换-->
-            <div class="train_mri_tabs" id="key_tabNav">
-
-                <div class="waterfall heike">
-                    <div class="divone">
-                        {% for exp in hot_exps.object_list %}
-                        <dl class="">
-                            <dt>
-{#                                <a href="{% url 'exp:exp_detail' exp.id %}" title="{{ exp.name }}"><img#}
-                                <a href="{{ exp.url }}" title="{{ exp.name }}"><img
-                                        src="{{ MEDIA_URL }}{{ exp.image }}"></a>
-                                <span class="tz"></span>
-                                <span class="gz" item="54395"></span>
-                            </dt>
-                            <dd>
-{#                                <h3><a href="{% url 'exp:exp_detail' exp.id %}"#}
-                                <h3><a href="{{ exp.url }}"
-                                       title="{{ exp.name }}">{{ exp.name }}</a></h3>
-                                <p>
-                                    <span class="lx">类型：<span>{{ exp.category }}</span></span>
-                                    <span class="nd">难度：<span>{{ exp.degree }}</span></span>
-                                    <span class="rs">{{ exp.students }}<span>人参加</span></span>
-                                </p>
-                                <p class="xbb">{{ exp.detail }}</p>
-                            </dd>
-                            <div class="cnm_mb">
-{#                                <a href="{% url 'exp:exp_detail' exp.id %}" title="{{ exp.name }}"><img#}
-                                <a href="{{ exp.url }}" title="{{ exp.name }}"><img
-                                        src="../static/images/start.png"
-                                        alt=""/></a>
-                            </div>
-                        </dl>
+                        {% for tag in tags %}
+                            <a href="{{ request.path }}?category={{ tag }}"
+                               class="ui label ">{{ tag }}</a>
                         {% endfor %}
 
                     </div>
-                <!-- 分页 -->
-                <div class="show_flip">
-                        {% if hot_exps.has_previous %}
-                            <a class="show_prev"
-                               href="?exp_page={{ hot_exps.previous_page_number }}">上一页</a>
-                        {% endif %}
-
-                        {% for exp_page in hot_exps.pages %}
-                            {% if exp_page %}
-                                {% ifequal exp_page hot_exps.number %}
-                                    <a class="show_prev" href="?exp_page{{ exp_page }}">{{ exp_page }}</a>
-                                {% else %}
-                                    <a href="?exp_page={{ exp_page }}" class="page">{{ exp_page }}</a>
-                                {% endifequal %}
-                            {% else %}
-                                <a href="">...</a>
-                            {% endif %}
-                        {% endfor %}
-
-                        {% if hot_exps.has_next %}
-                            <a class="show_next" href="?exp_page={{ hot_exps.next_page_number }}">下一页</a>
-                        {% endif %}
-                    </div>
-                <!-- 分页end -->
                 </div>
-
             </div>
 
 
-            <!--右侧内容2——最新评论-->
-            <div class="train_mri_news_comment" style="width: 900px;height: 469.392px">
-                <h3>最新评论<span>NEW</span></h3>
-                <div class="news_comment">
-                    {% for comment in all_comment.object_list %}
-                    <ul id="comment_list_ul">
-                        <li>
-                            <div class="de_mle_topic">
-                                <a title="">
-                                    <div class="de_mle_topic_head">
-                                        <img src="{{ MEDIA_URL }}{{ comment.user.image }}"
-                                             alt="{{ comment.user.nick_name }}">
-                                        <div class="topic_title">{{ comment.user.nick_name }}</div>
+            <!--内容右部分-->
+            <div class="train_m_right">
+                <!--右侧内容1——tabs切换-->
+                <div class="train_mri_tabs" id="key_tabNav">
+
+                    <div class="waterfall heike">
+                        <div class="divone">
+                            {% for exp in hot_exps.object_list %}
+                                <dl class="">
+                                    <dt>
+                                        {#                                <a href="{% url 'exp:exp_detail' exp.id %}" title="{{ exp.name }}"><img#}
+                                        <a href="{{ exp.url }}" title="{{ exp.name }}"><img
+                                                src="{{ MEDIA_URL }}{{ exp.image }}"></a>
+                                        <span class="tz"></span>
+                                        <span class="gz" item="54395"></span>
+                                    </dt>
+                                    <dd>
+                                        {#                                <h3><a href="{% url 'exp:exp_detail' exp.id %}"#}
+                                        <h3><a href="{{ exp.url }}"
+                                               title="{{ exp.name }}">{{ exp.name }}</a></h3>
+                                        <p>
+                                            <span class="lx">类型：<span>{{ exp.category }}</span></span>
+                                            <span class="nd">难度：<span>{{ exp.degree }}</span></span>
+                                            <span class="rs">{{ exp.students }}<span>人参加</span></span>
+                                        </p>
+                                        <p class="xbb">{{ exp.detail }}</p>
+                                    </dd>
+                                    <div class="cnm_mb">
+                                        {#                                <a href="{% url 'exp:exp_detail' exp.id %}" title="{{ exp.name }}"><img#}
+                                        <a href="{{ exp.url }}" title="{{ exp.name }}"><img
+                                                src="../static/images/start.png"
+                                                alt=""/></a>
                                     </div>
-                                </a>
-                                <div class="topic_text">
-{#                                    <a href="{% url 'exp:exp_detail' comment.exp.id %}" target="_blank">#}
-                                        <a href="#" target="_blank">
-                                        <p>{{ comment.comments }}</p>
-                                    </a>
-                                </div>
-                                <div class="topic_text_time">
-                                    <span>{{ comment.add_time }}</span>
+                                </dl>
+                            {% endfor %}
+
+                        </div>
+                        <!-- 分页 -->
+                        <div class="show_flip">
+                            {% if hot_exps.has_previous %}
+                                <a class="show_prev"
+                                   href="?exp_page={{ hot_exps.previous_page_number }}">上一页</a>
+                            {% endif %}
+
+                            {% for exp_page in hot_exps.pages %}
+                                {% if exp_page %}
+                                    {% ifequal exp_page hot_exps.number %}
+                                        <a class="show_prev" href="?exp_page{{ exp_page }}">{{ exp_page }}</a>
+                                    {% else %}
+                                        <a href="?exp_page={{ exp_page }}" class="page">{{ exp_page }}</a>
+                                    {% endifequal %}
+                                {% else %}
+                                    <a href="">...</a>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if hot_exps.has_next %}
+                                <a class="show_next" href="?exp_page={{ hot_exps.next_page_number }}">下一页</a>
+                            {% endif %}
+                        </div>
+                        <!-- 分页end -->
+                    </div>
+
+                </div>
+
+
+                <!--右侧内容2——最新评论-->
+                <div class="train_mri_news_comment" style="width: 900px;height: 469.392px">
+                    <h3>最新评论<span>NEW</span></h3>
+                    <div class="news_comment">
+                        {% for comment in all_comment.object_list %}
+                            <ul id="comment_list_ul">
+                                <li>
+                                    <div class="de_mle_topic">
+                                        <a title="">
+                                            <div class="de_mle_topic_head">
+                                                <img src="{{ MEDIA_URL }}{{ comment.user.image }}"
+                                                     alt="{{ comment.user.nick_name }}">
+                                                <div class="topic_title">{{ comment.user.nick_name }}</div>
+                                            </div>
+                                        </a>
+                                        <div class="topic_text">
+                                            {#                                    <a href="{% url 'exp:exp_detail' comment.exp.id %}" target="_blank">#}
+                                            <a href="#" target="_blank">
+                                                <p>{{ comment.comments }}</p>
+                                            </a>
+                                        </div>
+                                        <div class="topic_text_time">
+                                            <span>{{ comment.add_time }}</span>
                                     <span class="text_reply">来自：
 {#                                            <a href="{% url 'exp:exp_detail' comment.exp.id %}"#}
                                                <a href="#"
-                                               target="_blank">{{ comment.exp.name }}</a>
+                                                  target="_blank">{{ comment.exp.name }}</a>
                                         </span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    {% endfor %}
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        {% endfor %}
 
-                </div>
-                <!-- 分页 -->
-                <div class="show_flip">
+                    </div>
+                    <!-- 分页 -->
+                    <div class="show_flip">
                         {% if all_comment.has_previous %}
                             <a class="show_prev"
                                href="?comment_page={{ all_comment.previous_page_number }}">上一页</a>
@@ -190,10 +190,10 @@ class="ui label ">{{ tag }}</a>
                             <a class="show_next" href="?comment_page={{ all_comment.next_page_number }}">下一页</a>
                         {% endif %}
                     </div>
-                <!-- 分页end -->
-            </div>
+                    <!-- 分页end -->
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}

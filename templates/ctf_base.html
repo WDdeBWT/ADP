@@ -42,7 +42,7 @@
                     {% if request.user.is_authenticated %}
                         <li><a>{{ request.user.nick_name }}</a></li>
                         <li><a href="{% url 'users:user_info' %}">个人中心</a></li>
-                        <li><a href="">退出</a></li>
+                        <li><a href="{% url 'logout' %}">退出</a></li>
                     {% else %}
                         <li><a href="{% url 'login' %}">登录</a></li>
                         <li><a href="{% url 'register' %}">注册</a></li>
@@ -84,12 +84,6 @@
         </div>
         <div class="col-md-3 team-info">
             <div class="icon-top">
-                <a target="_blank" href="#">
-                    <i class="fa fa-weixin fa-3x"></i>
-                </a>
-                <a target="_blank" href="http://weibo.com/dropsec?refer_flag=1001030101_&is_all=1">
-                    <i class="fa fa-weibo fa-3x"></i>
-                </a>
             </div>
         </div>
         <div class="col-md-3 copyright">
