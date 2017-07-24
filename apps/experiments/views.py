@@ -20,17 +20,17 @@ class ExpView(View):
     def get(self, request):
 
         CATEGORY_CHOICES = {
-            "sql": "SQL注入漏洞",
-            "xss": "跨站脚本漏洞",
-            "weak_password": "弱口令漏洞",
-            "http": "HTTP报头追踪漏洞",
-            "struct2": "Struct2远程命令执行漏洞",
-            "fishing": "框架钓鱼漏洞",
-            "file_upload": "文件上传漏洞",
-            "script": "应用程序测试脚本泄露",
-            "ip": "私有IP地址泄露漏洞",
-            "login": "未加密登录请求",
-            "message": "敏感信息泄露漏洞",
+            "sql": u"SQL注入漏洞",
+            "xss": u"跨站脚本漏洞",
+            "weak_password": u"弱口令漏洞",
+            "http": u"HTTP报头追踪漏洞",
+            "struct2": u"Struct2远程命令执行漏洞",
+            "fishing": u"框架钓鱼漏洞",
+            "file_upload": u"文件上传漏洞",
+            "script": u"应用程序测试脚本泄露",
+            "ip": u"私有IP地址泄露漏洞",
+            "login": u"未加密登录请求",
+            "message": u"敏感信息泄露漏洞",
         }
         CATEGORY_CHOICES2 = {
             u"SQL注入漏洞": "sql",
@@ -46,15 +46,17 @@ class ExpView(View):
             u"敏感信息泄露漏洞": "message",
         }
         DEGREE = {
-            "cj": "初级",
-            "zj": "中级",
-            "gj": "高级",
+            "cj": u"初级",
+            "zj": u"中级",
+            "gj": u"高级",
         }
 
         # 得到所有实验
         all_exps = Experiment.objects.order_by("-click_nums")
-        # 按点击数取前四个热门实验
-        hot_exps = all_exps.order_by("-click_nums")[:4]
+        tags = []
+        for exp in all_exps:
+            tags.append(CATEGORY_CHOICES[exp.category])
+        tags = list(set(tags))
 
         category = request.GET.get('category', "")
         if category == '':
@@ -65,12 +67,14 @@ class ExpView(View):
             except:
                 category = ''
             all_exps = Experiment.objects.filter(category=category).order_by("-click_nums")
+        try:
+            category=CATEGORY_CHOICES[category]
+        except:
+            category=''
 
-        tags = []
-        for hot_exp in hot_exps:
-            hot_exp.category = CATEGORY_CHOICES[hot_exp.category]
-            hot_exp.degree = DEGREE[hot_exp.degree]
-            tags.append(hot_exp.category)
+        for exp in all_exps:
+            exp.degree=DEGREE[exp.degree]
+            exp.category=CATEGORY_CHOICES[exp.category]
 
         exp_comment_objects = UserComments.objects.filter(comment_type=2).order_by("-add_time")
         # 得到ctf课程,直接将ctf课程属性添加进ctf评论类,这样评论就可以显示来自什么题目
@@ -92,28 +96,6 @@ class ExpView(View):
         p2 = Paginator(exp_comment_objects, 3, request=request)
         comments = p2.page(comment_page)
 
-        # 得到答题数目最多的前5个用户,格式:['user_id', '答题数目']
-        max_user = UserLearn.objects.filter(learn_type=2).values_list('user_id').annotate(
-                count=Count('user_id')).values_list('user_id', 'count').order_by('-count')[:5]
-        user_list = []
-        for user_tunple in max_user:
-            # 得到用户对象
-            user_entity = UserProfile.objects.get(id=user_tunple[0])
-            # 得到用户对象解题总数
-            user_entity.total_num = user_tunple[1]
-            # 得到用户做的最多的题目种类
-            category2 = \
-                Experiment.objects.filter(
-                        id__in=UserLearn.objects.filter(user_id=user_tunple[0], learn_type=2)).values_list(
-                        'category').annotate(count=Count('category')).values_list('count', 'category').order_by(
-                        '-count')[0][1]
-            user_entity.category = CATEGORY_CHOICES[category2]  # 筛选出exp的评论并且按时间倒序排列
-
-            # 将用户传入列表
-            user_list.append(user_entity)
-
-        tags = list(set(tags))
-
         try:
             exp_page = request.GET.get('exp_page', 1)
         except PageNotAnInteger:
@@ -124,7 +106,6 @@ class ExpView(View):
 
         return render(request, 'exp_list.html', {
             "category": category,
-            "heroes": user_list,
             "all_comment": comments,
             "tags": tags,
             "hot_exps": hot_exps,
