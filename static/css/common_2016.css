@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* CSS reset */
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+body, div, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
     margin: 0;
     padding: 0;
 }
@@ -904,10 +904,6 @@ a:hover, a:active {
     border-radius: 5px;
     overflow: hidden;
     display: none;
-}
-
-.embedWrap .LogCloseBtn, .embedWrap .reg dl dd i {
-    background: url(/images/login/ico2.png) no-repeat;
 }
 
 .embedWrap .LogCloseBtn {

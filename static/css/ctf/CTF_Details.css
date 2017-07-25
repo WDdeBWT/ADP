@@ -1424,12 +1424,6 @@ body {
     font-size: 16px;
 }
 
-/*右侧内容*/
-.train_m_right {
-    width: 900px;
-    float: right;
-}
-
 /*右侧内容1——tabs切换*/
 .train_mri_tabs {
     height: auto;

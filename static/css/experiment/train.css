@@ -214,6 +214,12 @@ button, input[type=submit], input[type=text] {
 
 .waterfall dl.hov {
     z-index: 999;
-    margin-bottom: -26px;
-    background: #fff
+    margin-bottom: -26px !important;
+    background: #fff;
+}
+
+/*右侧内容*/
+.train_m_right {
+    width: 866px !important;
+    float: right;
 }

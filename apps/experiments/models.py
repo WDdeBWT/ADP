@@ -26,7 +26,7 @@ category_choices = (
 class Experiment(models.Model):
     name = models.CharField(max_length=50, verbose_name=u"漏洞标题")
     # 题目详情可能会用富文本显示
-    detail = models.CharField(verbose_name=u"漏洞详情", default="", max_length=300)
+    detail = models.CharField(verbose_name=u"漏洞详情", default="", max_length=100)
     degree = models.CharField(verbose_name=u"漏洞难度", max_length=50, choices=(("cj", "初级"), ("zj", "中级"), ("gj", "高级")))
     category = models.CharField(verbose_name=u"漏洞类型", max_length=20, choices=category_choices)
     url = models.CharField(verbose_name=u"题目链接", default="http://", max_length=100)
