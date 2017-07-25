@@ -120,13 +120,27 @@
                 </div>
                 <div class="messagelist">
                     <form id="message_send_form" method="post" action={% url 'users:sendmessage' %} autocomplete="off">
-                        <input type="text" id="id_email" name="email" placeholder="请输入收件人的用户名（邮箱）"/>
+                        <input type="text" id="id_email" name="email" placeholder="请输入收件人的用户名（邮箱）"style="
+                            width: 650px;
+                            height: 25px;
+                            border-bottom-width: 10px;
+                            border-top-width: 10px;
+                            border-left-width: 5px;
+                            border-right-width: 5px;
+                            ">
+                            "
                         (如需向管理员反馈消息，请发送至1@1.com)<br/>
-                        <input type="text" id="msg" name="message" placeholder="请输入您要发送的消息"/>
+                        <input type="text" id="msg" name="message" placeholder="请输入您要发送的消息" style="
+                            width: 650px;
+                            height: 250px;
+                            ">
                         <br/>
                         <div class="error btns" id="jsEmailTips">
                             {% for key,error in register_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>
-                        <input id="Button1" type="submit" value="发送消息"/>
+                        <input id="Button1" type="submit" value="发送消息"style="
+                            width: 652px;
+                            height: 27px;
+                                ">
                         {% csrf_token %}
                     </form>
                 </div>
