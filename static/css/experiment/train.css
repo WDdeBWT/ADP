@@ -214,7 +214,7 @@ button, input[type=submit], input[type=text] {
 
 .waterfall dl.hov {
     z-index: 999;
-    margin-bottom: -26px !important;
+    margin-bottom: -72px !important;
     background: #fff;
 }
 

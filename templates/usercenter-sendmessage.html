@@ -19,17 +19,32 @@
 
     <style type="text/css">
         #msg {
-            height: 99px;
-            width: 280px;
+            position: relative;
+            height: 750px;
+            width: 850px;
+            margin: auto 40px 10px 40px;
+            padding: 10px 10px;
         }
 
         #id_email {
-            width: 280px;
+            position: relative;
+            height: 40px;
+            width: 350px;
+            margin: 40px 40px 10px auto;
+            padding: 4px auto auto 2px;
         }
 
         #Button1 {
-            width: 280px;
+            width: 80px;
+            height: 30px;
+            margin: auto auto 20px 430px;
         }
+        .color{
+            color:#3399CC; text-decoration:none;font-weight:bold;
+            margin: auto auto auto 30px;
+        }/*链接设置*/
+        .color:visited{color:#3399CC; text-decoration:none;font-weight:bold;}/*访问过的链接设置*/
+        .color:hover{color:#CF0000; text-decoration:underline;font-weight:bold;}/*鼠标放上的链接设置*/
     </style>
 
 </head>
@@ -45,7 +60,7 @@
 
                     <div class="personal">
                         <dl class="user fr">
-                            <dd>{{ request.user.nick_name }}<a href="{% url 'logout' %}">退出</a></dd>
+                            <dd>{{ request.user.nick_name }}<a href="{% url 'logout' %}" class="color">退出</a></dd>
                             <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
                         </dl>
                         {#                        <div class="userdetail">#}
@@ -120,27 +135,16 @@
                 </div>
                 <div class="messagelist">
                     <form id="message_send_form" method="post" action={% url 'users:sendmessage' %} autocomplete="off">
-                        <input type="text" id="id_email" name="email" placeholder="请输入收件人的用户名（邮箱）"style="
-                            width: 650px;
-                            height: 25px;
-                            border-bottom-width: 10px;
-                            border-top-width: 10px;
-                            border-left-width: 5px;
-                            border-right-width: 5px;
-                            ">
+                        <p style="margin: 50px auto auto 10px;float: left;">邮箱：</p>
+                        <input type="text" id="id_email" name="email" placeholder="请输入收件人的用户名（邮箱）">
                             "
                         (如需向管理员反馈消息，请发送至1@1.com)<br/>
-                        <input type="text" id="msg" name="message" placeholder="请输入您要发送的消息" style="
-                            width: 650px;
-                            height: 250px;
-                            ">
+                    <p style="margin: 50px auto auto 10px;float: left;">正文：</p>
+                        <textarea type="text" id="msg" name="message" placeholder="请输入您要发送的消息" style="resize: none"></textarea>
                         <br/>
                         <div class="error btns" id="jsEmailTips">
                             {% for key,error in register_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>
-                        <input id="Button1" type="submit" value="发送消息"style="
-                            width: 652px;
-                            height: 27px;
-                                ">
+                        <input id="Button1" type="submit" value="发送消息">
                         {% csrf_token %}
                     </form>
                 </div>

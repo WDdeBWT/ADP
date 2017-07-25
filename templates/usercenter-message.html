@@ -16,7 +16,14 @@
 
     <script src="/static/js/jquery.min.js" type="text/javascript"></script>
     <script src="/static/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-
+    <style type="text/css">
+        .color{
+            color:#3399CC; text-decoration:none;font-weight:bold;
+            margin: auto auto auto 30px;
+        }/*链接设置*/
+        .color:visited{color:#3399CC; text-decoration:none;font-weight:bold;}/*访问过的链接设置*/
+        .color:hover{color:#CF0000; text-decoration:underline;font-weight:bold;}/*鼠标放上的链接设置*/
+    </style>
 </head>
 <body>
 <section class="headerwrap headerwrap2">
@@ -30,7 +37,7 @@
 
                     <div class="personal">
                         <dl class="user fr">
-                            <dd>{{ request.user.nick_name }}<a href="{% url 'logout' %}">退出</a></dd>
+                            <dd>{{ request.user.nick_name }}<a href="{% url 'logout' %}" class="color">退出</a></dd>
                             <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
                         </dl>
                         {#                        <div class="userdetail">#}
