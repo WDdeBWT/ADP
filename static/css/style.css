@@ -751,7 +751,7 @@ caption {
 }
 
 textarea:focus {
-    border-color: #2b333b;
+    border-color: #ccc;
 }
 
 .promptbox textarea {

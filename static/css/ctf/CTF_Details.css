@@ -483,9 +483,9 @@ body {
     width: 750px;
     min-width: 750px;
     max-width: 750px;
-    min-height: 48px;
-    max-height: 48px;
-    height: 48px;
+    min-height: 90px;
+    max-height: 90px;
+    height: 90px;
     border-radius: 6px;
     padding: 20px 20px;
     color: #999;
@@ -1422,6 +1422,12 @@ body {
 .hero_topic a {
     color: #3da9f7;
     font-size: 16px;
+}
+
+/*右侧内容*/
+.train_m_right {
+    width: 900px;
+    float: right;
 }
 
 /*右侧内容1——tabs切换*/
