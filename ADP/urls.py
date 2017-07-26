@@ -16,25 +16,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from django.contrib import admin
-from django.views.generic import TemplateView
 import xadmin
 from django.views.static import serve
 from experiments.views import ExpView
 from users.views import LoginView, LogoutView, RegisterView, ActiveUserView, ForgetPswView, ResetView, ModifyPswView
 from ADP.settings import MEDIA_ROOT
-
+from users.views import IndexView
 
 urlpatterns = [
     # index
-    url('^$', TemplateView.as_view(template_name="index.html"), name="index"),
-    url('^index/$', TemplateView.as_view(template_name="index.html"), name="index"),
+    url('^$', IndexView.as_view(), name="index"),
+    url('^index/$', IndexView.as_view(), name="index"),
     # xadmin
     url(r'^xadmin/', xadmin.site.urls),
     # ctf
     url(r'^ctf/', include('ctf.urls', namespace="ctf")),
-  	# 漏洞体验
-    url(r'^exp/$', ExpView.as_view(),name="exp_list"),
+    # 漏洞体验
+    url(r'^exp/$', ExpView.as_view(), name="exp_list"),
     # captcha
     url(r'^captcha/', include('captcha.urls')),
     # 用户管理

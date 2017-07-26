@@ -1,5 +1,5 @@
 {% extends 'ctf_base.html' %}
-
+{% load staticfiles %}
 
 {% block title %}CTF详情 - 攻防演练平台{% endblock %}
 
@@ -20,8 +20,8 @@
 
 
 {% block custom_css %}
-    <link href="/static/css/common_2016.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="/static/css/ctf/CTF_Details.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/common_2016.css' %}" media="screen" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/ctf/CTF_Details.css' %}" media="screen" rel="stylesheet" type="text/css">
 {% endblock %}
 
 
@@ -40,7 +40,7 @@
                         <li>题目来源：<span>{{ ctf.source }}</span></li>
                         <li>题目难度：<span>{{ ctf.get_degree_display }}</span></li>
                         <li>点击人数：<span>{{ ctf.click_num }}人</span></li>
-                        <li>答题次数：<span>{{ ctf.submit_num }}人</span></li>
+                        <li>答题次数：<span>{{ ctf.submit_num }}次</span></li>
                         <li>夺旗人数：<span>{{ ctf.success_num }}人</span></li>
                         <li>解题通过率：<span>{{ pass_rate }}%</span></li>
                     </ul>
@@ -188,13 +188,13 @@
 {% endblock %}
 
 {% block custom_js %}
-    <script type="text/javascript" src="/static/js/lib/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="/static/js/common.js"></script>
-    <script type="text/javascript" src="/static/js/plug/jquery.validate.js"></script>
-    <script type="text/javascript" src="/static/js/plug/messages_zh.js"></script>
-    <script type="text/javascript" src="/static/js/plug/jquery.form.js"></script>
-    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
-    <script type="text/javascript" src="/static/js/layer/laytpl.js"></script>
+    <script type="text/javascript" src="{% static 'js/lib/jquery-1.8.3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plug/jquery.validate.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plug/messages_zh.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plug/jquery.form.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/layer/layer.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/layer/laytpl.js' %}"></script>
     <script type="text/javascript">
         //提交答案
         $("#keysubmit_btn").click(function () {

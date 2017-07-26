@@ -1,6 +1,6 @@
 # _*_ coding:utf-8 _*_
-import json
 
+import json
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.backends import ModelBackend
@@ -8,13 +8,17 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Q
 from django.views.generic.base import View
 from django.contrib.auth.hashers import make_password
-from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
+from pure_pagination import Paginator, PageNotAnInteger
+from django.core.urlresolvers import reverse
 
 from .models import UserProfile, EmailVerifyRecord
 from operations.models import UserMessage
-from .forms import LoginForm, RegisterForm, UploadImageForm, ForgetPswForm, ModifyPswForm, UserInfoForm, MessageSendForm, UserBirthdayInfoForm
+from .forms import LoginForm, RegisterForm, UploadImageForm, ForgetPswForm, ModifyPswForm, UserInfoForm, \
+    MessageSendForm, UserBirthdayInfoForm
 from utils.email_send import send_register_email
 from utils.mixin_utils import LoginRequiredMixin
+from ctf.models import Ctf
+from experiments.models import Experiment
 
 
 # Create your views here.
@@ -48,13 +52,13 @@ class ActiveUserView(View):
 class RegisterView(View):
     def get(self, request):
         register_form = RegisterForm()
-        return render(request, "register.html", {'register_form':register_form})
+        return render(request, "register.html", {'register_form': register_form})
 
     def post(self, request):
         register_form = RegisterForm(request.POST)
         if register_form.is_valid():
             user_name = request.POST.get("email", "")
-            if UserProfile.objects.filter(email = user_name):
+            if UserProfile.objects.filter(email=user_name):
                 return render(request, "register.html", {"register_form": register_form, "msg": "用户已存在"})
             pass_word = request.POST.get("password", "")
             user_profile = UserProfile()
@@ -67,7 +71,7 @@ class RegisterView(View):
             user_profile.save()
             # 写入欢迎注册的消息
             user_message = UserMessage()
-            user_message.user= user_profile
+            user_message.user = user_profile
             user_message.message = "欢迎注册ADP-攻防演练平台"
             user_message.save()
             send_register_email(user_name, "register")
@@ -79,7 +83,6 @@ class RegisterView(View):
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        from django.core.urlresolvers import reverse
         return HttpResponseRedirect(reverse("index"))
 
 
@@ -96,7 +99,7 @@ class LoginView(View):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return render(request, "index.html")
+                    return HttpResponseRedirect(reverse("index"))
                 else:
                     return render(request, "login.html", {"msg": "用户未激活"})
             else:
@@ -109,6 +112,7 @@ class UserinfoView(LoginRequiredMixin, View):
     """
     用户个人信息
     """
+
     def get(self, request):
         return render(request, 'usercenter-info.html', {})
 
@@ -130,6 +134,7 @@ class UploadImageView(LoginRequiredMixin, View):
     """
     用户修改头像
     """
+
     def post(self, request):
         image_form = UploadImageForm(request.POST, request.FILES, instance=request.user)
         if image_form.is_valid():
@@ -192,6 +197,7 @@ class UpdatePswView(View):
     """
     个人中心修改密码
     """
+
     def post(self, request):
         modify_psw_form = ModifyPswForm(request.POST)
         if modify_psw_form.is_valid():
@@ -212,9 +218,10 @@ class SendEmailCodeView(LoginRequiredMixin, View):
     """
     发送邮箱验证码
     """
+
     def get(self, request):
         email = request.GET.get('email', '')
-        if UserProfile.objects.filter(email = email):
+        if UserProfile.objects.filter(email=email):
             return HttpResponse('{"email":"该邮箱已被注册！"}', content_type='application/json')
         else:
             send_register_email(email, "update_email")
@@ -225,10 +232,11 @@ class UpdateEmailView(LoginRequiredMixin, View):
     """
     修改邮箱
     """
+
     def post(self, request):
         email = request.POST.get('email', '')
         code = request.POST.get('code', '')
-        existed_records = EmailVerifyRecord.objects.filter(email = email, code = code, send_type='update_email')
+        existed_records = EmailVerifyRecord.objects.filter(email=email, code=code, send_type='update_email')
         if existed_records:
             user = request.user
             user.email = email
@@ -244,6 +252,7 @@ class MymessageView(LoginRequiredMixin, View):
     """
     我的消息
     """
+
     def get(self, request):
         all_messages = UserMessage.objects.filter(email=request.user.email).order_by('-add_time')
         # 对个人消息进行分页
@@ -251,7 +260,7 @@ class MymessageView(LoginRequiredMixin, View):
             page = request.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        p = Paginator(all_messages, 5, request = request)
+        p = Paginator(all_messages, 5, request=request)
         messages = p.page(page)
         for msg in all_messages:
             msg.has_read = True
@@ -267,7 +276,7 @@ class SendmessageView(LoginRequiredMixin, View):
         message_send_form = MessageSendForm(request.POST)
         email = request.POST.get('email', "")
         if message_send_form.is_valid():
-            existed_records = UserProfile.objects.filter(email = email)
+            existed_records = UserProfile.objects.filter(email=email)
             if existed_records:
                 new_message = UserMessage()
                 new_message.email = email
@@ -280,17 +289,33 @@ class SendmessageView(LoginRequiredMixin, View):
             return render(request, 'usercenter-sendmessage.html', {"message_send_form": message_send_form})
 
 
+class IndexView(View):
+    """
+    漏洞体验平台首页
+    """
+
+    def get(self, request):
+        # 取出六个ctf课程,按照添加时间排序
+        index_ctf = Ctf.objects.all().order_by("-add_time")[:6]
+        # 取出六个实验
+        index_experiment = Experiment.objects.all().order_by("-add_time")[:6]
+        return render(request, 'index.html', {
+            "all_ctfs": index_ctf,
+            "all_experiments": index_experiment,
+        })
 
 
+def page_not_found(request):
+    # 全局404
+    from django.shortcuts import render_to_response
+    response = render_to_response('404.html', {})
+    response.status_code = 404
+    return response
 
 
-
-
-
-
-
-
-
-
-
-
+def page_error(request):
+    # 全局500
+    from django.shortcuts import render_to_response
+    response = render_to_response('500.html', {})
+    response.status_code = 500
+    return response
