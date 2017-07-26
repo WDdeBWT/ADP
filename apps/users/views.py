@@ -74,7 +74,10 @@ class RegisterView(View):
             user_message.user = user_profile
             user_message.message = "欢迎注册ADP-攻防演练平台"
             user_message.save()
-            send_register_email(user_name, "register")
+            try:
+                send_register_email(user_name, "register")
+            except:
+                return render(request, "register.html", {"register_form": register_form, "msg": "发生错误，请稍候再试"})
             return render(request, "login.html")
         else:
             return render(request, "register.html", {"register_form": register_form})
