@@ -1,18 +1,19 @@
-﻿<!DOCTYPE html>
+﻿{% load staticfiles %}
+
+<!DOCTYPE html>
 <html lang="zh-CN">
-{% load staticfiles %}
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
 
     <!-- External CSS -->
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/static/js/jquery.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <!-- In-document CSS-->
-    <link rel="stylesheet" type="text/css" href="/static/css/style1.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
 
     <title>ADP</title>
 </head>
@@ -27,7 +28,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{% url 'index' %}"><img alt="ADP攻防演练平台" src="/static/images/logo1.png"></a>
+                <a class="navbar-brand" href="{% url 'index' %}"><img alt="ADP攻防演练平台" src="{% static 'images/logo1.png' %}"></a>
             </div>
             <div id="navbar-collapse" class="collapse navbar-collapse">
                     <ul class="selectMenu navbar-brand " id="jsSelectMenu">
@@ -41,35 +42,15 @@
                     <li><a>|</a></li>
                     {% if request.user.is_authenticated %}
                         <li><a>{{ request.user.nick_name }}</a></li>
-                        <li><a href="/users/info/">个人中心</a></li>
+                        <li><a href="{% url 'users:user_info' %}">个人中心</a></li>
                         <li><a href="{% url 'logout' %}">退出</a></li>
                     {% else %}
                         <li><a href="{% url 'login' %}">登录</a></li>
                         <li><a href="{% url 'register' %}">注册</a></li>
                     {% endif %}
-{#                    <div class="personal">#}
-{#                            <dl class="user fr">#}
-{#                                <dd>bobby<img class="down fr" src="{% static 'images/top_down.png' %}"/></dd>#}
-{#                                <dt><img width="20" height="20" src="{% static 'media/image/2016/12/default_big_14.png' %}"/></dt>#}
-{#                            </dl>#}
-{#                            <div class="userdetail">#}
-{#                            	<dl>#}
-{#	                                <dt><img width="80" height="80" src="{% static 'media/image/2016/12/default_big_14.png' %}"/></dt>#}
-{#	                                <dd>#}
-{#	                                    <h2>django</h2>#}
-{#	                                    <p>bobby</p>#}
-{#	                                </dd>#}
-{#                                </dl>#}
-{#                                <div class="btn">#}
-{#	                                <a class="personcenter fl" href="usercenter-info.html">进入个人中心</a>#}
-{#	                                <a class="fr" href="/logout/">退出</a>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#				</div>#}
                 </ul>
             </div>
-        </div><!-- /.container-->
+        </div>
     </nav>
     <div class="home-header-wrap">
         <div class="header-content-wrap">
@@ -92,30 +73,14 @@
                 <div class="section-legend white-txt">精心设计的题库</div>
             </div>
             <div class="row">
+                {% for ctf in all_ctfs %}
                 <div class="col-md-4">
-                    <h3 class="white-txt">简单sql注入3</h3>
-                    <img  class="img-rectangle" src="/static/images/3.jpg">
+                    <h3 class="white-txt"><a href="{% url 'ctf:ctf_detail' ctf.id %}" target="_blank">{{ ctf.name }}</a></h3>
+                    <a href="{% url 'ctf:ctf_detail' ctf.id %}" target="_blank">
+                        <img class="img-rectangle" src="{{ MEDIA_URL }}{{ ctf.image }}" width="240" height="135">
+                    </a>
                 </div>
-                <div class="col-md-4">
-                    <h3 class="white-txt">简单sql注入3</h3>
-                    <img  class="img-rectangle" src="/static/images/3.jpg">
-                </div>
-                <div class="col-md-4">
-                    <h3 class="white-txt">简单sql注入4</h3>
-                    <img  class="img-rectangle" src="/static/images/4.jpg">
-                </div>
-                <div class="col-md-4">
-                    <h3 class="white-txt">简单sql注入4</h3>
-                    <img  class="img-rectangle" src="/static/images/4.jpg">
-                </div>
-                <div class="col-md-4">
-                    <h3 class="white-txt">简单sql注入4</h3>
-                    <img  class="img-rectangle" src="/static/images/4.jpg">
-                </div>
-                <div class="col-md-4">
-                    <h3 class="white-txt">简单sql注入4</h3>
-                    <img  class="img-rectangle" src="/static/images/4.jpg">
-                </div>
+                {% endfor %}
             </div>
             <h3 class="white-txt">欢迎你来挑战！</h3>
         </div>
@@ -127,30 +92,12 @@
                 <div class="section-legend white-txt">全新的攻防体验</div>
             </div>
             <div class="row">
+                {% for experiment in all_experiments %}
                 <div class="col-md-4">
-                    <h3 class="white-txt">sql注入漏洞</h3>
-                        <img  class="img-rectangle" src="/static/images/3.jpg">
+                    <h3 class="white-txt">{{ experiment.name }}</h3>
+                        <img  class="img-rectangle" src="{{ MEDIA_URL }}{{ experiment.image }}" width="240" height="135">
                 </div>
-                <div class="col-md-4">
-                    <h3 class="white-txt">xss漏洞</h3>
-                    <img  class="img-rectangle" src="/static/images/4.jpg">
-                </div>
-                <div class="col-md-4">
-                    <h3 class="white-txt">strust2-048</h3>
-                    <img  class="img-rectangle" src="/static/images/5.jpg">
-                </div>
-                <div class="col-md-4">
-                    <h3 class="white-txt">sql注入漏洞</h3>
-                        <img  class="img-rectangle" src="/static/images/3.jpg">
-                </div>
-                <div class="col-md-4">
-                    <h3 class="white-txt">xss漏洞</h3>
-                    <img  class="img-rectangle" src="/static/images/4.jpg">
-                </div>
-                <div class="col-md-4">
-                    <h3 class="white-txt">strust2-048</h3>
-                    <img  class="img-rectangle" src="/static/images/5.jpg">
-                </div>
+                {% endfor %}
             </div>
             <h3 class="white-txt">欢迎你来体验！</h3>
         </div>
@@ -380,7 +327,7 @@
                 <a target="_blank" href="#">
                     <i class="fa fa-weixin fa-3x"></i>
                 </a>
-                <a target="_blank" href="http://weibo.com/dropsec?refer_flag=1001030101_&is_all=1">
+                <a target="_blank" href="#">
                     <i class="fa fa-weibo fa-3x"></i>
                 </a>
             </div>
@@ -390,14 +337,14 @@
         </div>
     </div>
 </footer>
-<script src="/static/js/scrollreveal.min.js"></script>
-<script src="/static/js/selectUi.js" type='text/javascript'></script>
-<script src="/static/js/deco-common.js" type='text/javascript'></script>
-<script type="text/javascript" src="/static/js/plugins/laydate/laydate.js"></script>
-<script src="/static/js/plugins/layer/layer.js"></script>
-<script src="/static/js/unslider.js" type="text/javascript"></script>
-<script src="/static/js/plugins/jquery.scrollLoading.js"  type="text/javascript"></script>
-<script src="/static/js/deco-common.js"  type="text/javascript"></script>
-<script type="text/javascript" src="/static/js/index.js"></script>
+<script src="{% static 'js/scrollreveal.min.js' %}"></script>
+<script src="{% static 'js/selectUi.js' %}" type='text/javascript'></script>
+<script src="{% static 'js/deco-common.js' %}" type='text/javascript'></script>
+<script type="text/javascript" src="{% static 'js/plugins/laydate/laydate.js' %}"></script>
+<script src="{% static 'js/plugins/layer/layer.js' %}"></script>
+<script src="{% static 'js/unslider.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/plugins/jquery.scrollLoading.js' %}"  type="text/javascript"></script>
+<script src="{% static 'js/deco-common.js' %}"  type="text/javascript"></script>
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 </body>
 </html>
