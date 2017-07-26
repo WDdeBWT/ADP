@@ -17,6 +17,7 @@ from users.models import UserProfile
 class CtfListView(View):
     """
     ctf列表页面,页面上方是ctf课程,下方是最新评论
+    数据库查询注释:https://zhuanlan.zhihu.com/p/27988558
     """
 
     def get(self, request):
@@ -110,24 +111,26 @@ class CtfListView(View):
         max_user = UserLearn.objects.filter(learn_type=1).values_list('user_id').annotate(
                 count=Count('user_id')).values_list('user_id', 'count').order_by('-count')[:5]
         user_list = []
-        for user_tunple in max_user:
-            # 得到用户对象
-            user_entity = UserProfile.objects.get(id=user_tunple[0])
-            # 得到用户对象解题总数
-            user_entity.total_num = user_tunple[1]
-            # 得到用户做的最多的题目种类
-            category2 = \
-                Ctf.objects.filter(id__in=UserLearn.objects.filter(user_id=user_tunple[0], learn_type=1)).values_list(
-                        'category').annotate(count=Count('category')).values_list('count', 'category').order_by(
-                        '-count')[0][1]
-            user_entity.category = CATEGORY_CHOICES[category2]
-            # 得到用户做的题目的总分
-            user_entity.earn_num = sum(
-                    Ctf.objects.filter(
-                            id__in=UserLearn.objects.filter(user_id=user_tunple[0], learn_type=1)).values_list('score',
-                                                                                                               flat=True))
-            # 将用户传入列表
-            user_list.append(user_entity)
+        try:
+            for user_tunple in max_user:
+                # 得到用户对象
+                user_entity = UserProfile.objects.get(id=user_tunple[0])
+                # 得到用户对象解题总数
+                user_entity.total_num = user_tunple[1]
+                # 得到用户做的最多的题目种类
+                category2 = Ctf.objects.filter(
+                    id__in=UserLearn.objects.filter(user_id=user_tunple[0], learn_type=1).values_list(
+                            'learn_id', flat=True)).values_list('category').annotate(count=Count('category')).values_list(
+                        'count', 'category').order_by('-count')[0][1]
+                user_entity.category = CATEGORY_CHOICES[category2]
+                # 得到用户做的题目的总分
+                user_entity.earn_num = sum(
+                        Ctf.objects.filter(id__in=UserLearn.objects.filter(
+                                user_id=user_tunple[0], learn_type=1)).values_list('score', flat=True))
+                # 将用户传入列表
+                user_list.append(user_entity)
+        except:
+            user_list = []
 
         return render(request, 'ctf-list.html', {
             # 分页得到的ctf课程
