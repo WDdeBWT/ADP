@@ -66,11 +66,6 @@
     <div class="c-box fff-box">
         <div class="wp header-box">
             <p class="fl hd-tips">ADP，在线网络安全平台！</p>
-            <ul class="fr hd-bar">
-                <li>服务电话：<span>4001008031</span></li>
-                <li class="active"><a href="{% url 'login' %}">[登录]</a></li>
-                <li><a href="{% url 'register' %}">[注册]</a></li>
-            </ul>
         </div>
     </div>
 </header>
@@ -86,11 +81,9 @@
                 <div class="imgslide">
                     <ul class="imgs">
 
-                        <li><a href=""><img width="483" height="472" src="/static/images/57a801860001c34b12000460.jpg" /></a></li>
-
-                        <li><a href=""><img width="483" height="472" src="/static/images/57a801860001c34b12000460.jpg" /></a></li>
-
-                        <li><a href=""><img width="483" height="472" src="/static/images/57a801860001c34b12000460.jpg" /></a></li>
+                        <li><a href=""><img width="483" height="472" src="{% static 'images/ctf-bg.jpg' %}" /></a></li>
+                        <li><a href=""><img width="483" height="472" src="{% static 'images/adp-bg.jpg' %}" /></a></li>
+                        <li><a href=""><img width="483" height="472" src="{% static 'images/ctf-bg.jpg' %}" /></a></li>
 
                     </ul>
                 </div>
@@ -155,7 +148,7 @@
                         {% csrf_token %}
                     </form>
                 </div>
-                <p class="form-p">已有账号？<a href="login.html">[立即登录]</a></p>
+                <p class="form-p">已有账号？<a href="{% url 'login' %}">[立即登录]</a></p>
             </div>
         </div>
     </div>

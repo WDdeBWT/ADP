@@ -45,11 +45,6 @@
     <div class="c-box fff-box">
         <div class="wp header-box">
             <p class="fl hd-tips">ADP，在线网络安全平台</p>
-            <ul class="fr hd-bar">
-                <li>服务电话：<span>33333333</span></li>
-                <li class="active"><a href="{% url 'login' %}">[登录]</a></li>
-                <li><a href="{% url 'register' %}">[注册]</a></li>
-            </ul>
         </div>
     </div>
 </header>
@@ -64,9 +59,9 @@
             <div class="fl slide">
                 <div class="imgslide">
                     <ul class="imgs">
-                            <li><a href=""><img width="483" height="472" src="/static/images/mysql.jpg" /></a></li>
-                            <li><a href=""><img width="483" height="472" src="/static/images/mysql.jpg" /></a></li>
-                            <li><a href=""><img width="483" height="472" src="/static/images/mysql.jpg" /></a></li>
+                            <li><a href=""><img width="483" height="472" src="{% static 'images/ctf-bg.jpg' %}" /></a></li>
+                            <li><a href=""><img width="483" height="472" src="{% static 'images/adp-bg.jpg' %}" /></a></li>
+                            <li><a href=""><img width="483" height="472" src="{% static 'images/ctf-bg.jpg' %}" /></a></li>
                     </ul>
                 </div>
                 <div class="unslider-arrow prev"></div>
@@ -93,7 +88,7 @@
                 <input type='hidden' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy' />
                 {% csrf_token %}
                 </form>
-                <p class="form-p">没有慕学在线网帐号？<a href="register.html">[立即注册]</a></p>
+                <p class="form-p">没有慕学在线网帐号？<a href="{% url 'register' %}">[立即注册]</a></p>
             </div>
         </div>
     </div>
