@@ -209,8 +209,8 @@ class CtfDetailView(View):
                 container = Docker(user=request.user.username,image=ctf.images,port=port,con_id=con.id)
                 container.save()
 
-            #以下为测试部分，之后有服务器再修正
-            url = "http://10.141.80.47:"+str(Docker.objects.get(user=request.user,image=ctf.images).port)
+            #以下为测试url，之后有服务器再修正
+            url = "http://127.0.0.1:"+str(Docker.objects.get(user=request.user,image=ctf.images).port)
 
             return render(request, 'ctf-detail.html', {
                 "ctf": ctf,
