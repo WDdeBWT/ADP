@@ -73,11 +73,16 @@
                     <input type='hidden' name='csrfmiddlewaretoken' value='mymQDzHWl2REXIfPMg2mJaLqDfaS1sD5' />
                     <div class="form-group marb20 {% if login_form.errors.username %}errorput{% endif %}">
                         <label>用&nbsp;户&nbsp;名</label>
-                        <input name="username" id="account_l" type="text" placeholder="手机号/邮箱" />
+                        <input name="username" id="account_l" type="text" placeholder="手机号/邮箱"  value="{% if login_form.username.value %}{{ login_form.username.value }}{% endif %}" />
                     </div>
                     <div class="form-group marb8 {% if login_form.errors.password %}errorput{% endif %}">
                         <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
                         <input name="password" id="password_l" type="password" placeholder="请输入您的密码" />
+                    </div>
+                    <div class="form-group marb8 captcha1 {% if login_form.errors.captcha %}errorput{% endif %}">
+                            <label>验&nbsp;证&nbsp;码</label>
+                            {{ login_form.captcha }}
+{#                            <img src="/captcha/image/2f3f82e5f7a054bf5caa93b9b0bb6cc308fb7011/" alt="captcha" class="captcha" /> <input id="id_captcha_0" name="captcha_0" type="hidden" value="2f3f82e5f7a054bf5caa93b9b0bb6cc308fb7011" /> <input autocomplete="off" id="id_captcha_1" name="captcha_1" type="text" />#}
                     </div>
                     <div class="error btns login-form-tips" id="jsLoginTips">{% for key,error in login_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>
                      <div class="auto-box marb38">
@@ -88,7 +93,7 @@
                 <input type='hidden' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy' />
                 {% csrf_token %}
                 </form>
-                <p class="form-p">没有慕学在线网帐号？<a href="{% url 'register' %}">[立即注册]</a></p>
+                <p class="form-p">没有帐号？<a href="{% url 'register' %}">[立即注册]</a></p>
             </div>
         </div>
     </div>

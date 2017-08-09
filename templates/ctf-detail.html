@@ -53,7 +53,7 @@
                     <div class="de_mle_link">
                         <div class="de_mle_p1">{{ ctf.detail }}</div>
                         <p class="de_mle_p2">解题链接：
-                            <a href="{{ ctf.url }}" id="exam_ctf_href" target="_blank">{{ ctf.url }}</a>
+                            <a href="{{ url }}" id="exam_ctf_href" target="_blank">{{ url }}</a>
                         </p>
                     </div>
 
@@ -198,8 +198,6 @@
     <script type="text/javascript">
         //提交答案
         $("#keysubmit_btn").click(function () {
-            var flag = '{{ flag }}';
-            if (flag == 1) {
                 var key = $.trim($("#key_txt").val());
                 if (key == "") {
                     layer.alert("提交答案不能为空");
@@ -234,10 +232,6 @@
                         }
                     }
                 });
-
-            } else {
-                window.location.href = "{% url 'register' %}"; //弹出登录
-            }
         });
         $(".ideawrap .sure,.ideawrap .cancel,.popideawrap .CloseBtn").click(function () {
             $(".pop_markW,.popideawrap").fadeOut(200);
@@ -246,12 +240,7 @@
 
         //提交评论
         $('#comment_btn').bind('click', function () {
-            var flag = '{{ flag }}';
-            if (flag == 1) {
                 SubmitComment();
-            } else {
-                window.location.href = "{% url 'register' %}"; //弹出登录
-            }
         });
 
         function SubmitComment() {

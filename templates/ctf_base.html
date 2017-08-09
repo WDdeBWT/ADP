@@ -39,7 +39,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{% url 'index' %}">主页</a></li>
                     <li><a href="{% url 'ctf:ctf_list' %}">CTF</a></li>
-                    <li><a href="{% url 'exp_list' %}">漏洞体验</a></li>
+                    <li><a href="{% url 'exp:exp_list' %}">漏洞体验</a></li>
                     <li><a>|</a></li>
                     {% if request.user.is_authenticated %}
                         <li><a>{{ request.user.nick_name }}</a></li>
@@ -76,7 +76,7 @@
             <div class="icon-top red-text">
                 <img alt="" src="http://7xp1b3.com1.z0.glb.clouddn.com/map25-redish.png">
             </div>
-            武汉理工大学第五实验室
+            武汉理工大学
         </div>
         <div class="col-md-3 team-info">
             <div class="icon-top red-text">
@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class="col-md-3 copyright">
-            <span>Lab5攻防演练平台@2017</span>
+            <span>攻防演练平台@2017</span>
         </div>
     </div>
 </footer>

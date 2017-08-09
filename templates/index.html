@@ -38,7 +38,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">主页</a></li>
                     <li><a href="{% url 'ctf:ctf_list' %}">CTF</a></li>
-                    <li><a href="{% url 'exp_list' %}">漏洞体验</a></li>
+                    <li><a href="{% url 'exp:exp_list' %}">漏洞体验</a></li>
                     <li><a>|</a></li>
                     {% if request.user.is_authenticated %}
                         <li><a>{{ request.user.nick_name }}</a></li>
@@ -55,7 +55,7 @@
     <div class="home-header-wrap">
         <div class="header-content-wrap">
             <div class="container">
-                <h1 class="intro-text">Lab5<br>攻防演练平台</h1>
+                <h1 class="intro-text">ADP<br>攻防演练平台</h1>
                 <div class="buttons">
                     <a class="btn btn-primary custom-button red-btn" href="#ctf">CTF题库</a>
                     <a class="btn btn-primary custom-button green-btn" href="#experiment">漏洞体验</a>
@@ -95,8 +95,11 @@
                 {% for experiment in all_experiments %}
                 <div class="col-md-4">
                     <h3 class="white-txt">{{ experiment.name }}</h3>
+                    <a href="{% url 'exp:exp_detail' experiment.id %}" target="_blank">
                         <img  class="img-rectangle" src="{{ MEDIA_URL }}{{ experiment.image }}" width="240" height="135">
+                    </a>
                 </div>
+
                 {% endfor %}
             </div>
             <h3 class="white-txt">欢迎你来体验！</h3>
@@ -111,7 +114,7 @@
             <div class="row">
                 <div class="col-md-6 about-us-intro">
                     <p>
-                        武汉理工大学第五实验室攻防演练平台，是在2017年由网络安全开发组小组成员共同搭建。原为网络安全组的成员，由于希望靠自己的力量为组员以及广大爱好网络安全的小伙伴们提供一个良好的平台，于是从网络安全组中分出一支，组成自己的开发团队。希望平台能够带给使用者满意的体验。如果你也希望参与其中，那就请加入我们，共同打造一个属于我们的攻防演练平台！
+                        攻防演练平台，是在2017年由网络安全开发组小组成员共同搭建。原为网络安全组的成员，由于希望靠自己的力量为组员以及广大爱好网络安全的小伙伴们提供一个良好的平台，于是从网络安全组中分出一支，组成自己的开发团队。希望平台能够带给使用者满意的体验。如果你也希望参与其中，那就请加入我们，共同打造一个属于我们的攻防演练平台！
                     </p>
                     <p>
                         目前实验室网络安全组分为安全组和开发组。安全组主要致力于安全攻防方面的技术研究，而开发组侧重于结合双方优势，打造一个良好的平台。
@@ -160,7 +163,7 @@
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/huqian.jpg' %}">
                         </figure>
                         <div class="member-details">
-                            <h3 class="dark-text color-border-bottom">胡乾</h3>
+                            <h3 class="dark-text color-border-bottom">csse-null</h3>
                             <div class="position">安全组、开发组</div>
                         </div>
 
@@ -175,7 +178,7 @@
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/liziyan.jpg' %}">
                         </figure>
                         <div class="member-details">
-                            <h3 class="dark-text color-border-bottom">李子岩</h3>
+                            <h3 class="dark-text color-border-bottom">virlaser</h3>
                             <div class="position">开发组</div>
                         </div>
 
@@ -190,7 +193,7 @@
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/gongjie.jpg' %}">
                         </figure>
                         <div class="member-details">
-                            <h3 class="dark-text color-border-bottom">龚杰</h3>
+                            <h3 class="dark-text color-border-bottom">gisaac</h3>
                             <div class="position">开发组</div>
                         </div>
 
@@ -205,7 +208,7 @@
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/baiwentao.jpg' %}">
                         </figure>
                         <div class="member-details">
-                            <h3 class="dark-text color-border-bottom">白文涛</h3>
+                            <h3 class="dark-text color-border-bottom">WDdeBWT</h3>
                             <div class="position">开发组</div>
                         </div>
 
@@ -220,7 +223,7 @@
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/cuican.jpg' %}">
                         </figure>
                         <div class="member-details">
-                            <h3 class="dark-text color-border-bottom">崔璨</h3>
+                            <h3 class="dark-text color-border-bottom">GatsbyV</h3>
                             <div class="position">开发组</div>
                         </div>
 
@@ -235,7 +238,7 @@
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/jinxiangyu.jpg' %}">
                         </figure>
                         <div class="member-details">
-                            <h3 class="dark-text color-border-bottom">金翔宇</h3>
+                            <h3 class="dark-text color-border-bottom">MOOFENG</h3>
                             <div class="position">网络安全组组长</div>
                         </div>
 
@@ -250,7 +253,7 @@
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/shenyang.jpg' %}">
                         </figure>
                         <div class="member-details">
-                            <h3 class="dark-text color-border-bottom">沈阳</h3>
+                            <h3 class="dark-text color-border-bottom">shenyang</h3>
                             <div class="position">安全组</div>
                         </div>
                         <div class="details">
@@ -264,7 +267,7 @@
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/dingwei.jpg' %}">
                         </figure>
                         <div class="member-details">
-                            <h3 class="dark-text color-border-bottom">丁蔚</h3>
+                            <h3 class="dark-text color-border-bottom">dingwei</h3>
                             <div class="position">安全组</div>
                         </div>
                         <div class="details">
@@ -278,7 +281,7 @@
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/yinxianyang.jpg' %}">
                         </figure>
                         <div class="member-details">
-                            <h3 class="dark-text color-border-bottom">尹显阳</h3>
+                            <h3 class="dark-text color-border-bottom">yinxainyang</h3>
                             <div class="position">安全组</div>
                         </div>
 
@@ -293,7 +296,7 @@
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/yangzhen.jpg' %}">
                         </figure>
                         <div class="member-details">
-                            <h3 class="dark-text color-border-bottom">杨震</h3>
+                            <h3 class="dark-text color-border-bottom">yz</h3>
                             <div class="position">开发组</div>
                         </div>
 
@@ -314,7 +317,7 @@
             <div class="icon-top red-text">
                 <img alt="" src="http://7xp1b3.com1.z0.glb.clouddn.com/map25-redish.png">
             </div>
-            武汉理工大学第五实验室
+            武汉理工大学
         </div>
         <div class="col-md-3 team-info">
             <div class="icon-top red-text">
@@ -333,7 +336,7 @@
             </div>
         </div>
         <div class="col-md-3 copyright">
-            <span>Lab5攻防演练平台@2017</span>
+            <span>攻防演练平台@2017</span>
         </div>
     </div>
 </footer>

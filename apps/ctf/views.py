@@ -5,8 +5,10 @@ from django.views.generic.base import View
 from pure_pagination import Paginator, PageNotAnInteger
 from django.db.models import Count
 from django.http import JsonResponse
+import docker,random
 
-from .models import Ctf
+from .models import Ctf,Docker
+from experiments.models import Docker as exp_docker
 from operations.models import UserComments, UserLearn
 from users.models import UserProfile
 
@@ -21,6 +23,7 @@ class CtfListView(View):
     """
 
     def get(self, request):
+
 
         # 得到所有ctf课程
         all_ctf_objects = Ctf.objects.all()
@@ -157,48 +160,65 @@ class CtfDetailView(View):
 
     def get(self, request, ctf_id):
 
-        # 由主键得到ctf对象
-        ctf = Ctf.objects.get(id=int(ctf_id))
-
-        # 自动增加点击量
-        ctf.click_num += 1
-        ctf.save()
-
-        # 计算通过率, 百分数显示
-        try:
-            pass_rate = ctf.success_num * 100 / ctf.submit_num
-        except ZeroDivisionError:
-            pass_rate = 0
-
-        # 得到用户对课程的评论
-        all_comments = UserComments.objects.filter(comment_type=1, comment_id=ctf.id).order_by("-add_time")
-
-        # 评论分页
-        try:
-            comment_page = request.GET.get('page', 1)
-        except PageNotAnInteger:
-            comment_page = 1
-        # 每页显示5条记录
-        p2 = Paginator(all_comments, 5, request=request)
-        comments = p2.page(comment_page)
-
-        # 网页右侧最新题目的显示,显示最近添加的同种类的五个题目
-        new_ctfs = Ctf.objects.filter(category=Ctf.objects.get(id=ctf_id).category).exclude(id=ctf_id).order_by(
-                "-add_time")[:5]
-
         # 判断用户是否已经登录,为之后的评论和提交答案做准备
         if not request.user.is_authenticated():
-            flag = 0
+            return render(request,"login.html")
         else:
-            flag = 1
+            # 由主键得到ctf对象
+            ctf = Ctf.objects.get(id=int(ctf_id))
 
-        return render(request, 'ctf-detail.html', {
-            "ctf": ctf,
-            "pass_rate": pass_rate,
-            "comments": comments,
-            "new_ctfs": new_ctfs,
-            "flag": flag,
-        })
+            # 自动增加点击量
+            ctf.click_num += 1
+            ctf.save()
+
+            # 计算通过率, 百分数显示
+            try:
+                pass_rate = ctf.success_num * 100 / ctf.submit_num
+            except ZeroDivisionError:
+                pass_rate = 0
+
+            # 得到用户对课程的评论
+            all_comments = UserComments.objects.filter(comment_type=1, comment_id=ctf.id).order_by("-add_time")
+
+            # 评论分页
+            try:
+                comment_page = request.GET.get('page', 1)
+            except PageNotAnInteger:
+                comment_page = 1
+            # 每页显示5条记录
+            p2 = Paginator(all_comments, 5, request=request)
+            comments = p2.page(comment_page)
+
+            # 网页右侧最新题目的显示,显示最近添加的同种类的五个题目
+            new_ctfs = Ctf.objects.filter(category=Ctf.objects.get(id=ctf_id).category).exclude(id=ctf_id).order_by(
+                    "-add_time")[:5]
+
+            #调用docker
+            exist = Docker.objects.filter(image=ctf.images,user=request.user.username)
+            if not exist:
+                #将出题人提供的镜像实例化并分配内存
+                client = docker.from_env()
+                old_ports = Docker.objects.values_list('port', flat=True)
+                exp_ports = exp_docker.objects.values_list('port', flat=True)
+                while True:
+                    port = random.randint(1024,65535)
+                    if (port not in old_ports) and (port not in exp_ports):
+                        break
+
+                con = client.containers.run(ctf.images,detach=True,ports={str(ctf.port)+'/tcp':str(port)})
+                container = Docker(user=request.user.username,image=ctf.images,port=port,con_id=con.id)
+                container.save()
+
+            #以下为测试部分，之后有服务器再修正
+            url = "http://10.141.80.47:"+str(Docker.objects.get(user=request.user,image=ctf.images).port)
+
+            return render(request, 'ctf-detail.html', {
+                "ctf": ctf,
+                "pass_rate": pass_rate,
+                "comments": comments,
+                "new_ctfs": new_ctfs,
+                "url": url,
+            })
 
 
 class SubmitAnswerView(View):
@@ -210,6 +230,7 @@ class SubmitAnswerView(View):
         """
         答案从ctf页面由JavaScript异步提交,使用的是post方法
         """
+        # 判断用户是否已经登录,为之后的评论和提交答案做准备
         res = {}
         try:
             # 查看用户是否已经拿到flag
@@ -263,6 +284,7 @@ class CtfCommentView(View):
         """
         评论以异步的方式用post发送过来
         """
+        # 判断用户是否已经登录,为之后的评论和提交答案做准备
         message = {}
         try:
             # 将用户发送过来的评论保存起来

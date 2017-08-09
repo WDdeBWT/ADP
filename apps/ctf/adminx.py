@@ -7,7 +7,7 @@ from .models import Ctf
 
 class CtfAdmin(object):
     # 在管理页面中显示的字段
-    list_display = ['name', 'url', 'flag', 'score', 'source', 'success_num']
+    list_display = ['name', 'images','port', 'flag', 'score', 'source', 'success_num']
     # 在管理页面的搜索框中选择的字段
     search_fields = ['name', 'category', 'tag']
     # 在管理页面的筛选中显示的字段
