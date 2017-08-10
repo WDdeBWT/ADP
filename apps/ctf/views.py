@@ -5,12 +5,15 @@ from django.views.generic.base import View
 from pure_pagination import Paginator, PageNotAnInteger
 from django.db.models import Count
 from django.http import JsonResponse
-import docker,random
+import docker,random,socket,platform
+import fcntl
+import struct
 
 from .models import Ctf,Docker
 from experiments.models import Docker as exp_docker
 from operations.models import UserComments, UserLearn
 from users.models import UserProfile
+from users.forms import LoginForm
 
 
 # Create your views here.
@@ -162,7 +165,8 @@ class CtfDetailView(View):
 
         # 判断用户是否已经登录,为之后的评论和提交答案做准备
         if not request.user.is_authenticated():
-            return render(request,"login.html")
+            login_form = LoginForm()
+            return render(request,"login.html",{"login_form": login_form})
         else:
             # 由主键得到ctf对象
             ctf = Ctf.objects.get(id=int(ctf_id))
@@ -210,7 +214,18 @@ class CtfDetailView(View):
                 container.save()
 
             #以下为测试url，之后有服务器再修正
-            url = "http://127.0.0.1:"+str(Docker.objects.get(user=request.user,image=ctf.images).port)
+            if platform.system()=='Linux':
+                try:
+                    myip = get_ip_address('eth0')
+                except:
+                    try:
+                        myip = get_ip_address('wlan0')
+                    except:
+                        myip = "127.0.0.1"
+            else:
+                myname = socket.getfqdn(socket.gethostname())
+                myip = socket.gethostbyname(myname)
+            url = "http://%s:" % (myip) + str(Docker.objects.get(user=request.user, image=ctf.images).port)
 
             return render(request, 'ctf-detail.html', {
                 "ctf": ctf,
@@ -300,3 +315,11 @@ class CtfCommentView(View):
         except:
             message["msg"] = "评论保存失败"
             return JsonResponse(message)
+
+def get_ip_address(ifname):
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    return socket.inet_ntoa(fcntl.ioctl(
+        s.fileno(),
+        0x8915,  # SIOCGIFADDR
+        struct.pack('256s', ifname[:15])
+    )[20:24])

@@ -3,11 +3,14 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from pure_pagination import Paginator, PageNotAnInteger
 from django.shortcuts import redirect
-import docker,random,time
+import docker,random,time,socket,platform
+import fcntl
+import struct
 
 from .models import Experiment,Docker
 from ctf.models import Docker as ctf_docker
 from operations.models import UserComments
+from users.forms import LoginForm
 
 
 # Create your views here.
@@ -32,6 +35,7 @@ class ExpView(View):
             "ip": u"私有IP地址泄露漏洞",
             "login": u"未加密登录请求",
             "message": u"敏感信息泄露漏洞",
+            "comprehensive": u"综合"
         }
         CATEGORY_CHOICES2 = {
             u"SQL注入漏洞": "sql",
@@ -45,6 +49,7 @@ class ExpView(View):
             u"私有IP地址泄露漏洞": "ip",
             u"未加密登录请求": "login",
             u"敏感信息泄露漏洞": "message",
+            u"综合": "comprehensive"
         }
         DEGREE = {
             "cj": u"初级",
@@ -121,7 +126,8 @@ class ExpDetailView(View):
     def get(self,request,exp_id):
         # 判断用户是否已经登录,为之后的评论和提交答案做准备
         if not request.user.is_authenticated():
-            return render(request,"login.html")
+            login_form = LoginForm()
+            return render(request,"login.html",{"login_form": login_form})
         else:
             #获取漏洞
             exp = Experiment.objects.get(id = int(exp_id))
@@ -143,6 +149,26 @@ class ExpDetailView(View):
                 container.save()
 
             # 以下为测试部分，之后有服务器再修正
-            url = "http://127.0.0.1:" + str(Docker.objects.get(user=request.user, image=exp.images).port)
+            #判断系统并获取IP
+            if platform.system()=='Linux':
+                try:
+                    myip = get_ip_address('eth0')
+                except:
+                    try:
+                        myip = get_ip_address('wlan0')
+                    except:
+                        myip = "127.0.0.1"
+            else:
+                myname = socket.getfqdn(socket.gethostname())
+                myip = socket.gethostbyname(myname)
+            url = "http://%s:" % (myip) + str(Docker.objects.get(user=request.user, image=exp.images).port)
             time.sleep(1)
             return redirect(url)
+
+def get_ip_address(ifname):
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    return socket.inet_ntoa(fcntl.ioctl(
+        s.fileno(),
+        0x8915,  # SIOCGIFADDR
+        struct.pack('256s', ifname[:15])
+    )[20:24])

@@ -20,6 +20,7 @@ category_choices = (
     ("ip", "私有IP地址泄露漏洞"),
     ("login", "未加密登录请求"),
     ("message", "敏感信息泄露漏洞"),
+    ("comprehensive","综合"),
 )
 
 
