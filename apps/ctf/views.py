@@ -165,8 +165,7 @@ class CtfDetailView(View):
 
         # 判断用户是否已经登录,为之后的评论和提交答案做准备
         if not request.user.is_authenticated():
-            login_form = LoginForm()
-            return render(request,"login.html",{"login_form": login_form})
+            return render(request,"login.html")
         else:
             # 由主键得到ctf对象
             ctf = Ctf.objects.get(id=int(ctf_id))

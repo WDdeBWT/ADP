@@ -119,7 +119,7 @@ class LogoutView(View):
 class LoginView(View):
     def get(self, request):
         login_form = LoginForm()
-        return render(request, "login.html", {"login_form": login_form})
+        return render(request, "login.html")
 
     def post(self, request):
         login_form = LoginForm(request.POST)
@@ -136,7 +136,7 @@ class LoginView(View):
             else:
                 return render(request, "login.html", {"msg": "用户名或密码错误！","login_form": login_form})
         else:
-            return render(request, "login.html", {"login_form": login_form})
+            return render(request, "login.html")
 
 
 class UserinfoView(LoginRequiredMixin, View):

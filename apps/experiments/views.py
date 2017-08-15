@@ -126,8 +126,7 @@ class ExpDetailView(View):
     def get(self,request,exp_id):
         # 判断用户是否已经登录,为之后的评论和提交答案做准备
         if not request.user.is_authenticated():
-            login_form = LoginForm()
-            return render(request,"login.html",{"login_form": login_form})
+            return render(request,"login.html")
         else:
             #获取漏洞
             exp = Experiment.objects.get(id = int(exp_id))
