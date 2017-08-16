@@ -5,15 +5,14 @@ from django.views.generic.base import View
 from pure_pagination import Paginator, PageNotAnInteger
 from django.db.models import Count
 from django.http import JsonResponse
-import docker,random,socket,platform
+import docker, random, socket, platform
 import fcntl
 import struct
 
-from .models import Ctf,Docker
+from .models import Ctf, Docker
 from experiments.models import Docker as exp_docker
 from operations.models import UserComments, UserLearn
 from users.models import UserProfile
-from users.forms import LoginForm
 
 
 # Create your views here.
@@ -22,11 +21,10 @@ from users.forms import LoginForm
 class CtfListView(View):
     """
     ctf列表页面,页面上方是ctf课程,下方是最新评论
-    数据库查询注释:https://zhuanlan.zhihu.com/p/27988558
+    参考:https://zhuanlan.zhihu.com/p/27988558
     """
 
     def get(self, request):
-
 
         # 得到所有ctf课程
         all_ctf_objects = Ctf.objects.all()
@@ -71,7 +69,7 @@ class CtfListView(View):
         # 得到整个类别的参与人数(一个类别里面所有题目点击数之和)
         participation = sum(Ctf.objects.filter(category=category).values_list('click_num', flat=True))
 
-        # 遍历每一个课程,看看用户是否学过,以便在页面中标记处用户做过的题目
+        # 遍历每一个课程,看看用户是否学过,以便在页面中标记用户做过的题目
         # 首先判断用户是否登录
         if request.user.is_authenticated():
             # 用户学过的所有课程
@@ -125,8 +123,9 @@ class CtfListView(View):
                 user_entity.total_num = user_tunple[1]
                 # 得到用户做的最多的题目种类
                 category2 = Ctf.objects.filter(
-                    id__in=UserLearn.objects.filter(user_id=user_tunple[0], learn_type=1).values_list(
-                            'learn_id', flat=True)).values_list('category').annotate(count=Count('category')).values_list(
+                        id__in=UserLearn.objects.filter(user_id=user_tunple[0], learn_type=1).values_list(
+                                'learn_id', flat=True)).values_list('category').annotate(
+                        count=Count('category')).values_list(
                         'count', 'category').order_by('-count')[0][1]
                 user_entity.category = CATEGORY_CHOICES[category2]
                 # 得到用户做的题目的总分
@@ -165,7 +164,7 @@ class CtfDetailView(View):
 
         # 判断用户是否已经登录,为之后的评论和提交答案做准备
         if not request.user.is_authenticated():
-            return render(request,"login.html")
+            return render(request, "login.html")
         else:
             # 由主键得到ctf对象
             ctf = Ctf.objects.get(id=int(ctf_id))
@@ -196,24 +195,21 @@ class CtfDetailView(View):
             new_ctfs = Ctf.objects.filter(category=Ctf.objects.get(id=ctf_id).category).exclude(id=ctf_id).order_by(
                     "-add_time")[:5]
 
-            #调用docker
-            exist = Docker.objects.filter(image=ctf.images,user=request.user.username)
+            # 调用docker
+            exist = Docker.objects.filter(image=ctf.images, user=request.user.username)
             if not exist:
-                #将出题人提供的镜像实例化并分配内存
+                # 将出题人提供的镜像实例化并分配内存
                 client = docker.from_env()
                 old_ports = Docker.objects.values_list('port', flat=True)
                 exp_ports = exp_docker.objects.values_list('port', flat=True)
-                while True:
-                    port = random.randint(1024,65535)
-                    if (port not in old_ports) and (port not in exp_ports):
-                        break
-
-                con = client.containers.run(ctf.images,detach=True,ports={str(ctf.port)+'/tcp':str(port)})
-                container = Docker(user=request.user.username,image=ctf.images,port=port,con_id=con.id)
+                # 取未被占用端口列表中的第一个
+                port = [i for i in range(1024, 65536) if i not in old_ports + exp_ports][0]
+                con = client.containers.run(ctf.images, detach=True, ports={str(ctf.port) + '/tcp': str(port)})
+                container = Docker(user=request.user.username, image=ctf.images, port=port, con_id=con.id)
                 container.save()
 
-            #以下为测试url，之后有服务器再修正
-            if platform.system()=='Linux':
+            # 以下为测试url，之后有服务器再修正
+            if platform.system() == 'Linux':
                 try:
                     myip = get_ip_address('eth0')
                 except:
@@ -224,6 +220,7 @@ class CtfDetailView(View):
             else:
                 myname = socket.getfqdn(socket.gethostname())
                 myip = socket.gethostbyname(myname)
+
             url = "http://%s:" % (myip) + str(Docker.objects.get(user=request.user, image=ctf.images).port)
 
             return render(request, 'ctf-detail.html', {
@@ -244,7 +241,6 @@ class SubmitAnswerView(View):
         """
         答案从ctf页面由JavaScript异步提交,使用的是post方法
         """
-        # 判断用户是否已经登录,为之后的评论和提交答案做准备
         res = {}
         try:
             # 查看用户是否已经拿到flag
@@ -298,7 +294,6 @@ class CtfCommentView(View):
         """
         评论以异步的方式用post发送过来
         """
-        # 判断用户是否已经登录,为之后的评论和提交答案做准备
         message = {}
         try:
             # 将用户发送过来的评论保存起来
@@ -315,10 +310,16 @@ class CtfCommentView(View):
             message["msg"] = "评论保存失败"
             return JsonResponse(message)
 
+
 def get_ip_address(ifname):
+    """
+    获取本机IP地址
+    参考:https://www.chenyudong.com/archives/python-get-local-ip-graceful.html
+    此代码问题:http://code.activestate.com/recipes/439094-get-the-ip-address-associated-with-a-network-inter/
+    """
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     return socket.inet_ntoa(fcntl.ioctl(
-        s.fileno(),
-        0x8915,  # SIOCGIFADDR
-        struct.pack('256s', ifname[:15])
+            s.fileno(),
+            0x8915,
+            struct.pack('256s', ifname[:15])
     )[20:24])
