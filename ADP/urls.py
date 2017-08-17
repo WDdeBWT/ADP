@@ -18,7 +18,6 @@ Including another URLconf
 from django.conf.urls import url, include
 import xadmin
 from django.views.static import serve
-from experiments.views import ExpView
 from users.views import LoginView, LogoutView, RegisterView, ActiveUserView, ForgetPswView, ResetView, ModifyPswView
 from ADP.settings import MEDIA_ROOT
 from users.views import IndexView
