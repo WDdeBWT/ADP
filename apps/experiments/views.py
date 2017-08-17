@@ -2,11 +2,15 @@
 from django.shortcuts import render
 from django.views.generic.base import View
 from pure_pagination import Paginator, PageNotAnInteger
-from django.db.models import Count
+from django.shortcuts import redirect
+import docker,random,time,socket,platform
+import fcntl
+import struct
 
-from .models import Experiment
-from operations.models import UserComments, UserLearn
-from users.models import UserProfile
+from .models import Experiment,Docker
+from ctf.models import Docker as ctf_docker
+from operations.models import UserComments
+from users.forms import LoginForm
 
 
 # Create your views here.
@@ -31,6 +35,7 @@ class ExpView(View):
             "ip": u"私有IP地址泄露漏洞",
             "login": u"未加密登录请求",
             "message": u"敏感信息泄露漏洞",
+            "comprehensive": u"综合"
         }
         CATEGORY_CHOICES2 = {
             u"SQL注入漏洞": "sql",
@@ -44,6 +49,7 @@ class ExpView(View):
             u"私有IP地址泄露漏洞": "ip",
             u"未加密登录请求": "login",
             u"敏感信息泄露漏洞": "message",
+            u"综合": "comprehensive"
         }
         DEGREE = {
             "cj": u"初级",
@@ -77,7 +83,7 @@ class ExpView(View):
             exp.category=CATEGORY_CHOICES[exp.category]
 
         exp_comment_objects = UserComments.objects.filter(comment_type=2).order_by("-add_time")
-        # 得到ctf课程,直接将ctf课程属性添加进ctf评论类,这样评论就可以显示来自什么题目
+
         # 在后台如果删除了课程那么其对应的评论也应该被删除,不然会报错
         exp_ids = Experiment.objects.all().values_list("id", flat=True)
         # 要是评论的课程删除了就删除这个评论
@@ -110,3 +116,58 @@ class ExpView(View):
             "tags": tags,
             "hot_exps": hot_exps,
         })
+
+
+class ExpDetailView(View):
+    '''
+    漏洞docker页面
+    '''
+
+    def get(self,request,exp_id):
+        # 判断用户是否已经登录,为之后的评论和提交答案做准备
+        if not request.user.is_authenticated():
+            return render(request,"login.html")
+        else:
+            #获取漏洞
+            exp = Experiment.objects.get(id = int(exp_id))
+            
+            # 调用docker
+            exist = Docker.objects.filter(image=exp.images, user=request.user.username)
+            if not exist:
+                # 将出题人提供的镜像实例化并分配内存
+                client = docker.from_env()
+                old_ports = Docker.objects.values_list('port', flat=True)
+                ctf_ports = ctf_docker.objects.values_list('port', flat=True)
+                while True:
+                    port = random.randint(1024, 65535)
+                    if (port not in old_ports) and (port not in ctf_ports):
+                        break
+
+                con = client.containers.run(exp.images, detach=True, ports={str(exp.port) + '/tcp': str(port)})
+                container = Docker(user=request.user.username, image=exp.images, port=port, con_id=con.id)
+                container.save()
+
+            # 以下为测试部分，之后有服务器再修正
+            #判断系统并获取IP
+            if platform.system()=='Linux':
+                try:
+                    myip = get_ip_address('eth0')
+                except:
+                    try:
+                        myip = get_ip_address('wlan0')
+                    except:
+                        myip = "127.0.0.1"
+            else:
+                myname = socket.getfqdn(socket.gethostname())
+                myip = socket.gethostbyname(myname)
+            url = "http://%s:" % (myip) + str(Docker.objects.get(user=request.user, image=exp.images).port)
+            time.sleep(1)
+            return redirect(url)
+
+def get_ip_address(ifname):
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    return socket.inet_ntoa(fcntl.ioctl(
+        s.fileno(),
+        0x8915,  # SIOCGIFADDR
+        struct.pack('256s', ifname[:15])
+    )[20:24])

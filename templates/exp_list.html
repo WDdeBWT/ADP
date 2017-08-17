@@ -1,11 +1,11 @@
 {% extends 'exp_base.html' %}
-
+{% load staticfiles %}
 {% block title %}攻防演练平台{% endblock %}
 
 {% block custom_css %}
-    <link href="../static/css/common_2016.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="../static/css/ctf/CTF_Details.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="../static/css/experiment/train.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/common_2016.css' %}" media="screen" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/ctf/CTF_Details.css' %}" media="screen" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/experiment/train.css' %}" media="screen" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block custom_bread %}
@@ -57,26 +57,26 @@ class="ui label ">{{ tag }}</a>
                         <dl class="">
                             <dt>
 {#                                <a href="{% url 'exp:exp_detail' exp.id %}" title="{{ exp.name }}"><img#}
-                                <a href="{{ exp.url }}" title="{{ exp.name }}"><img
+                                <a href="{% url 'exp:exp_detail' exp.id %}" title="{{ exp.name }}"><img
                                         src="{{ MEDIA_URL }}{{ exp.image }}"></a>
                                 <span class="tz"></span>
                                 <span class="gz" item="54395"></span>
                             </dt>
                             <dd>
 {#                                <h3><a href="{% url 'exp:exp_detail' exp.id %}"#}
-                                <h3><a href="{{ exp.url }}"
+                                <h3><a href="{% url 'exp:exp_detail' exp.id %}"
                                        title="{{ exp.name }}">{{ exp.name }}</a></h3>
                                 <p>
                                     <span class="lx">类型：<span>{{ exp.category }}</span></span>
                                     <span class="nd">难度：<span>{{ exp.degree }}</span></span>
                                     <span class="rs">{{ exp.students }}<span>人参加</span></span>
                                 </p>
-                                <p class="xbb">{{ exp.detail }}</p>
+                                <p class="xbb" >{{ exp.detail }}</p>
                             </dd>
                             <div class="cnm_mb">
 {#                                <a href="{% url 'exp:exp_detail' exp.id %}" title="{{ exp.name }}"><img #}
-                                <a href="{{ exp.url }}" title="{{ exp.name }}"><img
-                                        src="../static/images/start.png"
+                                <a href="{% url 'exp:exp_detail' exp.id %}" title="{{ exp.name }}"><img
+                                        src="{% static 'images/start.png' %}"
                                         alt=""/></a>
                             </div>
                         </dl>

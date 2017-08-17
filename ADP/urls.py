@@ -32,7 +32,7 @@ urlpatterns = [
     # ctf
     url(r'^ctf/', include('ctf.urls', namespace="ctf")),
     # 漏洞体验
-    url(r'^exp/$', ExpView.as_view(), name="exp_list"),
+    url(r'^exp/', include('experiments.urls',namespace='exp')),
     # captcha
     url(r'^captcha/', include('captcha.urls')),
     # 用户管理
