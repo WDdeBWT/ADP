@@ -13,7 +13,7 @@ from django.core.urlresolvers import reverse
 
 from .models import UserProfile, EmailVerifyRecord
 from operations.models import UserMessage
-from .forms import LoginForm, RegisterForm, UploadImageForm, ForgetPswForm, ModifyPswForm, UserInfoForm, \
+from .forms import LoginForm, LoginFormNoCaptcha, RegisterForm, UploadImageForm, ForgetPswForm, ModifyPswForm, UserInfoForm, \
     MessageSendForm, UserBirthdayInfoForm
 from utils.email_send import send_register_email
 from utils.mixin_utils import LoginRequiredMixin
@@ -120,10 +120,17 @@ class LogoutView(View):
 class LoginView(View):
     def get(self, request):
         login_form = LoginForm()
-        return render(request, "login.html")
+        return render(request, "login.html", {"logintimes": 0})
 
     def post(self, request):
-        login_form = LoginForm(request.POST)
+        logintimes = request.POST.get("login_times", 0)
+        logintimes = logintimes.rstrip('/')
+        logintimes = int(logintimes)
+        if logintimes < 3:
+            login_form = LoginFormNoCaptcha(request.POST)
+        else:
+            login_form = LoginForm(request.POST)
+        logintimes = logintimes + 1
         if login_form.is_valid():
             user_name = request.POST.get("username", "")
             pass_word = request.POST.get("password", "")
@@ -133,11 +140,11 @@ class LoginView(View):
                     login(request, user)
                     return HttpResponseRedirect(reverse("index"))
                 else:
-                    return render(request, "login.html", {"msg": "用户未激活","login_form": login_form})
+                    return render(request, "login.html", {"msg": "用户未激活","login_form": login_form, "logintimes": logintimes})
             else:
-                return render(request, "login.html", {"msg": "用户名或密码错误！","login_form": login_form})
+                return render(request, "login.html", {"msg": "用户名或密码错误！","login_form": login_form, "logintimes": logintimes})
         else:
-            return render(request, "login.html")
+            return render(request, "login.html", {"login_form": login_form, "logintimes": logintimes})
 
 
 class UserinfoView(LoginRequiredMixin, View):
