@@ -80,7 +80,8 @@ class RegisterView(View):
             else:
                 user_message.save()
                 user_profile.save()
-            return render(request, "login.html")
+                return render(request, "register.html", {"email": user_name, "is_registered": True})
+                # return render(request, "login.html")
         else:
             return render(request, "register.html", {"register_form": register_form})
 
