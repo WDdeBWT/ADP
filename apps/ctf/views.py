@@ -185,7 +185,6 @@ class CtfDetailView(View):
 
             # 调用docker
             exist = Docker.objects.filter(image=ctf.images, user=request.user.username)
-
             # 得到本机IP
             try:
                 my_ip = get_ip_address()
@@ -196,8 +195,20 @@ class CtfDetailView(View):
             my_ip = "0.0.0.0"
 
             if not exist:
-                # 将出题人提供的镜像实例化并分配内存
                 client = docker.from_env()
+                # 将用户在此之前实例化的docker删除
+                existed = Docker.objects.filter(user=request.user.username)
+                for doc in existed:
+                    id = doc.con_id
+                    try:
+                        container = client.containers.get(id)
+                        container.kill()
+                        container.remove(force=True)
+                    except:
+                        pass
+                    finally:
+                        doc.delete()
+                # 将出题人提供的镜像实例化并分配内存
                 old_ports = Docker.objects.values_list('port', flat=True)
                 exp_ports = exp_docker.objects.values_list('port', flat=True)
                 # 得到一个未被占用的端口
