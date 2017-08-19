@@ -43,7 +43,7 @@ class Experiment(models.Model):
 
 
 class Docker(models.Model):
-    user = models.CharField(max_length=20, default="", verbose_name="用户")
+    user = models.CharField(max_length=50, default="", verbose_name="用户")
     image = models.CharField(max_length=50, verbose_name=u"镜像", default="")
     port = models.IntegerField(verbose_name=u"映射端口", default=80)
     con_id = models.CharField(verbose_name=u"容器ID", default="", max_length=100)
