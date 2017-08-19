@@ -1,19 +1,16 @@
 # -*- coding: utf-8 -*-
+
 from django.shortcuts import render
 from django.views.generic.base import View
 from pure_pagination import Paginator, PageNotAnInteger
 from django.shortcuts import redirect
-import docker,random,time,socket,platform
+import docker, random, time, socket, platform
 import fcntl
 import struct
 
-from .models import Experiment,Docker
+from .models import Experiment, Docker
 from ctf.models import Docker as ctf_docker
 from operations.models import UserComments
-from users.forms import LoginForm
-
-
-# Create your views here.
 
 
 class ExpView(View):
@@ -22,7 +19,6 @@ class ExpView(View):
     """
 
     def get(self, request):
-
         CATEGORY_CHOICES = {
             "sql": u"SQL注入漏洞",
             "xss": u"跨站脚本漏洞",
@@ -57,7 +53,6 @@ class ExpView(View):
             "gj": u"高级",
         }
 
-        # 得到所有实验
         all_exps = Experiment.objects.order_by("-click_nums")
         tags = []
         for exp in all_exps:
@@ -74,19 +69,18 @@ class ExpView(View):
                 category = ''
             all_exps = Experiment.objects.filter(category=category).order_by("-click_nums")
         try:
-            category=CATEGORY_CHOICES[category]
+            category = CATEGORY_CHOICES[category]
         except:
-            category=''
+            category = ''
 
         for exp in all_exps:
-            exp.degree=DEGREE[exp.degree]
-            exp.category=CATEGORY_CHOICES[exp.category]
+            exp.degree = DEGREE[exp.degree]
+            exp.category = CATEGORY_CHOICES[exp.category]
 
         exp_comment_objects = UserComments.objects.filter(comment_type=2).order_by("-add_time")
 
         # 在后台如果删除了课程那么其对应的评论也应该被删除,不然会报错
         exp_ids = Experiment.objects.all().values_list("id", flat=True)
-        # 要是评论的课程删除了就删除这个评论
         for exp_comment_object in exp_comment_objects:
             if exp_comment_object.comment_id in exp_ids:
                 temp = Experiment.objects.get(id=exp_comment_object.comment_id)
@@ -98,7 +92,7 @@ class ExpView(View):
             comment_page = request.GET.get('comment_page', 1)
         except PageNotAnInteger:
             comment_page = 1
-        # 每页显示5条记录
+        # 每页显示3条记录
         p2 = Paginator(exp_comment_objects, 3, request=request)
         comments = p2.page(comment_page)
 
@@ -119,18 +113,17 @@ class ExpView(View):
 
 
 class ExpDetailView(View):
-    '''
+    """
     漏洞docker页面
-    '''
+    """
 
-    def get(self,request,exp_id):
-        # 判断用户是否已经登录,为之后的评论和提交答案做准备
+    def get(self, request, exp_id):
         if not request.user.is_authenticated():
-            return render(request,"login.html")
+            return render(request, "login.html")
         else:
-            #获取漏洞
-            exp = Experiment.objects.get(id = int(exp_id))
-            
+            # 获取漏洞
+            exp = Experiment.objects.get(id=int(exp_id))
+
             # 调用docker
             exist = Docker.objects.filter(image=exp.images, user=request.user.username)
             if not exist:
@@ -148,8 +141,8 @@ class ExpDetailView(View):
                 container.save()
 
             # 以下为测试部分，之后有服务器再修正
-            #判断系统并获取IP
-            if platform.system()=='Linux':
+            # 判断系统并获取IP
+            if platform.system() == 'Linux':
                 try:
                     myip = get_ip_address('eth0')
                 except:
@@ -164,10 +157,11 @@ class ExpDetailView(View):
             time.sleep(1)
             return redirect(url)
 
+
 def get_ip_address(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     return socket.inet_ntoa(fcntl.ioctl(
-        s.fileno(),
-        0x8915,  # SIOCGIFADDR
-        struct.pack('256s', ifname[:15])
+            s.fileno(),
+            0x8915,
+            struct.pack('256s', ifname[:15])
     )[20:24])
