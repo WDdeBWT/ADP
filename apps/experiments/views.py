@@ -12,7 +12,6 @@ import time
 
 from .models import Experiment, Docker
 from ctf.models import Docker as ctfDocker
-from operations.models import UserComments
 
 
 class ExpView(View):
@@ -55,49 +54,31 @@ class ExpView(View):
             "gj": u"高级",
         }
 
-        all_exps = Experiment.objects.order_by("-click_nums")
+        all_exps = Experiment.objects.all().order_by("-click_nums")
         tags = []
         for exp in all_exps:
             tags.append(CATEGORY_CHOICES[exp.category])
         tags = list(set(tags))
-
+        # 用户选择的分类信息
         category = request.GET.get('category', "")
-        if category == '':
+        if not category:
             pass
         else:
             try:
                 category = CATEGORY_CHOICES2[category]
             except:
                 category = ''
-            all_exps = Experiment.objects.filter(category=category).order_by("-click_nums")
+            if category:
+                all_exps = Experiment.objects.filter(category=category).order_by("-click_nums")
         try:
             category = CATEGORY_CHOICES[category]
         except:
             category = ''
-
+        # 页面标签列表
         for exp in all_exps:
             exp.degree = DEGREE[exp.degree]
             exp.category = CATEGORY_CHOICES[exp.category]
-
-        exp_comment_objects = UserComments.objects.filter(comment_type=2).order_by("-add_time")
-
-        # 在后台如果删除了课程那么其对应的评论也应该被删除,不然会报错
-        exp_ids = Experiment.objects.all().values_list("id", flat=True)
-        for exp_comment_object in exp_comment_objects:
-            if exp_comment_object.comment_id in exp_ids:
-                temp = Experiment.objects.get(id=exp_comment_object.comment_id)
-                exp_comment_object.exp = temp
-            else:
-                exp_comment_object.delete()
-        # 评论分页
-        try:
-            comment_page = request.GET.get('comment_page', 1)
-        except PageNotAnInteger:
-            comment_page = 1
-        # 每页显示3条记录
-        p2 = Paginator(exp_comment_objects, 3, request=request)
-        comments = p2.page(comment_page)
-
+        # 分页
         try:
             exp_page = request.GET.get('exp_page', 1)
         except PageNotAnInteger:
@@ -108,7 +89,6 @@ class ExpView(View):
 
         return render(request, 'exp_list.html', {
             "category": category,
-            "all_comment": comments,
             "tags": tags,
             "hot_exps": hot_exps,
         })
@@ -120,10 +100,15 @@ class ExpDetailView(View):
     """
 
     def get(self, request, exp_id):
+
         if not request.user.is_authenticated():
             return render(request, "login.html")
         else:
             exp = Experiment.objects.get(id=int(exp_id))
+            exp.students += 1
+            exp.save()
+
+            # 调用docker
             exist = Docker.objects.filter(image=exp.images, user=request.user.username)
             # 得到本机IP
             try:
@@ -175,7 +160,7 @@ class ExpDetailView(View):
                     content = http.request('GET', url)
                 except:
                     content = []
-                    time.sleep(0.3)
+                    time.sleep(0.5)
             return redirect(url)
 
 

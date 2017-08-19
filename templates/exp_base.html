@@ -32,18 +32,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/index/"><img alt="ADP攻防演练平台" src="{% static 'images/logo3.png' %}"
+            <a class="navbar-brand" href="{% url 'index' %}"><img alt="ADP攻防演练平台" src="{% static 'images/logo3.png' %}"
                                                         style="padding-left: 80px;"></a>
         </div>
         <div id="navbar-collapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/index/">主页</a></li>
-                <li><a href="/ctf/list/">CTF</a></li>
+                <li><a href="{% url 'index' %}">主页</a></li>
+                <li><a href="{% url 'ctf:ctf_list' %}">CTF</a></li>
                 <li><a href="{% url 'exp:exp_list' %}">漏洞体验</a></li>
                 <li><a>|</a></li>
                 {% if request.user.is_authenticated %}
                         <li><a>{{ request.user.nick_name }}</a></li>
-                        <li><a href="/users/info/">个人中心</a></li>
+                        <li><a href="{% url 'users:user_info' %}">个人中心</a></li>
                         <li><a href="{% url 'logout' %}">退出</a></li>
                 {% else %}
                         <li><a href="{% url 'login' %}">登录</a></li>
@@ -82,7 +82,7 @@
                 <a target="_blank" href="#">
                     <i class="fa fa-weixin fa-3x"></i>
                 </a>
-                <a target="_blank" href="http://weibo.com/dropsec?refer_flag=1001030101_&is_all=1">
+                <a target="_blank" href="#">
                     <i class="fa fa-weibo fa-3x"></i>
                 </a>
             </div>
