@@ -5,11 +5,12 @@ from django.views.generic.base import View
 from pure_pagination import Paginator, PageNotAnInteger
 from django.db.models import Count
 from django.http import JsonResponse
+from itertools import chain
 import docker
 import socket
 
 from .models import Ctf, Docker
-from experiments.models import Docker as exp_docker
+from experiments.models import Docker as expDocker
 from operations.models import UserComments, UserLearn
 from users.models import UserProfile
 
@@ -197,8 +198,9 @@ class CtfDetailView(View):
             if not exist:
                 client = docker.from_env()
                 # 将用户在此之前实例化的docker删除
-                existed = Docker.objects.filter(user=request.user.username)
-                for doc in existed:
+                existed_ctf = Docker.objects.filter(user=request.user.username)
+                existed_exp = expDocker.objects.filter(user=request.user.username)
+                for doc in chain(existed_ctf, existed_exp):
                     id = doc.con_id
                     try:
                         container = client.containers.get(id)
@@ -209,19 +211,20 @@ class CtfDetailView(View):
                     finally:
                         doc.delete()
                 # 将出题人提供的镜像实例化并分配内存
-                old_ports = Docker.objects.values_list('port', flat=True)
-                exp_ports = exp_docker.objects.values_list('port', flat=True)
+                ctf_ports = Docker.objects.values_list('port', flat=True)
+                exp_ports = expDocker.objects.values_list('port', flat=True)
                 # 得到一个未被占用的端口
                 used_port = []
                 while port_is_used(my_ip, [i for i in range(1024, 65536) if
-                                           i not in (list(old_ports) + list(exp_ports) + used_port)][0]):
+                                           i not in (list(ctf_ports) + list(exp_ports) + used_port)][0]):
                     used_port.append([i for i in range(1024, 65536) if
-                                      i not in (list(old_ports) + list(exp_ports) + used_port)][0])
-                port = [i for i in range(1024, 65536) if i not in (list(old_ports) + list(exp_ports) + used_port)][0]
+                                      i not in (list(ctf_ports) + list(exp_ports) + used_port)][0])
+                port = [i for i in range(1024, 65536) if i not in (list(ctf_ports) + list(exp_ports) + used_port)][0]
                 con = client.containers.run(ctf.images, detach=True, ports={str(ctf.port) + '/tcp': str(port)})
                 container = Docker(user=request.user.username, image=ctf.images, port=port, con_id=con.id)
                 container.save()
 
+            # 只是分配了端口,不确定能否打开;先渲染出网页再说,反正用户操作也要时间;否则参照experiment的解决方案!
             url = "http://%s:" % (my_ip) + str(Docker.objects.get(user=request.user, image=ctf.images).port)
 
             return render(request, 'ctf-detail.html', {

@@ -10,10 +10,12 @@ from django.views.generic.base import View
 from django.contrib.auth.hashers import make_password
 from pure_pagination import Paginator, PageNotAnInteger
 from django.core.urlresolvers import reverse
+from itertools import chain
 
 from .models import UserProfile, EmailVerifyRecord
 from operations.models import UserMessage
-from .forms import LoginForm, LoginFormNoCaptcha, RegisterForm, UploadImageForm, ForgetPswForm, ModifyPswForm, UserInfoForm, \
+from .forms import LoginForm, LoginFormNoCaptcha, RegisterForm, UploadImageForm, ForgetPswForm, ModifyPswForm, \
+    UserInfoForm, \
     MessageSendForm, UserBirthdayInfoForm
 from utils.email_send import send_register_email
 from utils.mixin_utils import LoginRequiredMixin
@@ -91,9 +93,8 @@ class LogoutView(View):
         client = docker.from_env()
         dockers = Docker.objects.filter(user=request.user.username).all()
         exp_dockers = exp_docker.objects.filter(user=request.user.username).all()
-        for doc in dockers:
+        for doc in chain(dockers, exp_dockers):
             id = doc.con_id
-            # 删除镜像和数据库条目
             try:
                 container = client.containers.get(id)
                 container.kill()
@@ -102,17 +103,6 @@ class LogoutView(View):
                 pass
             finally:
                 doc.delete()
-        for exp_doc in exp_dockers:
-            id = exp_doc.con_id
-            # 删除镜像和数据库条目
-            try:
-                container = client.containers.get(id)
-                container.kill()
-                container.remove(force=True)
-            except:
-                pass
-            finally:
-                exp_doc.delete()
         logout(request)
         return HttpResponseRedirect(reverse("index"))
 
@@ -140,9 +130,11 @@ class LoginView(View):
                     login(request, user)
                     return HttpResponseRedirect(reverse("index"))
                 else:
-                    return render(request, "login.html", {"msg": "用户未激活","login_form": login_form, "logintimes": logintimes})
+                    return render(request, "login.html",
+                                  {"msg": "用户未激活", "login_form": login_form, "logintimes": logintimes})
             else:
-                return render(request, "login.html", {"msg": "用户名或密码错误！","login_form": login_form, "logintimes": logintimes})
+                return render(request, "login.html",
+                              {"msg": "用户名或密码错误！", "login_form": login_form, "logintimes": logintimes})
         else:
             return render(request, "login.html", {"login_form": login_form, "logintimes": logintimes})
 
