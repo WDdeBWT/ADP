@@ -18,6 +18,7 @@ from .forms import LoginForm, LoginFormNoCaptcha, RegisterForm, UploadImageForm,
     UserInfoForm, \
     MessageSendForm, UserBirthdayInfoForm
 from utils.email_send import send_register_email
+from utils.message_send import send_message
 from utils.mixin_utils import LoginRequiredMixin
 from ctf.models import Ctf, Docker
 from experiments.models import Docker as exp_docker
@@ -73,15 +74,16 @@ class RegisterView(View):
             user_profile.is_active = False
             # user_profile.is_active = True
             # 写入欢迎注册的消息
-            user_message = UserMessage()
-            user_message.user = user_profile
-            user_message.message = "欢迎注册ADP-攻防演练平台"
+            # user_message = UserMessage()
+            # user_message.email = user_profile
+            # user_message.message = "欢迎注册ADP-攻防演练平台"
             try:
                 send_register_email(user_name, "register")
             except:
                 return render(request, "register.html", {"register_form": register_form, "msg": "发生错误，请稍候再试"})
             else:
-                user_message.save()
+                # user_message.save()
+                send_message("欢迎注册ADP-攻防演练平台", "系统欢迎消息", user_name)
                 user_profile.save()
                 return render(request, "register.html", {"email": user_name, "is_registered": True})
                 # return render(request, "login.html")
@@ -311,10 +313,11 @@ class SendmessageView(LoginRequiredMixin, View):
         if message_send_form.is_valid():
             existed_records = UserProfile.objects.filter(email=email)
             if existed_records:
-                new_message = UserMessage()
-                new_message.email = email
-                new_message.message = "发送人：" + request.user.email + "| 发送信息：" + request.POST.get("message", "")
-                new_message.save()
+                # new_message = UserMessage()
+                # new_message.email = email
+                # new_message.message = "发送人：" + request.user.email + "| 发送信息：" + request.POST.get("message", "")
+                # new_message.save()
+                send_message(request.POST.get("message", ""), request.user.email, email)
                 return render(request, 'usercenter-sendmessage.html', {"messages": "消息已发送"})
             else:
                 return render(request, 'usercenter-sendmessage.html', {"messages": "该用户不存在！"})

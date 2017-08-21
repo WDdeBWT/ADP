@@ -144,7 +144,7 @@
                         <br/>
                         <div class="error btns" id="jsEmailTips">
                             {% for key,error in register_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>
-                        <input id="Button1" type="submit" value="发送消息">
+                        <input id="Button1" type="submit" value="发送站内信">
                         {% csrf_token %}
                     </form>
                 </div>

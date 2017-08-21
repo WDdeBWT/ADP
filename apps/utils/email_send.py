@@ -5,7 +5,7 @@ __date__ = "2017/7/19 11:54"
 from random import Random
 from django.core.mail import send_mail
 
-from  users.models import EmailVerifyRecord
+from users.models import EmailVerifyRecord
 from ADP.settings import EMAIL_FROM
 
 
