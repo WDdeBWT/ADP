@@ -45,7 +45,8 @@ class ActiveUserView(View):
                 user.is_active = True
                 user.save()
                 EmailVerifyRecord.objects.filter(code=active_code, send_type="register").delete()
-                return render(request, "login.html")
+                # return render(request, "login.html")
+                return render(request, "login.html", {"logintimes": 0})
         else:
             return render(request, "active_fail.html")
 
@@ -120,10 +121,11 @@ class LogoutView(View):
 class LoginView(View):
     def get(self, request):
         login_form = LoginForm()
+        # return render(request, "login.html")
         return render(request, "login.html", {"logintimes": 0})
 
     def post(self, request):
-        logintimes = request.POST.get("login_times", 0)
+        logintimes = request.POST.get("login_times", "0")
         logintimes = logintimes.rstrip('/')
         logintimes = int(logintimes)
         if logintimes < 3:
