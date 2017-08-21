@@ -85,7 +85,6 @@
                         <div class="form-group marb8 captcha1 {% if login_form.errors.captcha %}errorput{% endif %}">
                             <label>验&nbsp;证&nbsp;码</label>
                             {{ login_form.captcha }}
-{#                            <img src="/captcha/image/2f3f82e5f7a054bf5caa93b9b0bb6cc308fb7011/" alt="captcha" class="captcha" /> <input id="id_captcha_0" name="captcha_0" type="hidden" value="2f3f82e5f7a054bf5caa93b9b0bb6cc308fb7011" /> <input autocomplete="off" id="id_captcha_1" name="captcha_1" type="text" />#}
                         </div>
                     {% endif %}
                     <div class="error btns login-form-tips" id="jsLoginTips">
@@ -96,7 +95,6 @@
                     </div>
                     <input class="btn btn-green" id="jsLoginBtn" type="submit" value="立即登录 > "/>
                     <input name="login_times" id="login_times" type="hidden" value={{ logintimes }}/>
-                    <input type='hidden' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy'/>
                     {% csrf_token %}
                 </form>
                 <p class="form-p">没有帐号？<a href="{% url 'register' %}">[立即注册]</a></p>

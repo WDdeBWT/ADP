@@ -1,5 +1,4 @@
 Django==1.9
-DjangoUeditor==1.8.143
 MySQL-python==1.2.5
 Pillow==4.2.1
 appdirs==1.4.3
@@ -16,6 +15,5 @@ pip==9.0.1
 pyparsing==2.2.0
 setuptools==35.0.2
 six==1.10.0	
-wheel==0.29.0	
-xadmin==0.6.1
+wheel==0.29.0
 docker==2.0.0

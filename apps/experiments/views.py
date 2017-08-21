@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
+
 from django.shortcuts import render
 from django.views.generic.base import View
 from pure_pagination import Paginator, PageNotAnInteger
 from django.shortcuts import redirect
-import docker,random,time,socket,platform
-import fcntl
-import struct
+from itertools import chain
+import docker
+import socket
+import urllib3
+import time
 
-from .models import Experiment,Docker
-from ctf.models import Docker as ctf_docker
-from operations.models import UserComments
-from users.forms import LoginForm
-
-
-# Create your views here.
+from .models import Experiment, Docker
+from ctf.models import Docker as ctfDocker
 
 
 class ExpView(View):
@@ -22,7 +20,6 @@ class ExpView(View):
     """
 
     def get(self, request):
-
         CATEGORY_CHOICES = {
             "sql": u"SQL注入漏洞",
             "xss": u"跨站脚本漏洞",
@@ -57,51 +54,31 @@ class ExpView(View):
             "gj": u"高级",
         }
 
-        # 得到所有实验
-        all_exps = Experiment.objects.order_by("-click_nums")
+        all_exps = Experiment.objects.all().order_by("-click_nums")
         tags = []
         for exp in all_exps:
             tags.append(CATEGORY_CHOICES[exp.category])
         tags = list(set(tags))
-
+        # 用户选择的分类信息
         category = request.GET.get('category', "")
-        if category == '':
+        if not category:
             pass
         else:
             try:
                 category = CATEGORY_CHOICES2[category]
             except:
                 category = ''
-            all_exps = Experiment.objects.filter(category=category).order_by("-click_nums")
+            if category:
+                all_exps = Experiment.objects.filter(category=category).order_by("-click_nums")
         try:
-            category=CATEGORY_CHOICES[category]
+            category = CATEGORY_CHOICES[category]
         except:
-            category=''
-
+            category = ''
+        # 页面标签列表
         for exp in all_exps:
-            exp.degree=DEGREE[exp.degree]
-            exp.category=CATEGORY_CHOICES[exp.category]
-
-        exp_comment_objects = UserComments.objects.filter(comment_type=2).order_by("-add_time")
-
-        # 在后台如果删除了课程那么其对应的评论也应该被删除,不然会报错
-        exp_ids = Experiment.objects.all().values_list("id", flat=True)
-        # 要是评论的课程删除了就删除这个评论
-        for exp_comment_object in exp_comment_objects:
-            if exp_comment_object.comment_id in exp_ids:
-                temp = Experiment.objects.get(id=exp_comment_object.comment_id)
-                exp_comment_object.exp = temp
-            else:
-                exp_comment_object.delete()
-        # 评论分页
-        try:
-            comment_page = request.GET.get('comment_page', 1)
-        except PageNotAnInteger:
-            comment_page = 1
-        # 每页显示5条记录
-        p2 = Paginator(exp_comment_objects, 3, request=request)
-        comments = p2.page(comment_page)
-
+            exp.degree = DEGREE[exp.degree]
+            exp.category = CATEGORY_CHOICES[exp.category]
+        # 分页
         try:
             exp_page = request.GET.get('exp_page', 1)
         except PageNotAnInteger:
@@ -112,62 +89,105 @@ class ExpView(View):
 
         return render(request, 'exp_list.html', {
             "category": category,
-            "all_comment": comments,
             "tags": tags,
             "hot_exps": hot_exps,
         })
 
 
 class ExpDetailView(View):
-    '''
+    """
     漏洞docker页面
-    '''
+    """
 
-    def get(self,request,exp_id):
-        # 判断用户是否已经登录,为之后的评论和提交答案做准备
+    def get(self, request, exp_id):
+
         if not request.user.is_authenticated():
-            return render(request,"login.html")
+            return render(request, "login.html")
         else:
-            #获取漏洞
-            exp = Experiment.objects.get(id = int(exp_id))
-            
+            exp = Experiment.objects.get(id=int(exp_id))
+            exp.students += 1
+            exp.save()
+
             # 调用docker
             exist = Docker.objects.filter(image=exp.images, user=request.user.username)
-            if not exist:
-                # 将出题人提供的镜像实例化并分配内存
-                client = docker.from_env()
-                old_ports = Docker.objects.values_list('port', flat=True)
-                ctf_ports = ctf_docker.objects.values_list('port', flat=True)
-                while True:
-                    port = random.randint(1024, 65535)
-                    if (port not in old_ports) and (port not in ctf_ports):
-                        break
+            # 得到本机IP
+            try:
+                my_ip = get_ip_address()
+            except:
+                my_ip = "127.0.0.1"
 
+            # 本地测试IP, 上线时删除
+            my_ip = "0.0.0.0"
+
+            if not exist:
+                client = docker.from_env()
+                # 将用户在此之前实例化的docker删除
+                existed_exp = Docker.objects.filter(user=request.user.username)
+                existed_ctf = ctfDocker.objects.filter(user=request.user.username)
+                for doc in chain(existed_exp, existed_ctf):
+                    id = doc.con_id
+                    try:
+                        container = client.containers.get(id)
+                        container.kill()
+                        container.remove(force=True)
+                    except:
+                        pass
+                    finally:
+                        doc.delete()
+                # 将出题人提供的镜像实例化并分配内存
+                exp_ports = Docker.objects.values_list('port', flat=True)
+                ctf_ports = ctfDocker.objects.values_list('port', flat=True)
+                # 得到一个未被占用的端口
+                used_port = []
+                while port_is_used(my_ip, [i for i in range(1024, 65536) if
+                                           i not in (list(exp_ports) + list(ctf_ports) + used_port)][0]):
+                    used_port.append([i for i in range(1024, 65536) if
+                                      i not in (list(exp_ports) + list(ctf_ports) + used_port)][0])
+                port = [i for i in range(1024, 65536) if i not in (list(exp_ports) + list(ctf_ports) + used_port)][0]
                 con = client.containers.run(exp.images, detach=True, ports={str(exp.port) + '/tcp': str(port)})
                 container = Docker(user=request.user.username, image=exp.images, port=port, con_id=con.id)
                 container.save()
 
-            # 以下为测试部分，之后有服务器再修正
-            #判断系统并获取IP
-            if platform.system()=='Linux':
+            url = "http://%s:" % (my_ip) + str(Docker.objects.get(user=request.user, image=exp.images).port)
+            # 监听docker可以访问
+            http = urllib3.PoolManager()
+            try:
+                content = http.request('GET', url)
+            except:
+                content = []
+            while not content:
                 try:
-                    myip = get_ip_address('eth0')
+                    content = http.request('GET', url)
                 except:
-                    try:
-                        myip = get_ip_address('wlan0')
-                    except:
-                        myip = "127.0.0.1"
-            else:
-                myname = socket.getfqdn(socket.gethostname())
-                myip = socket.gethostbyname(myname)
-            url = "http://%s:" % (myip) + str(Docker.objects.get(user=request.user, image=exp.images).port)
-            time.sleep(1)
+                    content = []
+                    time.sleep(0.5)
             return redirect(url)
 
-def get_ip_address(ifname):
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    return socket.inet_ntoa(fcntl.ioctl(
-        s.fileno(),
-        0x8915,  # SIOCGIFADDR
-        struct.pack('256s', ifname[:15])
-    )[20:24])
+
+def get_ip_address():
+    """
+    获取本机IP地址
+    参考:https://www.chenyudong.com/archives/python-get-local-ip-graceful.html
+    """
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(('8.8.8.8', 80))
+        ip = s.getsockname()[0]
+    finally:
+        s.close()
+    return ip
+
+
+def port_is_used(ip, port):
+    """
+    判断此IP的此端口是否被占用(此端口是否打开)
+    被占用返回True, 没有被占用返回False
+    参考:http://www.jb51.net/article/79000.htm
+    """
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect((ip, int(port)))
+        s.shutdown(2)
+        return True
+    except:
+        return False

@@ -3,11 +3,7 @@
 from __future__ import unicode_literals
 from datetime import datetime
 from django.db import models
-import os
 
-from ADP.settings import STATIC_URL
-
-# Create your models here.
 
 # ctf题型分类
 CATEGORY_CHOICES = (
@@ -25,8 +21,8 @@ class Ctf(models.Model):
     name = models.CharField(max_length=50, verbose_name=u"课程名")
     # 可能会将题目详情改为富文本显示
     detail = models.CharField(verbose_name=u"题目详情", default="", max_length=300)
-    images = models.CharField(verbose_name=u"题目镜像",default="wooyun:latest",max_length=50)
-    port = models.IntegerField(verbose_name=u"开放端口",default=80)
+    images = models.CharField(verbose_name=u"题目镜像", default="wooyun:latest", max_length=50)
+    port = models.IntegerField(verbose_name=u"开放端口", default=80)
     is_banner = models.BooleanField(default=False, verbose_name=u"是否轮播")
     source = models.CharField(max_length=100, verbose_name=u"题目来源", default="")
     degree = models.CharField(verbose_name=u"难度", max_length=2, choices=(("cj", "初级"), ("zj", "中级"), ("gj", "高级")))
@@ -50,10 +46,10 @@ class Ctf(models.Model):
 
 
 class Docker(models.Model):
-    user = models.CharField(max_length=20,default="",verbose_name="用户")
-    image = models.CharField(max_length=50,verbose_name=u"镜像",default="")
-    port = models.IntegerField(verbose_name=u"映射端口",default=80)
-    con_id = models.CharField(verbose_name=u"容器ID",default="",max_length=100)
+    user = models.CharField(max_length=50, default="", verbose_name="用户")
+    image = models.CharField(max_length=50, verbose_name=u"镜像", default="")
+    port = models.IntegerField(verbose_name=u"映射端口", default=80)
+    con_id = models.CharField(verbose_name=u"容器ID", default="", max_length=100)
 
     class Meta:
         verbose_name = u"容器信息"
@@ -68,6 +64,3 @@ class BannerCtf(Ctf):
         verbose_name = "轮播CTF题目"
         verbose_name_plural = verbose_name
         proxy = True
-
-
-
