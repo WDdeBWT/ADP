@@ -192,9 +192,6 @@ class CtfDetailView(View):
             except:
                 my_ip = "127.0.0.1"
 
-            # 本地测试IP, 上线时删除
-            my_ip = "0.0.0.0"
-
             if not exist:
                 client = docker.from_env()
                 # 将用户在此之前实例化的docker删除
