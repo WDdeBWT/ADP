@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from itertools import chain
 import docker
 import socket
+import random
 
 from .models import Ctf, Docker
 from experiments.models import Docker as expDocker
@@ -197,6 +198,8 @@ class CtfDetailView(View):
                 # 将用户在此之前实例化的docker删除
                 existed_ctf = Docker.objects.filter(user=request.user.username)
                 existed_exp = expDocker.objects.filter(user=request.user.username)
+                ctf_ports = list(Docker.objects.values_list('port', flat=True))
+                exp_ports = list(expDocker.objects.values_list('port', flat=True))
                 for doc in chain(existed_ctf, existed_exp):
                     id = doc.con_id
                     try:
@@ -207,16 +210,12 @@ class CtfDetailView(View):
                         pass
                     finally:
                         doc.delete()
-                # 将出题人提供的镜像实例化并分配内存
-                ctf_ports = Docker.objects.values_list('port', flat=True)
-                exp_ports = expDocker.objects.values_list('port', flat=True)
                 # 得到一个未被占用的端口
-                used_port = []
-                while port_is_used(my_ip, [i for i in range(1024, 65536) if
-                                           i not in (list(ctf_ports) + list(exp_ports) + used_port)][0]):
-                    used_port.append([i for i in range(1024, 65536) if
-                                      i not in (list(ctf_ports) + list(exp_ports) + used_port)][0])
-                port = [i for i in range(1024, 65536) if i not in (list(ctf_ports) + list(exp_ports) + used_port)][0]
+                ports = [i for i in range(1024, 65535) if i not in (exp_ports + ctf_ports)]
+                port = ports[random.randint(0, len(ports) - 1)]
+                while port_is_used(my_ip, port):
+                    ports.pop(port)
+                    port = ports[random.randint(0, len(ports) - 1)]
                 con = client.containers.run(ctf.images, detach=True, ports={str(ctf.port) + '/tcp': str(port)})
                 container = Docker(user=request.user.username, image=ctf.images, port=port, con_id=con.id)
                 container.save()

@@ -9,6 +9,7 @@ import docker
 import socket
 import urllib3
 import time
+import random
 
 from .models import Experiment, Docker
 from ctf.models import Docker as ctfDocker
@@ -118,9 +119,13 @@ class ExpDetailView(View):
 
             if not exist:
                 client = docker.from_env()
-                # 将用户在此之前实例化的docker删除
+                # 得到用户在此之前实例化的docker
                 existed_exp = Docker.objects.filter(user=request.user.username)
                 existed_ctf = ctfDocker.objects.filter(user=request.user.username)
+                # 得到已经被占用的端口
+                exp_ports = list(Docker.objects.values_list('port', flat=True))
+                ctf_ports = list(ctfDocker.objects.values_list('port', flat=True))
+                # 删除之前为用户初始化的镜像
                 for doc in chain(existed_exp, existed_ctf):
                     id = doc.con_id
                     try:
@@ -131,16 +136,12 @@ class ExpDetailView(View):
                         pass
                     finally:
                         doc.delete()
-                # 将出题人提供的镜像实例化并分配内存
-                exp_ports = Docker.objects.values_list('port', flat=True)
-                ctf_ports = ctfDocker.objects.values_list('port', flat=True)
                 # 得到一个未被占用的端口
-                used_port = []
-                while port_is_used(my_ip, [i for i in range(1024, 65536) if
-                                           i not in (list(exp_ports) + list(ctf_ports) + used_port)][0]):
-                    used_port.append([i for i in range(1024, 65536) if
-                                      i not in (list(exp_ports) + list(ctf_ports) + used_port)][0])
-                port = [i for i in range(1024, 65536) if i not in (list(exp_ports) + list(ctf_ports) + used_port)][0]
+                ports = [i for i in range(1024, 65535) if i not in (exp_ports + ctf_ports)]
+                port = ports[random.randint(0, len(ports) - 1)]
+                while port_is_used(my_ip, port):
+                    ports.pop(port)
+                    port = ports[random.randint(0, len(ports) - 1)]
                 con = client.containers.run(exp.images, detach=True, ports={str(exp.port) + '/tcp': str(port)})
                 container = Docker(user=request.user.username, image=exp.images, port=port, con_id=con.id)
                 container.save()
@@ -179,7 +180,7 @@ def port_is_used(ip, port):
     """
     判断此IP的此端口是否被占用(此端口是否打开)
     被占用返回True, 没有被占用返回False
-    参考:http://www.jb51.net/article/79000.htm
+    参考:http://www.jb51.net/article/79000.html
     """
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
