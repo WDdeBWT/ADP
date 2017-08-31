@@ -157,7 +157,7 @@ class CtfDetailView(View):
     def get(self, request, ctf_id):
 
         if not request.user.is_authenticated():
-            return render(request, "login.html")
+            return render(request, "login.html", {"logintimes": 0})
         else:
             ctf = Ctf.objects.get(id=int(ctf_id))
             ctf.click_num += 1
@@ -192,9 +192,6 @@ class CtfDetailView(View):
                 my_ip = get_ip_address()
             except:
                 my_ip = "127.0.0.1"
-
-            # 本地测试IP, 上线时删除
-            my_ip = "0.0.0.0"
 
             if not exist:
                 client = docker.from_env()
