@@ -217,7 +217,7 @@ class CtfDetailView(View):
                 ports = [i for i in range(1024, 65535) if i not in (exp_ports + ctf_ports)]
                 port = ports[random.randint(0, len(ports) - 1)]
                 while port_is_used(my_ip, port):
-                    ports.pop(port)
+                    ports.pop(ports.index(port))
                     port = ports[random.randint(0, len(ports) - 1)]
                 con = client.containers.run(ctf.images, detach=True, ports={str(ctf.port) + '/tcp': str(port)})
                 container = Docker(user=request.user.username, image=ctf.images, port=port, con_id=con.id)
