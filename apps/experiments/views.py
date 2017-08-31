@@ -103,7 +103,7 @@ class ExpDetailView(View):
     def get(self, request, exp_id):
 
         if not request.user.is_authenticated():
-            return render(request, "login.html")
+            return render(request, "login.html", {"logintimes": 0})
         else:
             exp = Experiment.objects.get(id=int(exp_id))
             exp.students += 1

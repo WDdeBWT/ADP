@@ -157,7 +157,7 @@ class CtfDetailView(View):
     def get(self, request, ctf_id):
 
         if not request.user.is_authenticated():
-            return render(request, "login.html")
+            return render(request, "login.html", {"logintimes": 0})
         else:
             ctf = Ctf.objects.get(id=int(ctf_id))
             ctf.click_num += 1
