@@ -1,5 +1,9 @@
 {% extends 'ctf_base.html' %}
+<<<<<<< HEAD
 {% load staticfiles %}
+=======
+
+>>>>>>> github/master
 
 {% block title %}CTF详情 - 攻防演练平台{% endblock %}
 
@@ -9,8 +13,13 @@
         <div class="wp">
             <div class="crumbs">
                 <ul>
+<<<<<<< HEAD
                     <li><a href="{% url 'index' %}">首页</a>></li>
                     <li><a href="{% url 'ctf:ctf_list' %}">CTF题库</a>></li>
+=======
+                    <li><a href="/">首页</a>></li>
+                    <li><a href="/">CTF题库</a>></li>
+>>>>>>> github/master
                     <li>CTF详情</li>
                 </ul>
             </div>
@@ -20,8 +29,13 @@
 
 
 {% block custom_css %}
+<<<<<<< HEAD
     <link href="{% static 'css/common_2016.css' %}" media="screen" rel="stylesheet" type="text/css">
     <link href="{% static 'css/ctf/CTF_Details.css' %}" media="screen" rel="stylesheet" type="text/css">
+=======
+    <link href="/static/css/common_2016.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/static/css/ctf/CTF_Details.css" media="screen" rel="stylesheet" type="text/css">
+>>>>>>> github/master
 {% endblock %}
 
 
@@ -37,11 +51,20 @@
                 <!--参数-->
                 <div class="de_mle_par">
                     <ul>
+<<<<<<< HEAD
                         <li>题目来源：<span>{{ ctf.source }}</span></li>
                         <li>题目难度：<span>{{ ctf.get_degree_display }}</span></li>
                         <li>点击人数：<span>{{ ctf.click_num }}人</span></li>
                         <li>答题次数：<span>{{ ctf.submit_num }}次</span></li>
                         <li>夺旗人数：<span>{{ ctf.success_num }}人</span></li>
+=======
+                        <li>题目来源：<span>
+                        <a> {{ ctf.source }} </a></span></li>
+                        <li>题目难度：<span>{{ ctf.get_degree_display }}</span></li>
+                        <li>参与人数：<span>{{ ctf.click_num }}人</span></li>
+                        <li>夺旗人数：<span>{{ ctf.success_num }}人</span></li>
+                        {#                        <li>收藏人数：<span>{{ ctf.fav_num }}人</span></li>#}
+>>>>>>> github/master
                         <li>解题通过率：<span>{{ pass_rate }}%</span></li>
                     </ul>
                 </div>
@@ -53,7 +76,11 @@
                     <div class="de_mle_link">
                         <div class="de_mle_p1">{{ ctf.detail }}</div>
                         <p class="de_mle_p2">解题链接：
+<<<<<<< HEAD
                             <a href="{{ url }}" id="exam_ctf_href" target="_blank">{{ url }}</a>
+=======
+                            <a href="{{ ctf.url }}" id="exam_ctf_href" target="_blank">{{ ctf.url }}</a>
+>>>>>>> github/master
                         </p>
                     </div>
 
@@ -188,6 +215,7 @@
 {% endblock %}
 
 {% block custom_js %}
+<<<<<<< HEAD
     <script type="text/javascript" src="{% static 'js/lib/jquery-1.8.3.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/common.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plug/jquery.validate.js' %}"></script>
@@ -198,6 +226,20 @@
     <script type="text/javascript">
         //提交答案
         $("#keysubmit_btn").click(function () {
+=======
+    <script type="text/javascript" src="/static/js/lib/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/static/js/common.js"></script>
+    <script type="text/javascript" src="/static/js/plug/jquery.validate.js"></script>
+    <script type="text/javascript" src="/static/js/plug/messages_zh.js"></script>
+    <script type="text/javascript" src="/static/js/plug/jquery.form.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/static/js/layer/laytpl.js"></script>
+    <script type="text/javascript">
+        //提交答案
+        $("#keysubmit_btn").click(function () {
+            var flag = '{{ flag }}';
+            if (flag == 1) {
+>>>>>>> github/master
                 var key = $.trim($("#key_txt").val());
                 if (key == "") {
                     layer.alert("提交答案不能为空");
@@ -232,6 +274,13 @@
                         }
                     }
                 });
+<<<<<<< HEAD
+=======
+
+            } else {
+                window.location.href = "http://www.baidu.com"; //弹出登录
+            }
+>>>>>>> github/master
         });
         $(".ideawrap .sure,.ideawrap .cancel,.popideawrap .CloseBtn").click(function () {
             $(".pop_markW,.popideawrap").fadeOut(200);
@@ -240,7 +289,16 @@
 
         //提交评论
         $('#comment_btn').bind('click', function () {
+<<<<<<< HEAD
                 SubmitComment();
+=======
+            var flag = '{{ flag }}';
+            if (flag == 1) {
+                SubmitComment();
+            } else {
+                window.location.href = "http://www.baidu.com"; //弹出登录
+            }
+>>>>>>> github/master
         });
 
         function SubmitComment() {

@@ -14,7 +14,11 @@ class UserProfile(AbstractUser):
     gender = models.CharField(max_length=6, choices=(("male", u"男"), ("female", "女")), default="male",
                               verbose_name=u"性别")
     mobile = models.CharField(max_length=11, default="", verbose_name=u"手机号码", blank=True)
+<<<<<<< HEAD
     image = models.ImageField(upload_to="image/%Y/%m", default=u"default_face.jpg", max_length=100,
+=======
+    image = models.ImageField(upload_to="image/%Y/%m", default=u"image/default.jpg", max_length=100,
+>>>>>>> github/master
                               verbose_name=u"用户头像")
     address = models.CharField(max_length=100, verbose_name=u"用户地区", default="未知")
     introduce = models.CharField(max_length=200, verbose_name=u"自我介绍", default="这个人很懒,什么都没有留下~")

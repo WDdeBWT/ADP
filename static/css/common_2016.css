@@ -95,6 +95,7 @@ blockquote:before, blockquote:after, q:before, q:after {
     /*clear: both*/
 /*}*/
 
+<<<<<<< HEAD
 
 
 .ui.segment {
@@ -235,6 +236,8 @@ a.ui.label:hover:before {
 
 
 
+=======
+>>>>>>> github/master
 .hide {
     display: none;
 }

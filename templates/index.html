@@ -1,19 +1,34 @@
+<<<<<<< HEAD
 ﻿{% load staticfiles %}
 
 <!DOCTYPE html>
 <html lang="zh-CN">
+=======
+<!DOCTYPE html>
+<html lang="zh-CN">
+{% load staticfiles %}
+>>>>>>> github/master
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
 
     <!-- External CSS -->
+<<<<<<< HEAD
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <!-- In-document CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+=======
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <!-- In-document CSS-->
+    <link rel="stylesheet" type="text/css" href="/static/css/style1.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/animate.css">
+>>>>>>> github/master
 
     <title>ADP</title>
 </head>
@@ -28,7 +43,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+<<<<<<< HEAD
                 <a class="navbar-brand" href="{% url 'index' %}"><img alt="ADP攻防演练平台" src="{% static 'images/logo1.png' %}"></a>
+=======
+                <a class="navbar-brand" href="{% url 'index' %}"><img alt="ADP攻防演练平台" src="/static/images/logo1.png"></a>
+>>>>>>> github/master
             </div>
             <div id="navbar-collapse" class="collapse navbar-collapse">
                     <ul class="selectMenu navbar-brand " id="jsSelectMenu">
@@ -37,29 +56,72 @@
                      </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">主页</a></li>
+<<<<<<< HEAD
                     <li><a href="{% url 'ctf:ctf_list' %}">CTF</a></li>
                     <li><a href="{% url 'exp:exp_list' %}">漏洞体验</a></li>
                     <li><a>|</a></li>
                     {% if request.user.is_authenticated %}
                         <li><a>{{ request.user.nick_name }}</a></li>
                         <li><a href="{% url 'users:user_info' %}">个人中心</a></li>
+=======
+                    <li><a href="ctf-list.html">CTF</a></li>
+                    <li><a href="experiment.html">漏洞体验</a></li>
+                    <li><a>|</a></li>
+                    {% if request.user.is_authenticated %}
+                        <li><a>{{ request.user.nick_name }}</a></li>
+                        <li><a href="/users/info/">个人中心</a></li>
+>>>>>>> github/master
                         <li><a href="{% url 'logout' %}">退出</a></li>
                     {% else %}
                         <li><a href="{% url 'login' %}">登录</a></li>
                         <li><a href="{% url 'register' %}">注册</a></li>
                     {% endif %}
+<<<<<<< HEAD
                 </ul>
             </div>
         </div>
+=======
+{#                    <div class="personal">#}
+{#                            <dl class="user fr">#}
+{#                                <dd>bobby<img class="down fr" src="{% static 'images/top_down.png' %}"/></dd>#}
+{#                                <dt><img width="20" height="20" src="{% static 'media/image/2016/12/default_big_14.png' %}"/></dt>#}
+{#                            </dl>#}
+{#                            <div class="userdetail">#}
+{#                            	<dl>#}
+{#	                                <dt><img width="80" height="80" src="{% static 'media/image/2016/12/default_big_14.png' %}"/></dt>#}
+{#	                                <dd>#}
+{#	                                    <h2>django</h2>#}
+{#	                                    <p>bobby</p>#}
+{#	                                </dd>#}
+{#                                </dl>#}
+{#                                <div class="btn">#}
+{#	                                <a class="personcenter fl" href="usercenter-info.html">进入个人中心</a>#}
+{#	                                <a class="fr" href="/logout/">退出</a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+				</div>
+                </ul>
+            </div>
+        </div><!-- /.container-->
+>>>>>>> github/master
     </nav>
     <div class="home-header-wrap">
         <div class="header-content-wrap">
             <div class="container">
+<<<<<<< HEAD
                 <h1 class="intro-text">ADP<br>攻防演练平台</h1>
                 <div class="buttons">
                     <a class="btn btn-primary custom-button red-btn" href="#ctf">CTF题库</a>
                     <a class="btn btn-primary custom-button green-btn" href="#experiment">漏洞体验</a>
                     <a class="btn btn-primary custom-button red-btn" href="#aboutus">关于我们</a>
+=======
+                <h1 class="intro-text">Lab5<br>攻防演练平台</h1>
+                <div class="buttons">
+                    <a class="btn btn-primary custom-button red-btn" href="#ctf">CTF题库</a>
+                    <a class="btn btn-primary custom-button green-btn" href="http://ctf.dropsec.xyz/">攻防平台</a>
+                    <a class="btn btn-primary custom-button red-btn" href="http://form.mikecrm.com/e3sJIn">意见反馈</a>
+>>>>>>> github/master
                 </div>
             </div>
         </div>
@@ -73,6 +135,7 @@
                 <div class="section-legend white-txt">精心设计的题库</div>
             </div>
             <div class="row">
+<<<<<<< HEAD
                 {% for ctf in all_ctfs %}
                 <div class="col-md-4">
                     <h3 class="white-txt"><a href="{% url 'ctf:ctf_detail' ctf.id %}" target="_blank">{{ ctf.name }}</a></h3>
@@ -81,6 +144,32 @@
                     </a>
                 </div>
                 {% endfor %}
+=======
+                <div class="col-md-4">
+                    <h3 class="white-txt">简单sql注入3</h3>
+                    <img  class="img-rectangle" src="/static/images/3.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">简单sql注入3</h3>
+                    <img  class="img-rectangle" src="/static/images/3.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">简单sql注入4</h3>
+                    <img  class="img-rectangle" src="/static/images/4.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">简单sql注入4</h3>
+                    <img  class="img-rectangle" src="/static/images/4.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">简单sql注入4</h3>
+                    <img  class="img-rectangle" src="/static/images/4.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">简单sql注入4</h3>
+                    <img  class="img-rectangle" src="/static/images/4.jpg"></img>
+                </div>
+>>>>>>> github/master
             </div>
             <h3 class="white-txt">欢迎你来挑战！</h3>
         </div>
@@ -92,6 +181,7 @@
                 <div class="section-legend white-txt">全新的攻防体验</div>
             </div>
             <div class="row">
+<<<<<<< HEAD
                 {% for experiment in all_experiments %}
                 <div class="col-md-4">
                     <h3 class="white-txt">{{ experiment.name }}</h3>
@@ -101,6 +191,32 @@
                 </div>
 
                 {% endfor %}
+=======
+                <div class="col-md-4">
+                    <h3 class="white-txt">sql注入漏洞</h3>
+                        <img  class="img-rectangle" src="/static/images/3.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">xss漏洞</h3>
+                    <img  class="img-rectangle" src="/static/images/4.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">strust2-048</h3>
+                    <img  class="img-rectangle" src="/static/images/5.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">sql注入漏洞</h3>
+                        <img  class="img-rectangle" src="/static/images/3.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">xss漏洞</h3>
+                    <img  class="img-rectangle" src="/static/images/4.jpg"></img>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="white-txt">strust2-048</h3>
+                    <img  class="img-rectangle" src="/static/images/5.jpg"></img>
+                </div>
+>>>>>>> github/master
             </div>
             <h3 class="white-txt">欢迎你来体验！</h3>
         </div>
@@ -114,7 +230,11 @@
             <div class="row">
                 <div class="col-md-6 about-us-intro">
                     <p>
+<<<<<<< HEAD
                         攻防演练平台，是在2017年由网络安全开发组小组成员共同搭建。原为网络安全组的成员，由于希望靠自己的力量为组员以及广大爱好网络安全的小伙伴们提供一个良好的平台，于是从网络安全组中分出一支，组成自己的开发团队。希望平台能够带给使用者满意的体验。如果你也希望参与其中，那就请加入我们，共同打造一个属于我们的攻防演练平台！
+=======
+                        武汉理工大学第五实验室攻防演练平台，是在2017年由网络安全开发组小组成员共同搭建。原为网络安全组的成员，由于希望靠自己的力量为组员以及广大爱好网络安全的小伙伴们提供一个良好的平台，于是从网络安全组中分出一支，组成自己的开发团队。希望平台能够带给使用者满意的体验。如果你也希望参与其中，那就请加入我们，共同打造一个属于我们的攻防演练平台！
+>>>>>>> github/master
                     </p>
                     <p>
                         目前实验室网络安全组分为安全组和开发组。安全组主要致力于安全攻防方面的技术研究，而开发组侧重于结合双方优势，打造一个良好的平台。
@@ -160,7 +280,11 @@
                 <div class="col-md-2 team-box">
                     <div class="team-member">
                         <figure class="profile-pic">
+<<<<<<< HEAD
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/huqian.jpg' %}">
+=======
+                            <img alt="member picture" class="img-circle" src="{% static 'images/mem5.png' %}">
+>>>>>>> github/master
                         </figure>
                         <div class="member-details">
                             <h3 class="dark-text color-border-bottom">csse-null</h3>
@@ -168,14 +292,22 @@
                         </div>
 
                         <div class="details">
+<<<<<<< HEAD
                             计算机学院
+=======
+                            码农一枚
+>>>>>>> github/master
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 team-box">
                     <div class="team-member">
                         <figure class="profile-pic">
+<<<<<<< HEAD
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/liziyan.jpg' %}">
+=======
+                            <img alt="member picture" class="img-circle" src="{% static 'images/mem5.png' %}">
+>>>>>>> github/master
                         </figure>
                         <div class="member-details">
                             <h3 class="dark-text color-border-bottom">virlaser</h3>
@@ -183,14 +315,22 @@
                         </div>
 
                         <div class="details">
+<<<<<<< HEAD
                             信息工程学院
+=======
+                            码农一枚
+>>>>>>> github/master
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 team-box">
                     <div class="team-member">
                         <figure class="profile-pic">
+<<<<<<< HEAD
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/gongjie.jpg' %}">
+=======
+                            <img alt="member picture" class="img-circle" src="{% static 'images/mem5.png' %}">
+>>>>>>> github/master
                         </figure>
                         <div class="member-details">
                             <h3 class="dark-text color-border-bottom">gisaac</h3>
@@ -198,14 +338,22 @@
                         </div>
 
                         <div class="details">
+<<<<<<< HEAD
                             管理学院
+=======
+                            码农一枚
+>>>>>>> github/master
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 team-box">
                     <div class="team-member">
                         <figure class="profile-pic">
+<<<<<<< HEAD
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/baiwentao.jpg' %}">
+=======
+                            <img alt="member picture" class="img-circle" src="{% static 'images/mem5.png' %}">
+>>>>>>> github/master
                         </figure>
                         <div class="member-details">
                             <h3 class="dark-text color-border-bottom">WDdeBWT</h3>
@@ -213,14 +361,22 @@
                         </div>
 
                         <div class="details">
+<<<<<<< HEAD
                             管理学院
+=======
+                            码农一枚
+>>>>>>> github/master
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 team-box">
                     <div class="team-member">
                         <figure class="profile-pic">
+<<<<<<< HEAD
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/cuican.jpg' %}">
+=======
+                            <img alt="member picture" class="img-circle" src="{% static 'images/mem5.png' %}">
+>>>>>>> github/master
                         </figure>
                         <div class="member-details">
                             <h3 class="dark-text color-border-bottom">GatsbyV</h3>
@@ -228,28 +384,44 @@
                         </div>
 
                         <div class="details">
+<<<<<<< HEAD
                            信息工程学院
+=======
+                           码农一枚
+>>>>>>> github/master
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 team-box">
                     <div class="team-member">
                         <figure class="profile-pic">
+<<<<<<< HEAD
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/jinxiangyu.jpg' %}">
                         </figure>
                         <div class="member-details">
                             <h3 class="dark-text color-border-bottom">MOOFENG</h3>
+=======
+                            <img alt="member picture" class="img-circle" src="{% static 'images/mem6.png' %}">
+                        </figure>
+                        <div class="member-details">
+                            <h3 class="dark-text color-border-bottom">Moofeng</h3>
+>>>>>>> github/master
                             <div class="position">网络安全组组长</div>
                         </div>
 
                         <div class="details">
+<<<<<<< HEAD
                            计算机学院
+=======
+                            码农一枚
+>>>>>>> github/master
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 team-box">
                     <div class="team-member">
                         <figure class="profile-pic">
+<<<<<<< HEAD
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/shenyang.jpg' %}">
                         </figure>
                         <div class="member-details">
@@ -258,12 +430,23 @@
                         </div>
                         <div class="details">
                             计算机学院
+=======
+                            <img alt="member picture" class="img-circle" src="{% static 'images/mem1.png' %}">
+                        </figure>
+                        <div class="member-details">
+                            <h3 class="dark-text color-border-bottom">ShenYang</h3>
+                            <div class="position">安全组</div>
+                        </div>
+                        <div class="details">
+                            码农一枚
+>>>>>>> github/master
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 team-box">
                     <div class="team-member">
                         <figure class="profile-pic">
+<<<<<<< HEAD
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/dingwei.jpg' %}">
                         </figure>
                         <div class="member-details">
@@ -272,36 +455,68 @@
                         </div>
                         <div class="details">
                             计算机学院
+=======
+                            <img alt="member picture" class="img-circle" src="{% static 'images/mem2.png' %}">
+                        </figure>
+                        <div class="member-details">
+                            <h3 class="dark-text color-border-bottom">DingWei</h3>
+                            <div class="position">安全组</div>
+                        </div>
+                        <div class="details">
+                            码农一枚
+>>>>>>> github/master
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 team-box">
                     <div class="team-member">
                         <figure class="profile-pic">
+<<<<<<< HEAD
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/yinxianyang.jpg' %}">
                         </figure>
                         <div class="member-details">
                             <h3 class="dark-text color-border-bottom">yinxainyang</h3>
+=======
+                            <img alt="member picture" class="img-circle" src="{% static 'images/mem3.png' %}">
+                        </figure>
+                        <div class="member-details">
+                            <h3 class="dark-text color-border-bottom">YinXianYang</h3>
+>>>>>>> github/master
                             <div class="position">安全组</div>
                         </div>
 
                         <div class="details">
+<<<<<<< HEAD
                             计算机学院
+=======
+                            码农一枚
+>>>>>>> github/master
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 team-box">
                     <div class="team-member">
                         <figure class="profile-pic">
+<<<<<<< HEAD
                             <img alt="member picture" class="img-circle" src="{% static 'images/avatar/yangzhen.jpg' %}">
                         </figure>
                         <div class="member-details">
                             <h3 class="dark-text color-border-bottom">yz</h3>
+=======
+                            <img alt="member picture" class="img-circle" src="{% static 'images/mem4.png' %}">
+                        </figure>
+                        <div class="member-details">
+                            <h3 class="dark-text color-border-bottom">YZ</h3>
+>>>>>>> github/master
                             <div class="position">开发组</div>
                         </div>
 
                         <div class="details">
+<<<<<<< HEAD
                             计算机学院
+=======
+                            码农一枚
+>>>>>>> github/master
                         </div>
                     </div>
                 </div>
@@ -317,25 +532,38 @@
             <div class="icon-top red-text">
                 <img alt="" src="http://7xp1b3.com1.z0.glb.clouddn.com/map25-redish.png">
             </div>
+<<<<<<< HEAD
             武汉理工大学
+=======
+            武汉理工大学第五实验室
+>>>>>>> github/master
         </div>
         <div class="col-md-3 team-info">
             <div class="icon-top red-text">
                 <img alt="" src="http://7xp1b3.com1.z0.glb.clouddn.com/envelope4-green.png">
             </div>
+<<<<<<< HEAD
             adplab5@126.com
+=======
+            adp@163.com
+>>>>>>> github/master
         </div>
         <div class="col-md-3 team-info">
             <div class="icon-top">
                 <a target="_blank" href="#">
                     <i class="fa fa-weixin fa-3x"></i>
                 </a>
+<<<<<<< HEAD
                 <a target="_blank" href="#">
+=======
+                <a target="_blank" href="http://weibo.com/dropsec?refer_flag=1001030101_&is_all=1">
+>>>>>>> github/master
                     <i class="fa fa-weibo fa-3x"></i>
                 </a>
             </div>
         </div>
         <div class="col-md-3 copyright">
+<<<<<<< HEAD
             <span>攻防演练平台@2017</span>
         </div>
     </div>
@@ -349,5 +577,20 @@
 <script src="{% static 'js/plugins/jquery.scrollLoading.js' %}"  type="text/javascript"></script>
 <script src="{% static 'js/deco-common.js' %}"  type="text/javascript"></script>
 <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+=======
+            <span>Lab5攻防演练平台@2017</span>
+        </div>
+    </div>
+</footer>
+<script src="/static/js/scrollreveal.min.js"></script>
+<script src="/static/js/selectUi.js" type='text/javascript'></script>
+<script src="/static/js/deco-common.js" type='text/javascript'></script>
+<script type="text/javascript" src="/static/js/plugins/laydate/laydate.js"></script>
+<script src="/static/js/plugins/layer/layer.js"></script>
+<script src="/static/js/unslider.js" type="text/javascript"></script>
+<script src="/static/js/plugins/jquery.scrollLoading.js"  type="text/javascript"></script>
+<script src="/static/js/deco-common.js"  type="text/javascript"></script>
+<script type="text/javascript" src="/static/js/index.js"></script>
+>>>>>>> github/master
 </body>
 </html>

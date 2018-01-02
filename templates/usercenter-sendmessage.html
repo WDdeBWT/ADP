@@ -19,6 +19,7 @@
 
     <style type="text/css">
         #msg {
+<<<<<<< HEAD
             position: relative;
             height: 450px;
             width: 850px;
@@ -45,6 +46,19 @@
         }/*链接设置*/
         .color:visited{color:#3399CC; text-decoration:none;font-weight:bold;}/*访问过的链接设置*/
         .color:hover{color:#CF0000; text-decoration:underline;font-weight:bold;}/*鼠标放上的链接设置*/
+=======
+            height: 99px;
+            width: 280px;
+        }
+
+        #id_email {
+            width: 280px;
+        }
+
+        #Button1 {
+            width: 280px;
+        }
+>>>>>>> github/master
     </style>
 
 </head>
@@ -54,13 +68,21 @@
         <div class="header2 header">
             <div class="top">
                 <div class="wp">
+<<<<<<< HEAD
                     <div class="fl"><p>攻防演练平台</p></div>
+=======
+                    <div class="fl"><p>服务电话：<b>33333333</b></p></div>
+>>>>>>> github/master
                     <!--登录后跳转-->
 
 
                     <div class="personal">
                         <dl class="user fr">
+<<<<<<< HEAD
                             <dd>{{ request.user.nick_name }}<a href="{% url 'logout' %}" class="color">退出</a></dd>
+=======
+                            <dd>{{ request.user.nick_name }}<a href="{% url 'logout' %}">退出</a></dd>
+>>>>>>> github/master
                             <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
                         </dl>
                         {#                        <div class="userdetail">#}
@@ -135,6 +157,7 @@
                 </div>
                 <div class="messagelist">
                     <form id="message_send_form" method="post" action={% url 'users:sendmessage' %} autocomplete="off">
+<<<<<<< HEAD
                         <p style="margin: 50px auto auto 10px;float: left;">邮箱：</p>
                         <input type="text" id="id_email" name="email" placeholder="请输入收件人的用户名（邮箱）">
                             "
@@ -145,6 +168,15 @@
                         <div class="error btns" id="jsEmailTips">
                             {% for key,error in register_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>
                         <input id="Button1" type="submit" value="发送站内信">
+=======
+                        <input type="text" id="id_email" name="email" placeholder="请输入收件人的用户名（邮箱）"/>
+                        (如需向管理员反馈消息，请发送至1@1.com)<br/>
+                        <input type="text" id="msg" name="message" placeholder="请输入您要发送的消息"/>
+                        <br/>
+                        <div class="error btns" id="jsEmailTips">
+                            {% for key,error in register_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>
+                        <input id="Button1" type="submit" value="发送消息"/>
+>>>>>>> github/master
                         {% csrf_token %}
                     </form>
                 </div>

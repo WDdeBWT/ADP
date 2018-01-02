@@ -1,5 +1,8 @@
 {% extends 'ctf_base.html' %}
+<<<<<<< HEAD
 {% load staticfiles %}
+=======
+>>>>>>> github/master
 
 {% block title %}CTF题目列表 - 攻防演练平台{% endblock %}
 
@@ -7,7 +10,11 @@
     <section>
         <div class="wp">
             <ul class="crumbs">
+<<<<<<< HEAD
                 <li><a href="{% url 'index' %}">首页</a>></li>
+=======
+                <li><a href="index.html">首页</a>></li>
+>>>>>>> github/master
                 <li>CTF题库</li>
             </ul>
         </div>
@@ -15,8 +22,13 @@
 {% endblock %}
 
 {% block custom_css %}
+<<<<<<< HEAD
     <link href="{% static 'css/common_2016.css' %}" media="screen" rel="stylesheet" type="text/css">
     <link href="{% static 'css/ctf/CTF_Details.css' %}" media="screen" rel="stylesheet" type="text/css">
+=======
+    <link href="/static/css/common_2016.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/static/css/ctf/CTF_Details.css" media="screen" rel="stylesheet" type="text/css">
+>>>>>>> github/master
 {% endblock %}
 
 {% block content %}
@@ -27,6 +39,10 @@
 
             <!--内容左部分-->
             <div class="train_m_left">
+<<<<<<< HEAD
+=======
+                <!--左侧内容3——英雄榜-->
+>>>>>>> github/master
                 <div class="train_mle_hero train_mle_hero1">
                     <h3>英雄榜</h3>
                     <div class="hero_rank_show1" id="rank_ul">
@@ -47,6 +63,7 @@
                         </ul>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="ui segment" style="padding-top: 1px;">
                     <div class="ui pointing secondary menu red section-title">
                         <div class="item active" style="margin-bottom: 14px;">
@@ -61,6 +78,8 @@
                         {% endfor %}
                     </div>
                 </div>
+=======
+>>>>>>> github/master
             </div>
 
 
@@ -90,7 +109,11 @@
                             {% elif category == "CRYPTO" %}
                                 <p>Crypto即密码学，题目考察各种加解密技术，包括古典加密技术、现代加密技术甚至出题者自创加密技术，主要考查参赛选手密码学相关知识点。</p>
                             {% elif category == "REVERSE" %}
+<<<<<<< HEAD
                                 <p>Reverse即逆向工程，题目涉及到软件逆向、破解技术等，要求有较强的反汇编、反编译扎实功底。主要考查参赛选手的逆向分析能力。</p>
+=======
+                                    <p>Reverse即逆向工程，题目涉及到软件逆向、破解技术等，要求有较强的反汇编、反编译扎实功底。主要考查参赛选手的逆向分析能力。</p>
+>>>>>>> github/master
                             {% elif category == "MISC" %}
                                 <p>MISC即安全杂项，题目涉及流量分析、电子取证、人肉搜索、数据分析、大数据统计等等，覆盖面比较广，主要考查参赛选手的各种基础综合知识。</p>
                             {% elif category == "STEGA" %}
@@ -100,7 +123,11 @@
                             {% else %}
                                 <p>PWN在黑客俚语中代表着攻破，取得权限，在CTF比赛中它代表着溢出类的题目，其中常见类型溢出漏洞有栈溢出、堆溢出。主要考察参数选手对漏洞的利用能力。</p>
                             {% endif %}
+<<<<<<< HEAD
                             <div class="show_num"><span></span>点击人数：<b>{{ participation }}</b></div>
+=======
+                            <div class="show_num"><span></span>参与人数：<b>{{ participation }}</b></div>
+>>>>>>> github/master
                         </div>
                         <div class="show_parameter">
                             <span class="not"><b class="bb red"></b>无人能解</span>
@@ -194,6 +221,7 @@
 
 
 {% block custom_js %}
+<<<<<<< HEAD
     <script type="text/javascript" src="{% static 'js/lib/jquery-1.8.3.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/common.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plug/jquery.validate.js' %}"></script>
@@ -201,4 +229,13 @@
     <script type="text/javascript" src="{% static 'js/plug/jquery.form.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/layer/layer.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/layer/laytpl.js' %}"></script>
+=======
+    <script type="text/javascript" src="/static/js/lib/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/static/js/common.js"></script>
+    <script type="text/javascript" src="/static/js/plug/jquery.validate.js"></script>
+    <script type="text/javascript" src="/static/js/plug/messages_zh.js"></script>
+    <script type="text/javascript" src="/static/js/plug/jquery.form.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/static/js/layer/laytpl.js"></script>
+>>>>>>> github/master
 {% endblock %}

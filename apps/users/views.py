@@ -1,6 +1,11 @@
 # _*_ coding:utf-8 _*_
+<<<<<<< HEAD
 
 import json, docker
+=======
+import json
+
+>>>>>>> github/master
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.backends import ModelBackend
@@ -8,6 +13,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Q
 from django.views.generic.base import View
 from django.contrib.auth.hashers import make_password
+<<<<<<< HEAD
 from pure_pagination import Paginator, PageNotAnInteger
 from django.core.urlresolvers import reverse
 from itertools import chain
@@ -23,6 +29,15 @@ from utils.mixin_utils import LoginRequiredMixin
 from ctf.models import Ctf, Docker
 from experiments.models import Docker as exp_docker
 from experiments.models import Experiment
+=======
+from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
+
+from .models import UserProfile, EmailVerifyRecord
+from operations.models import UserMessage
+from .forms import LoginForm, RegisterForm, UploadImageForm, ForgetPswForm, ModifyPswForm, UserInfoForm, MessageSendForm, UserBirthdayInfoForm
+from utils.email_send import send_register_email
+from utils.mixin_utils import LoginRequiredMixin
+>>>>>>> github/master
 
 
 # Create your views here.
@@ -48,8 +63,12 @@ class ActiveUserView(View):
                 user.is_active = True
                 user.save()
                 EmailVerifyRecord.objects.filter(code=active_code, send_type="register").delete()
+<<<<<<< HEAD
                 # return render(request, "login.html")
                 return render(request, "login.html", {"logintimes": 0})
+=======
+                return render(request, "login.html")
+>>>>>>> github/master
         else:
             return render(request, "active_fail.html")
 
@@ -57,13 +76,21 @@ class ActiveUserView(View):
 class RegisterView(View):
     def get(self, request):
         register_form = RegisterForm()
+<<<<<<< HEAD
         return render(request, "register.html", {'register_form': register_form})
+=======
+        return render(request, "register.html", {'register_form':register_form})
+>>>>>>> github/master
 
     def post(self, request):
         register_form = RegisterForm(request.POST)
         if register_form.is_valid():
             user_name = request.POST.get("email", "")
+<<<<<<< HEAD
             if UserProfile.objects.filter(email=user_name):
+=======
+            if UserProfile.objects.filter(email = user_name):
+>>>>>>> github/master
                 return render(request, "register.html", {"register_form": register_form, "msg": "用户已存在"})
             pass_word = request.POST.get("password", "")
             user_profile = UserProfile()
@@ -73,6 +100,7 @@ class RegisterView(View):
             user_profile.password = make_password(pass_word)
             user_profile.is_active = False
             # user_profile.is_active = True
+<<<<<<< HEAD
             # 写入欢迎注册的消息
             # user_message = UserMessage()
             # user_message.email = user_profile
@@ -87,12 +115,23 @@ class RegisterView(View):
                 user_profile.save()
                 return render(request, "register.html", {"email": user_name, "is_registered": True})
                 # return render(request, "login.html")
+=======
+            user_profile.save()
+            # 写入欢迎注册的消息
+            user_message = UserMessage()
+            user_message.user= user_profile
+            user_message.message = "欢迎注册ADP-攻防演练平台"
+            user_message.save()
+            send_register_email(user_name, "register")
+            return render(request, "login.html")
+>>>>>>> github/master
         else:
             return render(request, "register.html", {"register_form": register_form})
 
 
 class LogoutView(View):
     def get(self, request):
+<<<<<<< HEAD
         client = docker.from_env()
         dockers = Docker.objects.filter(user=request.user.username).all()
         exp_dockers = exp_docker.objects.filter(user=request.user.username).all()
@@ -107,11 +146,16 @@ class LogoutView(View):
             finally:
                 doc.delete()
         logout(request)
+=======
+        logout(request)
+        from django.core.urlresolvers import reverse
+>>>>>>> github/master
         return HttpResponseRedirect(reverse("index"))
 
 
 class LoginView(View):
     def get(self, request):
+<<<<<<< HEAD
         login_form = LoginForm()
         # return render(request, "login.html")
         return render(request, "login.html", {"logintimes": 0})
@@ -125,6 +169,12 @@ class LoginView(View):
         else:
             login_form = LoginForm(request.POST)
         logintimes = logintimes + 1
+=======
+        return render(request, "login.html", {})
+
+    def post(self, request):
+        login_form = LoginForm(request.POST)
+>>>>>>> github/master
         if login_form.is_valid():
             user_name = request.POST.get("username", "")
             pass_word = request.POST.get("password", "")
@@ -132,6 +182,7 @@ class LoginView(View):
             if user is not None:
                 if user.is_active:
                     login(request, user)
+<<<<<<< HEAD
                     return HttpResponseRedirect(reverse("index"))
                 else:
                     return render(request, "login.html",
@@ -141,13 +192,25 @@ class LoginView(View):
                               {"msg": "用户名或密码错误！", "login_form": login_form, "logintimes": logintimes})
         else:
             return render(request, "login.html", {"login_form": login_form, "logintimes": logintimes})
+=======
+                    return render(request, "index.html")
+                else:
+                    return render(request, "login.html", {"msg": "用户未激活"})
+            else:
+                return render(request, "login.html", {"msg": "用户名或密码错误！"})
+        else:
+            return render(request, "login.html", {"login_form": login_form})
+>>>>>>> github/master
 
 
 class UserinfoView(LoginRequiredMixin, View):
     """
     用户个人信息
     """
+<<<<<<< HEAD
 
+=======
+>>>>>>> github/master
     def get(self, request):
         return render(request, 'usercenter-info.html', {})
 
@@ -169,7 +232,10 @@ class UploadImageView(LoginRequiredMixin, View):
     """
     用户修改头像
     """
+<<<<<<< HEAD
 
+=======
+>>>>>>> github/master
     def post(self, request):
         image_form = UploadImageForm(request.POST, request.FILES, instance=request.user)
         if image_form.is_valid():
@@ -232,7 +298,10 @@ class UpdatePswView(View):
     """
     个人中心修改密码
     """
+<<<<<<< HEAD
 
+=======
+>>>>>>> github/master
     def post(self, request):
         modify_psw_form = ModifyPswForm(request.POST)
         if modify_psw_form.is_valid():
@@ -253,10 +322,16 @@ class SendEmailCodeView(LoginRequiredMixin, View):
     """
     发送邮箱验证码
     """
+<<<<<<< HEAD
 
     def get(self, request):
         email = request.GET.get('email', '')
         if UserProfile.objects.filter(email=email):
+=======
+    def get(self, request):
+        email = request.GET.get('email', '')
+        if UserProfile.objects.filter(email = email):
+>>>>>>> github/master
             return HttpResponse('{"email":"该邮箱已被注册！"}', content_type='application/json')
         else:
             send_register_email(email, "update_email")
@@ -267,11 +342,18 @@ class UpdateEmailView(LoginRequiredMixin, View):
     """
     修改邮箱
     """
+<<<<<<< HEAD
 
     def post(self, request):
         email = request.POST.get('email', '')
         code = request.POST.get('code', '')
         existed_records = EmailVerifyRecord.objects.filter(email=email, code=code, send_type='update_email')
+=======
+    def post(self, request):
+        email = request.POST.get('email', '')
+        code = request.POST.get('code', '')
+        existed_records = EmailVerifyRecord.objects.filter(email = email, code = code, send_type='update_email')
+>>>>>>> github/master
         if existed_records:
             user = request.user
             user.email = email
@@ -287,7 +369,10 @@ class MymessageView(LoginRequiredMixin, View):
     """
     我的消息
     """
+<<<<<<< HEAD
 
+=======
+>>>>>>> github/master
     def get(self, request):
         all_messages = UserMessage.objects.filter(email=request.user.email).order_by('-add_time')
         # 对个人消息进行分页
@@ -295,7 +380,11 @@ class MymessageView(LoginRequiredMixin, View):
             page = request.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
+<<<<<<< HEAD
         p = Paginator(all_messages, 5, request=request)
+=======
+        p = Paginator(all_messages, 5, request = request)
+>>>>>>> github/master
         messages = p.page(page)
         for msg in all_messages:
             msg.has_read = True
@@ -311,6 +400,7 @@ class SendmessageView(LoginRequiredMixin, View):
         message_send_form = MessageSendForm(request.POST)
         email = request.POST.get('email', "")
         if message_send_form.is_valid():
+<<<<<<< HEAD
             existed_records = UserProfile.objects.filter(email=email)
             if existed_records:
                 # new_message = UserMessage()
@@ -318,6 +408,14 @@ class SendmessageView(LoginRequiredMixin, View):
                 # new_message.message = "发送人：" + request.user.email + "| 发送信息：" + request.POST.get("message", "")
                 # new_message.save()
                 send_message(request.POST.get("message", ""), request.user.email, email)
+=======
+            existed_records = UserProfile.objects.filter(email = email)
+            if existed_records:
+                new_message = UserMessage()
+                new_message.email = email
+                new_message.message = "发送人：" + request.user.email + "| 发送信息：" + request.POST.get("message", "")
+                new_message.save()
+>>>>>>> github/master
                 return render(request, 'usercenter-sendmessage.html', {"messages": "消息已发送"})
             else:
                 return render(request, 'usercenter-sendmessage.html', {"messages": "该用户不存在！"})
@@ -325,6 +423,7 @@ class SendmessageView(LoginRequiredMixin, View):
             return render(request, 'usercenter-sendmessage.html', {"message_send_form": message_send_form})
 
 
+<<<<<<< HEAD
 class IndexView(View):
     """
     漏洞体验平台首页
@@ -355,3 +454,19 @@ def page_error(request):
     response = render_to_response('500.html', {})
     response.status_code = 500
     return response
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> github/master

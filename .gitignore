@@ -17,6 +17,10 @@ __pycache__/
 *.pyc
 
 # 媒体文件
+<<<<<<< HEAD
 /media/*
 # 保留媒体文件中的默认头像
 !/media/default_face.jpg
+=======
+/media/
+>>>>>>> github/master

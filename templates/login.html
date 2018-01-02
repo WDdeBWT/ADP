@@ -2,6 +2,7 @@
 <html>
 {% load staticfiles %}
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
@@ -12,12 +13,25 @@
         var err =
         {{ err|safe }}
         if (err == 1) {
+=======
+	<meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+	<title>ADP-登录</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/login.css">
+    <script language="JavaScript">
+        var err = {{ err|safe }}
+        if (err == 1)
+        {
+>>>>>>> github/master
             alert("请先激活邮箱");
         }
     </script>
 </head>
 <body>
 <div class="dialog" id="jsDialog">
+<<<<<<< HEAD
     <!--提示弹出框-->
     <div class="successbox dialogbox" id="jsSuccessTips">
         <h1>成功提交</h1>
@@ -41,11 +55,44 @@
         </div>
     </div>
 </div>
+=======
+<!--提示弹出框-->
+<div class="successbox dialogbox" id="jsSuccessTips">
+    <h1>成功提交</h1>
+    <div class="close jsCloseDialog"><img src="/static/images/dig_close.png"/></div>
+    <div class="cont">
+        <h2>您的需求提交成功！</h2>
+        <p></p>
+    </div>
+</div>
+<div  class="noactivebox dialogbox" id="jsUnactiveForm" >
+    <h1>邮件验证提示</h1>
+    <div class="close jsCloseDialog"><img src="/static/images/dig_close.png"/></div>
+    <div class="center">
+        <img src="/static/images/send.png"/>
+        <p>我们已经向您的邮箱<span class="green" id="jsEmailToActive">12@13.com</span>发送了邮件，<br/>为保证您的账号安全，请及时验证邮箱</p>
+        <p class="a"><a class="btn" id="jsGoToEmail" target="_blank" href="http://mail.qq.com">去邮箱验证</a></p>
+        <p class="zy_success upmove"></p>
+        <p style="display: none;" class="sendE2">没收到，您可以查看您的垃圾邮件和被过滤邮件，也可以再次发送验证邮件（<span class="c5c">60s</span>）</p>
+        <p class="sendE">没收到，您可以查看您的垃圾邮件和被过滤邮件，<br/>也可以<span class="c5c green" id="jsSenEmailAgin" style="cursor: pointer;">再次发送验证邮件</span></p>
+    </div>
+</div>
+</div>
+>>>>>>> github/master
 <div class="bg" id="dialogBg"></div>
 <header>
     <div class="c-box fff-box">
         <div class="wp header-box">
+<<<<<<< HEAD
             <p class="fl hd-tips">ADP，在线网络安全平台！</p>
+=======
+            <p class="fl hd-tips">ADP，在线网络安全平台</p>
+            <ul class="fr hd-bar">
+                <li>服务电话：<span>33333333</span></li>
+                <li class="active"><a href="login.html">[登录]</a></li>
+                <li><a href="register.html">[注册]</a></li>
+            </ul>
+>>>>>>> github/master
         </div>
     </div>
 </header>
@@ -60,9 +107,15 @@
             <div class="fl slide">
                 <div class="imgslide">
                     <ul class="imgs">
+<<<<<<< HEAD
                         <li><a href=""><img width="483" height="472" src="{% static 'images/ctf-bg.jpg' %}"/></a></li>
                         <li><a href=""><img width="483" height="472" src="{% static 'images/adp-bg.jpg' %}"/></a></li>
                         <li><a href=""><img width="483" height="472" src="{% static 'images/ctf-bg.jpg' %}"/></a></li>
+=======
+                            <li><a href=""><img width="483" height="472" src="/static/images/mysql.jpg" /></a></li>
+                            <li><a href=""><img width="483" height="472" src="/static/images/mysql.jpg" /></a></li>
+                            <li><a href=""><img width="483" height="472" src="/static/images/mysql.jpg" /></a></li>
+>>>>>>> github/master
                     </ul>
                 </div>
                 <div class="unslider-arrow prev"></div>
@@ -71,6 +124,7 @@
             <div class="fl form-box">
                 <h2>帐号登录</h2>
                 <form action="{% url 'login' %}" method="post" autocomplete="off">
+<<<<<<< HEAD
                     <input type='hidden' name='csrfmiddlewaretoken' value='mymQDzHWl2REXIfPMg2mJaLqDfaS1sD5'/>
                     <div class="form-group marb20 {% if login_form.errors.username %}errorput{% endif %}">
                         <label>用&nbsp;户&nbsp;名</label>
@@ -98,12 +152,37 @@
                     {% csrf_token %}
                 </form>
                 <p class="form-p">没有帐号？<a href="{% url 'register' %}">[立即注册]</a></p>
+=======
+                    <input type='hidden' name='csrfmiddlewaretoken' value='mymQDzHWl2REXIfPMg2mJaLqDfaS1sD5' />
+                    <div class="form-group marb20 {% if login_form.errors.username %}errorput{% endif %}">
+                        <label>用&nbsp;户&nbsp;名</label>
+                        <input name="username" id="account_l" type="text" placeholder="手机号/邮箱" />
+                    </div>
+                    <div class="form-group marb8 {% if login_form.errors.password %}errorput{% endif %}">
+                        <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+                        <input name="password" id="password_l" type="password" placeholder="请输入您的密码" />
+                    </div>
+                    <div class="error btns login-form-tips" id="jsLoginTips">{% for key,error in login_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>
+                     <div class="auto-box marb38">
+
+                        <a class="fr" href="{% url 'forget_psw' %}">忘记密码？</a>
+                     </div>
+                     <input class="btn btn-green" id="jsLoginBtn" type="submit" value="立即登录 > " />
+                <input type='hidden' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy' />
+                {% csrf_token %}
+                </form>
+                <p class="form-p">没有慕学在线网帐号？<a href="register.html">[立即注册]</a></p>
+>>>>>>> github/master
             </div>
         </div>
     </div>
 </section>
 <script src="/static/js/jquery.min.js" type="text/javascript"></script>
 <script src="/static/js/unslider.js" type="text/javascript"></script>
+<<<<<<< HEAD
 <script src="/static/js/login.js" type="text/javascript"></script>
+=======
+<script src="/static/js/login.js"  type="text/javascript"></script>
+>>>>>>> github/master
 </body>
 </html>

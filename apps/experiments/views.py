@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render
@@ -189,3 +190,8 @@ def port_is_used(ip, port):
         return True
     except:
         return False
+=======
+from django.shortcuts import render
+
+# Create your views here.
+>>>>>>> github/master

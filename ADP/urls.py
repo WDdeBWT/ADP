@@ -16,22 +16,39 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+<<<<<<< HEAD
+=======
+from django.contrib import admin
+from django.views.generic import TemplateView
+>>>>>>> github/master
 import xadmin
 from django.views.static import serve
 from users.views import LoginView, LogoutView, RegisterView, ActiveUserView, ForgetPswView, ResetView, ModifyPswView
 from ADP.settings import MEDIA_ROOT
+<<<<<<< HEAD
 from users.views import IndexView
 
 urlpatterns = [
     # index
     url('^$', IndexView.as_view(), name="index"),
     url('^index/$', IndexView.as_view(), name="index"),
+=======
+
+
+urlpatterns = [
+    # index
+    url('^$', TemplateView.as_view(template_name="index.html"), name="index"),
+    url('^index/$', TemplateView.as_view(template_name="index.html"), name="index"),
+>>>>>>> github/master
     # xadmin
     url(r'^xadmin/', xadmin.site.urls),
     # ctf
     url(r'^ctf/', include('ctf.urls', namespace="ctf")),
+<<<<<<< HEAD
     # 漏洞体验
     url(r'^exp/', include('experiments.urls',namespace='exp')),
+=======
+>>>>>>> github/master
     # captcha
     url(r'^captcha/', include('captcha.urls')),
     # 用户管理
@@ -46,6 +63,9 @@ urlpatterns = [
     url(r'^users/', include('users.urls', namespace="users")),
     # 媒体文件配置
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
+<<<<<<< HEAD
     # 漏洞实验配置
     url(r'^experiment/', include('experiments.urls', namespace='experiment')),
+=======
+>>>>>>> github/master
 ]

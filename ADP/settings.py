@@ -33,6 +33,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> github/master
 # Application definition
 AUTHENTICATION_BACKENDS = (
     'users.views.CustomBackend',
@@ -92,7 +96,12 @@ ROOT_URLCONF = 'ADP.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
+=======
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        ,
+>>>>>>> github/master
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,6 +117,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ADP.wsgi.application'
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> github/master
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 # 更改为MySQL数据库,数据库名称为adp
@@ -116,11 +129,19 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "adp",
         'USER': "root",
+<<<<<<< HEAD
         'PASSWORD': "bwt1997mysql",
+=======
+        'PASSWORD': "",
+>>>>>>> github/master
         'HOST': "127.0.0.1",
     }
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> github/master
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -139,6 +160,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> github/master
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 # 语言设置为中文,时区设置为上海,关闭时区功能
@@ -152,6 +177,10 @@ USE_L10N = True
 
 USE_TZ = False
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> github/master
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
@@ -168,7 +197,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # 邮件发送配置
 EMAIL_HOST = "smtp.126.com"
 EMAIL_PORT = 25
+<<<<<<< HEAD
 EMAIL_HOST_USER = "adplab5@126.com"
 EMAIL_HOST_PASSWORD = "lab5adp666"
 EMAIL_USE_TLS = False
 EMAIL_FROM = "adplab5@126.com"
+=======
+EMAIL_HOST_USER = "bwt1997@126.com"
+EMAIL_HOST_PASSWORD = ""
+EMAIL_USE_TLS = False
+EMAIL_FROM = "bwt1997@126.com"
+
+>>>>>>> github/master
